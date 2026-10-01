@@ -26,3 +26,9 @@ Mapped javac type/name errors now use the Kalm type/name family: `KALM-2010` unr
 `??=` follows the draft's mutable-local-or-field rule; use ordinary assignment for a `write` property. Nullable and primitive `guard` locks are diagnosed. Task blocks infer nullable result types, and `await` resolves inherited Java completion-stage type arguments.
 
 Unknown record generators are diagnosed; the supported spelling is `generate Display`. Precompiled test execution uses the explicitly supplied runtime classpath so Maven and Gradle outputs cannot shadow one another.
+
+## Generic calls and casts
+
+Constructor arguments, generic function parameters and Java members now preserve instantiated nullable type arguments. Code that placed `Text?` into `Box<Text>` must use `Box<Text?>` or supply a non-null value. Nullable elements remain nullable when accessed through inherited Java generic methods.
+
+Casting null to a non-null target raises `ClassCastException`; use a nullable cast target when null is allowed. Cast operands are evaluated once. CLI application and test execution now use their application class loader as the thread context loader, restoring the previous loader afterward.

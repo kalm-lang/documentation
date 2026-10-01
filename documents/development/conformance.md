@@ -34,6 +34,8 @@ Some type/name errors are discovered by the final javac analysis rather than a s
 | Native IntelliJ lexer and Community-compatible package | IntelliJ `test buildPlugin verifyPluginStructure` |
 | Both editor archives ship the current compiler/server | `python3 scripts/verify_editor_packages.py` checks JAR hashes and exercises stdio initialization, formatting, diagnostics and unsaved UTF-16 spans |
 | Deterministic archives, launcher permissions, binary compile/run | `python3 scripts/verify_distribution.py` |
+| Identical artifacts from clean builds in different directories | `python3 scripts/verify_clean_builds.py --offline` |
+| Installed distribution builds, packages and runs its own example | `python3 scripts/verify_distribution.py --build-example` |
 | Windows build/launcher compatibility | Windows CI job; requires a Windows runner |
 
 CI uploads the staged distribution and test reports. Gradle `publish` stages a local repository; it does not upload to the Plugin Portal. Maven, VS Code and IntelliJ registry publication requires the owner's configured accounts and release credentials.

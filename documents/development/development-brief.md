@@ -26,6 +26,7 @@ After building and verifying all components:
 
 ```sh
 ./gradlew -p kalm-gradle-plugin publish
+python3 scripts/verify_clean_builds.py --offline
 python3 scripts/verify_editor_packages.py
 python3 scripts/package_distribution.py
 python3 scripts/verify_distribution.py --build-example
