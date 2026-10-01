@@ -8,7 +8,7 @@ mvn -f demo-mixed-project/pom.xml clean verify
 ./gradlew -p kalm-gradle-plugin test validatePlugins
 ./gradlew -p demo-mixed-project clean test
 ./gradlew -p demo-mixed-project test --configuration-cache
-./gradlew -p kalm-intellij-plugin test buildPlugin verifyPluginStructure
+gradle -p extensions/intellij-kalm test buildPlugin verifyPluginStructure
 cd extensions/vscode-kalm
 npm ci
 npm run check
