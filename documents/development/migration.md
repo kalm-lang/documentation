@@ -7,3 +7,22 @@ The previous development compiler accepted nullable Kalm references in non-null 
 Methods implementing a Java interface now require `override fun`. Generated overrides and forwarded methods preserve compatible checked exceptions from the Java signature, including interfaces defined in the same source set.
 
 The CLI discovers `src/main/java` or `src/test/java` alongside its default Kalm roots. When supplying custom Kalm roots, add handwritten Java roots explicitly with repeatable `--java-source-root` options. Signature analysis uses in-memory Java files and never emits or packages stub classes.
+
+## Joint compiler and shared editor implementation
+
+- Maven `testCompile` now binds to `process-test-sources`, allowing it to see compiled main classes.
+- VS Code uses the bundled shared Java language server by default. Remove settings that depended on the earlier JavaScript analyzer; set `kalm.java.command` to JDK 25 when needed.
+- IntelliJ packages the server and adds native highlighting/source roots. `KALM_JAVA_COMMAND` selects its server JDK; `KALM_LSP_COMMAND` still supports an external server.
+- Java reference signatures now retain nullability and Kalm module visibility metadata. Nullable values no longer pass silently to non-null Kalm declarations across compiled boundaries.
+- Arithmetic rejects mixed numeric types. Nullable mutable bindings retain their declared type after `??=`; use a fixed refined value or coalesce explicitly.
+- Unannotated Java references and legacy function/method uses produce warnings. Existing code remains valid when only warnings are present.
+- Generated Java has expression mapping sidecars. The CLI cleans stale owned class files after a successful rebuild; host builds retain their normal Java incremental compilation.
+- Gradle compilation runs in the selected JDK, emits HTML reports, and has explicit source filters/analysis arguments.
+
+## Diagnostic and null-assignment corrections
+
+Mapped javac type/name errors now use the Kalm type/name family: `KALM-2010` unresolved symbol, `KALM-2011` incompatible type/arguments, `KALM-2012` missing return, `KALM-2013` ambiguous reference and `KALM-2014` definite assignment. Interop/build errors remain `KALM-3000`. Update tools that matched all javac failures as `KALM-3000`.
+
+`??=` follows the draft's mutable-local-or-field rule; use ordinary assignment for a `write` property. Nullable and primitive `guard` locks are diagnosed. Task blocks infer nullable result types, and `await` resolves inherited Java completion-stage type arguments.
+
+Unknown record generators are diagnosed; the supported spelling is `generate Display`. Precompiled test execution uses the explicitly supplied runtime classpath so Maven and Gradle outputs cannot shadow one another.

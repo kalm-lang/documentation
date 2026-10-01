@@ -1,24 +1,60 @@
 # Quick start
 
-Use a full JDK 25+ and Maven 3.9+. Build and install the compiler, runtime, and Maven plugin, then run the independent demo:
+## Requirements
+
+Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-runtime:0.1.0-SNAPSHOT`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
+
+Build from the repository root:
 
 ```sh
 mvn clean install
-mvn -f demo-mixed-project/pom.xml clean verify
-mvn -f demo-mixed-project/pom.xml exec:java
+bin/kalm --version
 ```
 
-For a Maven project, add the `dev.kalm:kalm-runtime:0.1.0-SNAPSHOT` dependency and configure `dev.kalm:kalm-maven-plugin:0.1.0-SNAPSHOT` with the `compile`, `testCompile`, and `test` goals. The defaults are `src/main/kalm`, `src/test/kalm`, `target/generated-sources/kalm`, and `target/generated-test-sources/kalm`. Test compilation indexes main Kalm declarations, so tests can call main functions and augmentations without regenerating main classes. Set `maven.compiler.release` to `25`. See the [standalone demo POM](../demo-mixed-project/pom.xml) for a working example including Java dependencies. The `test` goal writes `target/surefire-reports/TEST-kalm.xml`.
+Until public artifacts are published, local Maven installation is required by the examples. Compiler, runtime, build plugins, server and IntelliJ use `0.1.0-SNAPSHOT`; the VSIX uses Marketplace-compatible version `0.1.0` and bundles the matching snapshot server.
 
-The local CLI launcher, `bin/kalm`, uses the built compiler/runtime JARs. From a project directory:
+## CLI
 
 ```sh
-/path/to/repository/bin/kalm check
-/path/to/repository/bin/kalm compile
-/path/to/repository/bin/kalm run -- program arguments
-/path/to/repository/bin/kalm test
+bin/kalm check src/main/kalm --java-source-root src/main/java
+bin/kalm compile src/main/kalm --output target/classes
+bin/kalm run src/main/kalm --main example.AppKalm -- argument
+bin/kalm test
+bin/kalm format src/main/kalm --indent-width 4 --line-length 100
+bin/kalm format src/main/kalm --check
+bin/kalm build --jar target/application.jar
 ```
 
-Use `--source-root DIR` for additional source directories, `--classpath PATHS` or `--module-path PATHS` for dependencies, `--generated-sources DIR`, `--output DIR`, `--encoding NAME` (UTF-8 by default), `--diagnostic-format human|json`, and `--release 25`. `check` leaves no class files. `run` accepts `--main package.AppKalm` if multiple entry points exist. `test` uses `src/test/kalm` by default and runs test blocks with per-file `before`/`after` hooks. The CLI's `build --jar target/app.jar` produces a thin executable JAR: provide dependencies and `kalm-runtime` on the Java runtime classpath as needed.
+Default roots are `src/main/kalm` and `src/main/java`; `test` uses the corresponding test roots and compiles main sources first. Explicit source roots avoid accidental discovery of unrelated Java files. `--source-root`, `--java-source-root`, and `--main-source-root` can repeat. Paths with spaces must be quoted in the shell.
 
-Public top-level types must reside in same-named `.kalm` files. Other top-level definitions use the `<File>Kalm` facade. Read [limitations](known-limitations.md) for current non-conformance and interop restrictions.
+| Option | Meaning |
+|---|---|
+| `--classpath` | Dependencies separated by the host path separator (`:` or `;`) |
+| `--module-path` | Readable Java modules |
+| `--release` | Target Java release, default 25 |
+| `--generated-sources` | Retained Java and `.kalm-map` files |
+| `--output` | Class output directory |
+| `--encoding` | Source encoding, default UTF-8 |
+| `--main` | Select a Kalm facade entry point for `run` |
+| `--diagnostic-format human\|json` | Diagnostics with stable codes and UTF-16 ranges |
+| `--debug` | Include internal exception details alongside the report ID |
+| `--reports`, `--html-reports` | Test report directories |
+
+`check` analyzes without generating classes. `compile` emits Java and classes. `build` produces a thin executable JAR; supply runtime and application dependencies beside it or on the classpath. `generate` and `test --no-compile` are build-adapter commands. With `test --no-compile`, an explicit `--classpath` is the complete test runtime classpath. `kalm run` and test failures map retained generated source positions back to Kalm lines.
+
+Exit statuses: 0 success; 1 source, type, interop or test failure; 2 invalid command/configuration; 3 internal compiler failure. Warnings do not fail compilation. `KALM-2101` identifies assignments from unannotated Java references; `KALM-2102` identifies legacy declaration use.
+
+## Maven and Gradle example
+
+```sh
+mvn -f demo-mixed-project/pom.xml clean verify
+mvn -f demo-mixed-project/pom.xml exec:java
+./gradlew -p demo-mixed-project clean test
+./gradlew -p demo-mixed-project runKalm
+```
+
+Maven writes `target/surefire-reports/TEST-kalm.xml` and `target/reports/kalm/index.html`. Gradle writes `build/test-results/kalm/TEST-kalm.xml` and `build/reports/tests/kalm/index.html`. A failed Kalm test fails the host build.
+
+Builds write `kalm-project.properties` under `target` or `build`. The CLI and language server read its resolved main/test roots, classpath, module path and release. Run the host build after changing dependencies.
+
+For JPMS applications, add `requires kalm.runtime;` to `module-info.java`. The CLI places modular dependencies on the module path; Maven/Gradle retain their standard final Java compilation.

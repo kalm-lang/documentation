@@ -1,10 +1,29 @@
 # Compiler architecture
 
-`KalmCompiler` parses all source roots before generating Java. The `frontend` package splits the grammar into lexer, declaration, type, expression, and statement parsers with a shared AST. `analysis/Declarations` indexes Kalm types, aliases, contracts, functions, and augmentations; `SemanticChecks` validates local immutability and explicitly known nullability. `codegen` has separate emitters for Java types/members, expressions, statements, and type names. `GeneratedSources` tracks compiler-owned Java files in `.kalm-generated` and removes only stale owned sources.
+All production semantic consumers use `kalm-compiler`. The backend uses documented JDK APIs, without preview features or javac internals.
 
-The CLI passes generated files directly to `JavaCompiler`. `kalm check` runs `JavacTask.parse()` and `analyze()` on generated implementations without generating class files. Maven's `compile` and `testCompile` goals register generated Java roots; Gradle's `compileKalm`/`compileTestKalm` similarly register generated source-set roots. Both plugins first analyze generated Kalm with handwritten Java sources in one javac task, then let the host Java compiler perform its normal final compilation. Generated Java carries source markers so diagnostics from the precheck and CLI map back to Kalm declarations/statements. The CLI, Maven `test`, and Gradle `testKalm` share `KalmTestRunner`, which invokes generated test methods and writes XML build reports. `kalm-runtime` supplies cancellable `Task<T>` completion stages, virtual-thread scheduling, blocking `await`, and helpers for operators that need lazy evaluation.
+## Pipeline
 
-`kalm-language-server` exposes the frontend AST and selected source checks through stdio LSP. Its document cache tracks unsaved buffers, and the VS Code extension can optionally use this shared server instead of its overlapping local providers.
-The IntelliJ IDEA Community plugin registers `.kalm` files and maps them to the same server through the open-source LSP4IJ plugin.
+1. `frontend`: lexer, declaration/type/expression/statement parsers and immutable AST nodes.
+2. `analysis`: project declarations, aliases, typed expression flow, stable-value refinements, nullability and Java signatures.
+3. `JavaSignatureAnalysis`: in-memory Kalm signature Java plus handwritten Java, analyzed by `JavacTask`. `JavaSymbols` retains `Elements`, `Types` and `Trees` for source/dependency signatures, inherited generics and editor locations. Signature bodies are placeholders; intermediate body diagnostics are deferred to implementation analysis. Stub classes never enter class outputs.
+4. `codegen`: separate type/member/call/null/choose/expression/statement emitters create ordinary Java implementations.
+5. `JavaCompilation`: checks implementations with handwritten Java, or compiles both together using `JavaCompiler --release N`.
 
-**Current architectural gap:** unlike the v1 spec, this implementation does not create Java signature stubs or use `javax.lang.model` to resolve Kalm calls before emission. It depends on javac analysis of generated implementations, declaration indexing, and syntactic receiver-type hints; the source markers map a javac error to its nearest Kalm declaration or statement, not necessarily the exact expression. The standalone CLI can compile Java supplied under its source roots; Maven and Gradle analyze normal Java roots jointly. See [known limitations](known-limitations.md).
+`KalmCompiler.Request` carries source/Java roots, classpaths, module paths, release, encoding and analysis arguments. `Generation` returns generated files, entry points and warnings. `Analysis` is an explicit closeable symbol-model lifetime for editor queries. Dependency classloaders and file managers close after use.
+
+## Ownership and diagnostics
+
+`GeneratedSources` tracks only owned Java files in `.kalm-generated`; source-map sidecars follow the same ownership. Content-stable files keep their timestamps. CLI compilation tracks owned class outputs in `.kalm-classes` and removes stale classes without deleting unrelated files.
+
+`SourceMaps` strips nested expression markers from emitted Java and stores generated-offset-to-Kalm-span mappings in `.java.kalm-map`. Javac errors choose the smallest containing expression; declaration/statement comments provide a fallback. Diagnostics have stable codes, UTF-16 positions and human/JSON renderings. Reference signatures retain nullable/non-null annotations; `KalmInternal` enforces compiled Kalm module boundaries while Java callers can use normal JVM visibility.
+
+Null operators lower to Java switch expressions with a single receiver evaluation. Branches preserve lazy fallback/index/argument evaluation and do not capture mutable local fallbacks in Java lambdas. Typed checking and lowering share expression types and stable-value refinements.
+
+## Build adapters and editors
+
+Maven and Gradle generate Java before their normal Java compilation. Both analyze main/test sources against real project dependencies and avoid a task cycle. Gradle forks the selected Java toolchain; Maven uses a selected JDK toolchain when present. `KalmTestRunner` and `TestReports` supply common test execution and XML/HTML reporting.
+
+`ProjectConfiguration` exports resolved workspace roots/classpaths/modulepaths/release to a properties file under the project build directory. The LSP reads that metadata and overlays unsaved documents on closed workspace files. It checks snapshots without replacing user source files, disposes temporary analysis files, and indexes declaration identities for scoped references/rename, including Java callers through javac trees.
+
+VS Code is a language-client adapter with native TextMate highlighting and host build commands. IntelliJ provides native lexical highlighting and source-root registration, then uses LSP4IJ for shared semantics. Both packages bundle the same server artifacts; the server runs on JDK 25 independently of the editor's runtime.
