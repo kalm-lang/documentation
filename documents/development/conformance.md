@@ -40,6 +40,18 @@ Some type/name errors are discovered by the final javac analysis rather than a s
 
 CI uploads the staged distribution and test reports. Gradle `publish` stages a local repository; it does not upload to the Plugin Portal. Maven, VS Code and IntelliJ registry publication requires the owner's configured accounts and release credentials.
 
+## Local acceptance record
+
+Verified on Linux with JDK 25 on 2026-10-01:
+
+- 7 runtime tests, 139 compiler tests, 15 language-server tests and three Maven plugin integration projects passed. The final nested-nullability change also passed the complete nullable-flow suite.
+- Gradle TestKit passed initial mixed-source compilation, immediate configuration-cache reuse, changed test regeneration and deleted-source cleanup; plugin validation and local publication passed.
+- VS Code checks/tests/packaging and IntelliJ native fixtures/package structure passed. Both final editor archives passed shared stdio initialization, formatting, diagnostics and unsaved UTF-16 range checks, with their bundled JARs matching the built compiler/server.
+- Two clean source copies in different directories produced identical Maven artifact hashes. Binary ZIP/TAR contents and repeated packaging checksums matched.
+- The extracted distribution installed its Maven artifacts and built, tested, packaged and ran its own sample with both Maven and Gradle. Both builds passed all six Kalm tests; Gradle reused its configuration cache. Application output and both JARs' Java/Kalm class entries were checked.
+
+Windows CI and interactive IDE installation were not executed in this Linux session.
+
 ## Remaining 1.0 decisions and release checks
 
 - **Generic choices:** §12 admits type parameters while §6 requires a Java enum. Java enums cannot be generic. The compiler diagnoses generic choices; ordinary choices have finite variants and exhaustiveness checks. The draft needs a consistent rule before a 1.0 claim.
