@@ -4,19 +4,19 @@ The [draft specification](../Kalm-Language-Specification-v1.0-draft.md) defines 
 
 ## Values and nullable flow
 
-`fixed` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
+`fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
 
 ```kalm
 pub fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
 
 pub fun normalizedName(name: Text?) -> Text {
-    fixed candidate = name;
+    fix candidate = name;
     if (candidate != null) { return candidate.upper(); }
     return "GUEST";
 }
 ```
 
-Safe access evaluates the receiver once and skips indexes/arguments on null. Coalescing evaluates the fallback only on null. `??=` yields the existing value or assigned fallback. Mutable bindings keep their declared nullable type after writes; refine a `fixed` value or coalesce explicitly. A null receiver is distinct from an empty list: safe indexing retains Java bounds behavior.
+Safe access evaluates the receiver once and skips indexes/arguments on null. Coalescing evaluates the fallback only on null. `??=` yields the existing value or assigned fallback. Mutable bindings keep their declared nullable type after writes; refine a `fix` value or coalesce explicitly. A null receiver is distinct from an empty list: safe indexing retains Java bounds behavior.
 
 Arithmetic operands must have matching numeric types, with Java promotion of `Byte`, `Short` and `Char` to `Int`. Checked explicit conversions include `toByte()`, `toInt()` and `toLong()`. `upper()` and `lower()` use `Locale.ROOT`.
 
@@ -28,7 +28,7 @@ pub data Box<T>(value: T) generate Display;
 pub contract Greeter { fun greet(name: Text) -> Text; }
 
 pub class DelegatedGreeting impl Greeter {
-    private fixed delegate: Greeter;
+    private fix delegate: Greeter;
     init(delegate: Greeter) { self.delegate = delegate; }
     forward Greeter to delegate;
 }
@@ -68,12 +68,12 @@ Tasks run on virtual threads. `Task<T>` extends `CompletionStage<T>` for Java ca
 
 ## Properties and tests
 
-`read`/`write` expose conventional Java getters/setters. `lazy fixed` evaluates its initializer once and safely publishes success or the original failure. `late var` has a runtime guard for Java access before assignment.
+`read`/`write` expose conventional Java getters/setters. `lazy fix` evaluates its initializer once and safely publishes success or the original failure. `late var` has a runtime guard for Java access before assignment.
 
 ```kalm
 before { require true; }
 test "a record preserves its value" {
-    fixed box: Box<Text> = Box<Text>("Mira");
+    fix box: Box<Text> = Box<Text>("Mira");
     expect box.value() == "Mira";
 }
 after { ensure true; }

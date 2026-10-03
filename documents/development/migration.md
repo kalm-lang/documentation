@@ -1,6 +1,6 @@
 # Migration notes for the v1 draft implementation
 
-The previous development compiler accepted nullable Kalm references in non-null return types and inferred locals without checking later dereferences. These programs now produce `KALM-2001` diagnostics. Use a nullable result, safe access, `??`, or a stable `fixed` value refined by a null check. Mutable `var` values retain their declared nullable type after an assignment, including `??=`. The value of `??=` itself has the fallback's nullability.
+The previous development compiler accepted nullable Kalm references in non-null return types and inferred locals without checking later dereferences. These programs now produce `KALM-2001` diagnostics. Use a nullable result, safe access, `??`, or a stable `fix` value refined by a null check. Mutable `var` values retain their declared nullable type after an assignment, including `??=`. The value of `??=` itself has the fallback's nullability.
 
 `Array<Int>` and other primitive type arguments now denote boxed reference arrays (`Integer[]`). Use `IntArray` for `int[]`. This corrects the mapping required by the specification and changes affected generated Java signatures.
 
@@ -14,7 +14,7 @@ The CLI discovers `src/main/java` or `src/test/java` alongside its default Kalm 
 - VS Code uses the bundled shared Java language server by default. Remove settings that depended on the earlier JavaScript analyzer; set `kalm.java.command` to JDK 25 when needed.
 - IntelliJ packages the server and adds native highlighting/source roots. `KALM_JAVA_COMMAND` selects its server JDK; `KALM_LSP_COMMAND` still supports an external server.
 - Java reference signatures now retain nullability and Kalm module visibility metadata. Nullable values no longer pass silently to non-null Kalm declarations across compiled boundaries.
-- Arithmetic rejects mixed numeric types. Nullable mutable bindings retain their declared type after `??=`; use a fixed refined value or coalesce explicitly.
+- Arithmetic rejects mixed numeric types. Nullable mutable bindings retain their declared type after `??=`; use a fix refined value or coalesce explicitly.
 - Unannotated Java references and legacy function/method uses produce warnings. Existing code remains valid when only warnings are present.
 - Generated Java has expression mapping sidecars. The CLI cleans stale owned class files after a successful rebuild; host builds retain their normal Java incremental compilation.
 - Gradle compilation runs in the selected JDK, emits HTML reports, and has explicit source filters/analysis arguments.
@@ -32,3 +32,13 @@ Unknown record generators are diagnosed; the supported spelling is `generate Dis
 Constructor arguments, generic function parameters and Java members now preserve instantiated nullable type arguments. Code that placed `Text?` into `Box<Text>` must use `Box<Text?>` or supply a non-null value. Nullable elements remain nullable when accessed through inherited Java generic methods.
 
 Casting null to a non-null target raises `ClassCastException`; use a nullable cast target when null is allowed. Cast operands are evaluated once. CLI application and test execution now use their application class loader as the thread context loader, restoring the previous loader afterward.
+
+## Kalm 1.1
+
+Replace the 1.0 keyword `fixed` with `fix` in bindings and class/member modifiers. The old spelling produces a migration diagnostic. `Unit` continues to map to Java `void`.
+
+Semicolons are recommended and optional at logical newlines, closing blocks, and EOF. Put a continuation operator at the end of a line or use parentheses for a multiline expression. A bare `return` ends at its newline.
+
+Use braces or Python-style colon suites for block bodies, and mix them freely. Colon bodies may contain inline simple statements separated by semicolons, or an indented multiline body. Parentheses around conditions and loop bindings are optional. Formatting preserves the chosen syntax.
+
+Applications depend on `dev.kalm:kalm-stdlib`, which brings `kalm-runtime` transitively. The default prelude remains available without imports. Java consumers of old runtime convenience APIs migrate to `kalm.stdlib.Prelude` and the focused standard-library helper classes.
