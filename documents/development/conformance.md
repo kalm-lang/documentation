@@ -1,12 +1,15 @@
 # Draft conformance and release gates
 
-The repository targets [Kalm 1.0 draft](../Kalm-Language-Specification-v1.0-draft.md). Its component version remains **0.1.0-SNAPSHOT**. The checks below are executable acceptance gates; a passing test suite is evidence for its fixtures, rather than a claim about every possible program.
+The repository targets [Kalm 1.1 draft](../Kalm-Language-Specification-v1.1-draft.md). The historical 1.0 definition is preserved. Its component version remains **0.1.0-SNAPSHOT**. The checks below are executable acceptance gates; a passing test suite is evidence for its fixtures, rather than a claim about every possible program.
 
 ## Language and Java interoperability
 
 | Draft requirement | Acceptance coverage |
 | --- | --- |
 | Lexing, grammar, malformed statements, source ranges | `ParserTest`, accepted/rejected parser fixtures |
+| Mixed brace/colon bodies, optional terminators, conditions and formatting | `LayoutParserTest`, `LayoutCompilerTest` |
+| Annotation targets, retention, repetition, parameter/type uses and defaults | `AnnotationCompilerTest` |
+| Standard library inference, shadowing and dependency-owned export metadata | `LibraryCompilerTest` |
 | Nullable flow, invariant generic arguments, safe access/indexing, `??`/`??=` | `NullableFlowTest`, `SemanticChecksTest`, `LanguageTypesTest`, `LanguageRuntimeTest` |
 | Local inference, immutable writes, definite constructor assignment, return paths | `SemanticChecksTest`, `LanguageExpressionsTest`; documented javac analysis of final generated bodies |
 | Contracts, overrides, inheritance, sealed hierarchies, choices, records, singletons | `LanguageTypesTest`, `PatternCompilerTest`, `JointSignaturesTest` |
@@ -30,6 +33,7 @@ Some type/name errors are discovered by the final javac analysis rather than a s
 | Gradle source sets, cacheable generation, deletion, test XML/HTML | `./gradlew -p kalm-gradle-plugin test validatePlugins` |
 | Independently built mixed-language sample | Maven `clean verify`; Gradle `test --configuration-cache`, repeated for cache reuse |
 | Shared LSP diagnostics, formatting, navigation, rename, Java source references | `KalmLanguageServerTest`, `LspWorkspaceTest` |
+| Scoped/Java completion, annotation keys, recovery, imports, folding and indentation | `CompletionTest`, `LayoutFeaturesTest`, shared editor completion fixtures |
 | Actual VS Code TextMate grammar and packaged extension | `npm run check`, `npm test`, `npm run package` |
 | Native IntelliJ lexer and Community-compatible package | IntelliJ `test buildPlugin verifyPluginStructure` |
 | Both editor archives ship the current compiler/server | `python3 scripts/verify_editor_packages.py` checks JAR hashes and exercises stdio initialization, formatting, diagnostics and unsaved UTF-16 spans |
@@ -42,6 +46,15 @@ CI uploads the staged distribution and test reports. Gradle `publish` stages a l
 
 ## Local acceptance record
 
+Kalm 1.1 verified on Linux ARM64 with JDK 25 on 2026-10-03:
+
+- 7 runtime tests, 152 compiler tests, 27 language-server tests and all three Maven integration fixtures passed.
+- Gradle TestKit passed mixed compilation, Kalm tests, configuration-cache reuse, changed-test regeneration and deleted-source cleanup. Plugin validation and local publication passed.
+- All nine VS Code checks and six IntelliJ lexer tests passed; both extensions were packaged and IntelliJ plugin structure validation passed.
+- Both final editor archives passed shared completion, formatting, diagnostics and unsaved UTF-16 source mapping checks. Bundled JAR hashes matched the current build.
+- Two clean source copies produced identical runtime, standard-library, compiler, Maven-plugin and language-server JARs.
+- Distribution ZIP/TAR contents, repeated checksums, launchers and packaged compile/run passed. The extracted sample built, tested, packaged and ran with Maven and Gradle; Gradle reused its configuration cache. The sample's Java bridge now uses the conventional Java source root.
+
 Verified on Linux with JDK 25 on 2026-10-01:
 
 - 7 runtime tests, 139 compiler tests, 15 language-server tests and three Maven plugin integration projects passed. The final nested-nullability change also passed the complete nullable-flow suite.
@@ -52,7 +65,7 @@ Verified on Linux with JDK 25 on 2026-10-01:
 
 Windows CI and interactive IDE installation were not executed in this Linux session.
 
-## Remaining 1.0 decisions and release checks
+## Remaining draft decisions and release checks
 
 - **Generic choices:** §12 admits type parameters while §6 requires a Java enum. Java enums cannot be generic. The compiler diagnoses generic choices; ordinary choices have finite variants and exhaustiveness checks. The draft needs a consistent rule before a 1.0 claim.
 - **Late-field initialization:** runtime guards support assignment after construction and Java access. The draft's compile-time guarantee needs an initialization protocol for values passed between methods and Java callers. That guarantee is not currently provided for arbitrary late-field reads.

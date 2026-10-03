@@ -32,7 +32,7 @@ python3 scripts/package_distribution.py
 python3 scripts/verify_distribution.py --build-example
 ```
 
-`publish` above writes the Gradle plugin and marker to the local `kalm-gradle-plugin/build/repository`, without uploading externally. The distribution script requires current compiler/runtime/plugin/server/editor artifacts, writes deterministic ZIP and TAR.GZ archives under `dist`, and records SHA-256 checksums. Snapshot plugin repository entries use fix version names and packaged editor ZIP metadata is normalized. It includes an installer for the local Maven artifacts and a sample that resolves the packaged Gradle plugin. [Distribution installation](distribution.md) describes the binary archive.
+`publish` above writes the Gradle plugin and marker to the local `kalm-gradle-plugin/build/repository`, without uploading externally. The distribution script requires current compiler/runtime/plugin/server/editor artifacts, writes deterministic ZIP and TAR.GZ archives under `dist`, and records SHA-256 checksums. Snapshot plugin repository entries use fixed version names and packaged editor ZIP metadata is normalized. It includes an installer for the local Maven artifacts and a sample that resolves the packaged Gradle plugin. [Distribution installation](distribution.md) describes the binary archive.
 
 JAR archives have deterministic timestamps; Gradle archives use stable file order. Packaging the same built inputs twice produces identical distribution checksums. The Gradle wrapper pins an official SHA-256 distribution checksum.
 

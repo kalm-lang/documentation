@@ -1,6 +1,20 @@
 # Language usage
 
-The [draft specification](../Kalm-Language-Specification-v1.0-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
+The [draft specification](../Kalm-Language-Specification-v1.1-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
+
+## Kalm 1.1 layout
+
+Semicolons are recommended; a logical newline also ends a simple statement. Statements on the same line need a semicolon between them. Every block can use braces or an indented colon body, and the styles can nest freely. An inline colon body supports simple statements. Empty bodies use `{}`.
+
+```kalm
+pub fun greet(name: Text?) -> Unit:
+    fix display = name ?? "Guest"
+    if display == "Guest" { sayLine("Welcome!") }
+    else:
+        sayLine(display)
+```
+
+Use `fix` instead of the former `fixed` keyword. `Unit` still means Java `void`; Java's boxed `Void` remains a separate type. Console, text, collection and numeric helpers come from the `kalm-stdlib` dependency and its automatic prelude.
 
 ## Values and nullable flow
 
