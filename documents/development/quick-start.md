@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-runtime:0.1.0-SNAPSHOT`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
+Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-stdlib:0.1.0-SNAPSHOT`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
 
 Build from the repository root:
 
