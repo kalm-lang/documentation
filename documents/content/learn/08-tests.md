@@ -1,0 +1,63 @@
+---
+{
+  "title": "8. Test your CLI",
+  "order": 8,
+  "lesson": 8
+}
+---
+
+Keep the main sources from lesson 7. Add
+`src/test/kalm/stats/StatisticsTests.kalm`:
+
+```kalm StatisticsTests.kalm
+space stats
+
+test "whitespace separates words":
+    expect countWords("  a\tquiet   morning ") == 3
+
+test "empty text contains no words":
+    expect countWords("") == 0
+    expect countWords("   ") == 0
+
+test "an empty file has no lines":
+    fix lines: List<Text> = []
+    fix result = summarize(lines)
+    expect result.lines() == 0
+    expect result.words() == 0
+
+test "blank lines still count":
+    fix lines: List<Text> = ["", "a quiet", "morning"]
+    fix result = summarize(lines)
+    expect result.lines() == 3
+    expect result.words() == 3
+```
+
+```bash
+kalm test
+```
+
+The runner reports four passed tests and zero failures. `expect` is always
+active; JVM assertion flags are unnecessary.
+
+## Check the program boundary
+
+Run the finished CLI against an empty file, a whitespace-only file, and a missing
+path. It should report the right counts or a clear error. Try running without
+arguments, too.
+
+```bash
+kalm check
+kalm run -- notes.txt
+kalm run -- missing.txt
+kalm run
+```
+
+## Keep the project tidy
+
+```bash
+kalm format src/main/kalm
+kalm format src/test/kalm
+```
+
+Formatting checks report differences. Add `--fix` to apply them.
+You now have a reusable counting function, a record, safe Java I/O, and native tests.
