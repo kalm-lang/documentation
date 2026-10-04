@@ -40,3 +40,10 @@ need separate editor roots when fully qualified declarations conflict.
 Interactive IDE acceptance, Windows execution, and publisher credentials remain
 release-owner checks. See [conformance](conformance.md) and
 [implementation boundaries](known-limitations.md).
+
+## Completed language changes
+
+Constructor initialization now tracks lexical shadowing and normal/return exits,
+including resources, guards, exhaustive choices, and cleanup. Ten regression
+cases cover these paths. Unsupported declaration and initialization diagnostics
+include remedies while keeping their existing codes and JSON locations.
