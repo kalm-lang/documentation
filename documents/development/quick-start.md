@@ -21,7 +21,7 @@ bin/kalm compile src/main/kalm --output target/classes
 bin/kalm run src/main/kalm --main example.AppKalm -- argument
 bin/kalm test
 bin/kalm format src/main/kalm --indent-width 4 --line-length 100
-bin/kalm format src/main/kalm --check
+bin/kalm format src/main/kalm --fix --indent-width 4 --line-length 100
 bin/kalm build --jar target/application.jar
 ```
 
@@ -39,6 +39,8 @@ Default roots are `src/main/kalm` and `src/main/java`; `test` uses the correspon
 | `--diagnostic-format human\|json` | Diagnostics with stable codes and UTF-16 ranges |
 | `--debug` | Include internal exception details alongside the report ID |
 | `--reports`, `--html-reports` | Test report directories |
+
+`format` checks files without changing them by default and lists any that need formatting. Add `--fix` to write the formatted result. `--check` is an explicit alias for the read-only mode.
 
 `check` analyzes without generating classes. `compile` emits Java and classes. `build` produces a thin executable JAR; supply runtime and application dependencies beside it or on the classpath. `generate` and `test --no-compile` are build-adapter commands. With `test --no-compile`, an explicit `--classpath` is the complete test runtime classpath. `kalm run` and test failures map retained generated source positions back to Kalm lines.
 

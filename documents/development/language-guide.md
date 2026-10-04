@@ -28,7 +28,7 @@ pub fun greet(name: Text?) -> Unit:
     }
 ```
 
-Simple statements end at a logical newline or semicolon. Use semicolons when placing multiple simple statements on one line. `bin/kalm format <source-root>` applies the same deterministic formatting used by editor integrations; `--check` reports files that would change without writing them.
+Simple statements end at a logical newline or semicolon. Use semicolons when placing multiple simple statements on one line. `bin/kalm format <source-root>` checks formatting without changing files and reports any that differ; pass `--fix` to apply the formatter's changes. Editor formatting applies changes when you invoke the editor's format command.
 
 Use `fix` instead of the former `fixed` keyword. `Unit` still means Java `void`; Java's boxed `Void` remains a separate type. Console, text, collection and numeric helpers come from the `kalm-stdlib` dependency and its automatic prelude.
 
