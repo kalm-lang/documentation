@@ -1,6 +1,6 @@
 # Language usage
 
-The [draft specification](../Kalm-Language-Specification-v1.1-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
+The [draft specification](../specifications/Kalm-Language-Specification-v1.1-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
 
 ## Layout and block styles
 

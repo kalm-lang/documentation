@@ -1,6 +1,6 @@
 # Draft conformance and release gates
 
-The repository targets [Kalm 1.1 draft](../Kalm-Language-Specification-v1.1-draft.md). The historical 1.0 definition is preserved. Its component version remains **0.1.0-SNAPSHOT**. The checks below are executable acceptance gates; a passing test suite is evidence for its fixtures, rather than a claim about every possible program.
+The repository targets [Kalm 1.1 draft](../specifications/Kalm-Language-Specification-v1.1-draft.md). The historical 1.0 definition is preserved. Its component version remains **0.1.0-SNAPSHOT**. The checks below are executable acceptance gates; a passing test suite is evidence for its fixtures, rather than a claim about every possible program.
 
 ## Language and Java interoperability
 
