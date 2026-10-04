@@ -66,10 +66,10 @@ Exit statuses: 0 success; 1 source, type, interop or test failure; 2 invalid com
 ## Maven and Gradle example
 
 ```sh
-mvn -f demo-mixed-project/pom.xml clean verify
-mvn -f demo-mixed-project/pom.xml exec:java
-./gradlew -p demo-mixed-project clean test
-./gradlew -p demo-mixed-project runKalm
+mvn -f examples/demo-mixed-project/pom.xml clean verify
+mvn -f examples/demo-mixed-project/pom.xml exec:java
+./gradlew -p examples/demo-mixed-project clean test
+./gradlew -p examples/demo-mixed-project runKalm
 ```
 
 Maven writes `target/surefire-reports/TEST-kalm.xml` and `target/reports/kalm/index.html`. Gradle writes `build/test-results/kalm/TEST-kalm.xml` and `build/reports/tests/kalm/index.html`. A failed Kalm test fails the host build.

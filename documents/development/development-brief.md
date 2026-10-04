@@ -4,10 +4,10 @@
 
 ```sh
 mvn clean install
-mvn -f demo-mixed-project/pom.xml clean verify
+mvn -f examples/demo-mixed-project/pom.xml clean verify
 ./gradlew -p kalm-gradle-plugin test validatePlugins
-./gradlew -p demo-mixed-project clean test
-./gradlew -p demo-mixed-project test --configuration-cache
+./gradlew -p examples/demo-mixed-project clean test
+./gradlew -p examples/demo-mixed-project test --configuration-cache
 gradle -p extensions/intellij-kalm test buildPlugin verifyPluginStructure
 cd extensions/vscode-kalm
 npm ci
