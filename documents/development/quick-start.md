@@ -1,5 +1,22 @@
 # Quick start
 
+## Create a project
+
+```sh
+bin/kalm init my-app
+cd my-app
+# Use the installed kalm command, or the absolute path to the repository's bin/kalm.
+kalm run
+kalm test
+```
+
+`init` defaults to a CLI project with the README greeting and two native tests.
+Use `--build-tool maven` or `--build-tool gradle` for a standalone build;
+`--name notes --package notes.app` customizes identity and source paths.
+`--template empty` creates roots/configuration without application code.
+Only new or empty destinations are accepted. No dependencies are installed and
+no Git repository is created. Generated READMEs list the required setup and commands.
+
 ## Requirements
 
 Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-stdlib:0.1.0-SNAPSHOT`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
