@@ -46,6 +46,18 @@ CI uploads the staged distribution and test reports. Gradle `publish` stages a l
 
 ## Local acceptance record
 
+Kalm usability update verified on Linux ARM64 with JDK 25 on 2026-10-04:
+
+- 7 runtime, 169 compiler, and 28 language-server tests passed in the Maven reactor.
+- New constructor-flow regressions and configurable project initializer tests passed. CLI main/test output ownership is isolated, so testing after running preserves main classes.
+- All three standalone examples passed Maven and Gradle tests (6 mixed, 2 greeting, 8 advanced). Immediate Gradle configuration-cache reuse passed for every project.
+- Freshly initialized Maven and Gradle projects built, tested, and printed the expected greeting.
+- Nine VS Code checks and six IntelliJ native lexer tests passed. IntelliJ package structure verification used a temporary core SDK without bundled IDE plugins/browser to fit available disk space; interactive IDE acceptance remains separate.
+- Both refreshed editor archives passed bundled JAR hash, completion, formatting, diagnostic, and unsaved UTF-16 mapping checks.
+- Two clean source copies produced identical runtime, standard-library, compiler, Maven-plugin, and language-server JARs.
+- Distribution ZIP/TAR contents, repeat checksums, launchers, and packaged compile/run passed. All three extracted examples built and ran with Maven and Gradle, including configuration-cache reuse; the greeting and task-report projects also passed CLI run/test.
+- The Lit website builds 22 static pages. All internal links/assets/anchors resolve, and six Chromium tests cover every route, theme persistence, clipboard copying, mobile/keyboard navigation, source tabs, the tutorial, reading without JavaScript, reduced motion, and 200% text enlargement.
+
 Kalm 1.1 verified on Linux ARM64 with JDK 25 on 2026-10-03:
 
 - 7 runtime tests, 152 compiler tests, 27 language-server tests and all three Maven integration fixtures passed.

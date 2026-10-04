@@ -32,6 +32,10 @@ with several signatures.
 
 ## Follow-up opportunities
 
+Direct `Singleton.INSTANCE.property` inference currently needs a typed local;
+the advanced project demonstrates that supported form. Java getters/setters
+remain available directly.
+
 The standard library is deliberately small: richer text and collection helpers
 could reduce Java boilerplate in a later round. Some final type errors still use
 Java names because javac resolves generated bodies. Large unrelated workspaces
