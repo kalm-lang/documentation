@@ -42,3 +42,7 @@ Semicolons are recommended and optional at logical newlines, closing blocks, and
 Use braces or Python-style colon suites for block bodies, and mix them freely. Colon bodies may contain inline simple statements separated by semicolons, or an indented multiline body. Parentheses around conditions and loop bindings are optional. Formatting preserves the chosen syntax.
 
 Applications depend on `dev.kalm:kalm-stdlib`, which brings `kalm-runtime` transitively. The default prelude remains available without imports. Java consumers of old runtime convenience APIs migrate to `kalm.stdlib.Prelude` and the focused standard-library helper classes.
+
+## Clarified draft semantics
+
+Choices cannot declare type parameters and remain ordinary Java enums. Late fields retain their existing runtime-guarded behavior; the draft no longer promises an unimplemented static initialization protocol. Formatting follows the first block style in each sibling group and checks without writing by default. These clarifications do not change existing valid programs.

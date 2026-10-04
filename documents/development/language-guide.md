@@ -98,7 +98,7 @@ Tasks run on virtual threads. `Task<T>` extends `CompletionStage<T>` for Java ca
 
 ## Properties and tests
 
-`read`/`write` expose conventional Java getters/setters. `lazy fix` evaluates its initializer once and safely publishes success or the original failure. `late var` has a runtime guard for Java access before assignment.
+`read`/`write` expose conventional Java getters/setters. `lazy fix` evaluates its initializer once and safely publishes success or the original failure. `late var` has a runtime guard for both Kalm and Java reads before assignment. It throws `IllegalStateException` until initialized; setters reject null and allow reassignment. Use ordinary initialized fields when construction should establish the invariant.
 
 ```kalm
 before { require true; }

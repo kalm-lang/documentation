@@ -67,8 +67,7 @@ Windows CI and interactive IDE installation were not executed in this Linux sess
 
 ## Remaining draft decisions and release checks
 
-- **Generic choices:** §12 admits type parameters while §6 requires a Java enum. Java enums cannot be generic. The compiler diagnoses generic choices; ordinary choices have finite variants and exhaustiveness checks. The draft needs a consistent rule before a 1.0 claim.
-- **Late-field initialization:** runtime guards support assignment after construction and Java access. The draft's compile-time guarantee needs an initialization protocol for values passed between methods and Java callers. That guarantee is not currently provided for arbitrary late-field reads.
+- **Semantic decisions:** choices are non-generic enums; late fields use runtime guards in Kalm and Java. The current draft now states these rules consistently. Constructor and function overload declarations remain deferred.
 - **Interactive editor acceptance:** automated lexer/server/package checks pass independently of a running IDE. A release owner should still exercise installation, project import, editing, refactoring and formatting in supported VS Code and IntelliJ versions.
 - **Publication:** staged archives are available; no public registry upload or marketplace publication is claimed.
 

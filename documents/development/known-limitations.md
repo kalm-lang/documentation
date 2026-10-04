@@ -2,9 +2,9 @@
 
 The language, compiler API, build plugins and editor packages are usable development artifacts. [Conformance status](conformance.md) identifies tested requirements and the remaining release decisions.
 
-## Draft semantics requiring a decision
+## Defined semantics
 
-Generic `choice` declarations are rejected: the draft requires ordinary Java enums but its grammar also allows type parameters. `late var` fields have guarded Kalm/Java access and non-null setters; the compiler does not prove initialization across arbitrary calls. A sound static guarantee needs an explicit initialization protocol. These two draft questions remain open.
+`choice` declarations are non-generic Java enums without payloads. `late var` fields support post-construction assignment and runtime-guarded reads from both Kalm and Java; setters reject null. They do not promise static initialization across method calls. Ordinary non-null fields still require initialization on every normally completing constructor path.
 
 ## Operational behavior
 
