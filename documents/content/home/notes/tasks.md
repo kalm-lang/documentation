@@ -1,10 +1,9 @@
 ---
 {
-  "title": "Let a task take its time.",
-  "order": 4,
+  "title": "Async runs on virtual threads.",
+  "order": 2,
   "icon": "timer",
-  "description": "Start work on a virtual thread and await its answer.",
-  "preview": "task / async / await",
+  "description": "Tasks use JVM virtual threads. Await either a Kalm Task or a Java CompletionStage, with cancellation, failure and interruption handling.",
   "doc": "/docs/language/resources/"
 }
 ---

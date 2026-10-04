@@ -1,11 +1,10 @@
 ---
 {
-  "title": "Two ways to breathe.",
-  "order": 3,
+  "title": "Indentation or braces. Same language.",
+  "order": 0,
   "icon": "braces",
   "verify": "alternatives",
-  "description": "A little indentation, or a pair of braces. Your call.",
-  "preview": "indentation / braces",
+  "description": "Choose indentation-based blocks or explicit braces. Both styles express the same Kalm code and work with the same tools.",
   "doc": "/docs/language/layout/"
 }
 ---

@@ -1,18 +1,22 @@
 ---
 {
-  "title": "Values stay put.",
-  "order": 1,
-  "icon": "layers",
-  "description": "Bind once. Keep a little record of what matters.",
-  "preview": "fix / data",
+  "title": "Delegate a contract in one line.",
+  "order": 3,
+  "icon": "route",
+  "description": "The forward declaration generates contract methods for a delegate, preserving generic types and checked Java exceptions.",
   "doc": "/docs/language/types/"
 }
 ---
 
-```kalm Note.kalm
-data Note(title: Text, words: Int)
+Wrap an implementation without writing the same forwarding methods by hand.
 
-pub fun main() -> Unit:
-    fix note = Note("A quiet morning", 3)
-    sayLine(@"${note.title()}: ${note.words()} words")
+```kalm Delegation.kalm
+contract Greeter:
+    fun greet(name: Text) -> Text
+
+class Delegated impl Greeter:
+    fix delegate: Greeter
+    init(delegate: Greeter):
+        self.delegate = delegate
+    forward Greeter to delegate
 ```
