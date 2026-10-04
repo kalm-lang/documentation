@@ -2,17 +2,33 @@
 
 The [draft specification](../Kalm-Language-Specification-v1.1-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
 
-## Kalm 1.1 layout
+## Layout and block styles
 
-Semicolons are recommended; a logical newline also ends a simple statement. Statements on the same line need a semicolon between them. Every block can use braces or an indented colon body, and the styles can nest freely. An inline colon body supports simple statements. Empty bodies use `{}`.
+Kalm has two ways to write a block. Braces make boundaries explicit; a colon introduces an indented suite that keeps the body uncluttered. Both styles support function and type bodies, control-flow branches, and other compound statements. Colon suites can be multiline or, for a simple statement, inline. Empty bodies are written `{}`.
 
 ```kalm
 pub fun greet(name: Text?) -> Unit:
     fix display = name ?? "Guest"
-    if display == "Guest" { sayLine("Welcome!") }
+    if display == "Guest":
+        sayLine("Welcome!")
     else:
         sayLine(display)
 ```
+
+Keep related blocks at the same level in one style. In particular, use matching delimiters for all branches of an `if`/`else`, and keep neighboring declarations or statements consistent. The formatter applies the style of the first block in each same-level group, including at the top level. For example, if the first top-level function uses `:`, a following function written with `{}` is formatted with `:` too. The empty-block form `{}` remains available because a colon suite requires a body.
+
+Style is chosen independently at each nesting level. A function written with a colon suite may contain an `if`/`else` written with braces, as long as both branches use braces:
+
+```kalm
+pub fun greet(name: Text?) -> Unit:
+    if name == null {
+        sayLine("Welcome!")
+    } else {
+        sayLine(name)
+    }
+```
+
+Simple statements end at a logical newline or semicolon. Use semicolons when placing multiple simple statements on one line. `bin/kalm format <source-root>` applies the same deterministic formatting used by editor integrations; `--check` reports files that would change without writing them.
 
 Use `fix` instead of the former `fixed` keyword. `Unit` still means Java `void`; Java's boxed `Void` remains a separate type. Console, text, collection and numeric helpers come from the `kalm-stdlib` dependency and its automatic prelude.
 
