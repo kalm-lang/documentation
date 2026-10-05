@@ -8,7 +8,44 @@
 Run commands from your project directory. The default main roots are
 `src/main/kalm` and `src/main/java`; tests use their corresponding test roots.
 
-## Everyday commands
+## Interactive shell and snippet scripts
+
+```bash
+kalm shell
+kalm shell -e 'sayLine("Hello"); 1 + 2'
+kalm shell -f experiment.kalms
+```
+
+The shell keeps variables, objects, imports, functions, and types across submissions
+without replaying earlier code. Expressions display reusable results such as `res1`.
+`fix` forbids assignment; redeclaring a name replaces its definition. Changes that
+break existing definitions are rejected before execution. Referenced names must
+already resolve. The CLI includes its runtime and standard library; no build tool
+or additional installation is needed beyond the existing JDK 25+ requirement.
+
+Method bodies can be replaced while objects remain live. Changes to a type's
+fields or member signatures are rejected while reference bindings exist, because
+JShell cannot preserve those objects across a JVM layout change. Use a new type
+name or reset the session for such changes.
+
+Snippet scripts contain imports, declarations, expressions, and statements directly.
+They need no `space` header or `main`; defining `main` does not run it. Package headers,
+tests, and hooks are rejected. Choose one `-e` input or one `-f` UTF-8 file.
+Imports use `use` for JDK classes and bundled Kalm libraries. External libraries
+and `--classpath` are not supported. Use `.kalms` for shell scripts; `.kalm`
+files run with a warning because they denote application source code. The shell
+does not discover project sources, read build metadata, or download dependencies.
+
+Complete terminal lines run immediately; unfinished expressions and brace blocks
+continue. End multiline colon blocks with a blank line. Use `/help`, `/exit`, `/reset`,
+`/vars`, `/list`, and `/cancel`. Reset keeps the bundled libraries available. Advanced terminal editing,
+completion, and persistent history are deferred; evaluated code receives EOF on stdin.
+
+Piped input runs without prompts. Batch input stops at the first failure; terminal
+errors return to the prompt. Runtime failures retain effects already performed.
+The diagnostic options and exit statuses below also apply to the shell.
+
+## Project commands
 
 ```bash
 kalm check

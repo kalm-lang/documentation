@@ -11,6 +11,11 @@ bin/kalm --version
 bin/kalm run /path/to/project/src/main/kalm --java-source-root /path/to/project/src/main/java
 ```
 
+Start `kalm shell`, evaluate inline code with `kalm shell -e '1 + 2'`, or run a
+`.kalms` script with `kalm shell -f experiment.kalms`. These modes work outside
+projects, without Maven or Gradle. Only JDK and bundled Kalm libraries are available.
+The editor packages recognize `.kalms` and provide **Run Kalm Script**.
+
 Install the included Maven artifacts into your local repository:
 
 ```sh

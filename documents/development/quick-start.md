@@ -32,6 +32,60 @@ Until public artifacts are published, local Maven installation is required by th
 
 ## CLI
 
+### Kalm shell
+
+```sh
+kalm shell
+kalm shell -e 'sayLine("Hello"); 1 + 2'
+kalm shell -f experiment.kalms
+```
+
+The shell needs only the installed Kalm CLI and the existing full JDK 25+.
+Variables, objects, imports, functions, and types persist between submissions;
+earlier statements and initializers are never replayed. Bare expressions display
+their value and receive reusable names such as `res1`. `fix` prohibits assignment,
+but its declaration can be replaced. Replacements that break existing definitions
+are rejected before execution, preserving the working session.
+
+Method bodies can be replaced while objects remain live. Changes to a type's
+fields or member signatures are rejected while reference bindings exist, because
+JShell cannot preserve those objects across a JVM layout change. Use a new type
+name or reset the session for such changes.
+
+Scripts contain snippets directly, without a `space` header or an entry point:
+
+```kalm
+use java.time.LocalDate
+fix today = LocalDate.now()
+fun greeting() -> Text:
+    return @"Hello on $today"
+sayLine(greeting())
+1 + 2
+```
+
+`-f` accepts one UTF-8 file; `-e` accepts one inline input. They cannot be combined.
+Imports use the normal `use` syntax for JDK classes, such as `java.util.List`,
+and bundled Kalm libraries. External libraries and `--classpath` are not supported.
+The shell includes the Kalm runtime and standard library automatically and does
+not read project metadata, discover source files, or download dependencies.
+Use `.kalms` for shell scripts. Running a `.kalm` file emits a warning because
+that extension is reserved for application source code.
+Define referenced names before using them. Defining `main` does not invoke it.
+Package headers, tests, and test hooks are rejected.
+
+Complete lines run immediately in the terminal. Unfinished expressions and brace
+blocks receive a continuation prompt; finish multiline colon suites with a blank
+line. Commands are `/help`, `/exit`, `/reset`, `/vars`, `/list`, and `/cancel`.
+Reset clears definitions and values; cancel discards unfinished input. Portable line input is supported; completion and persistent history are
+not provided. Evaluated code receives EOF on standard input.
+
+Piped stdin runs without prompts. Inline, file, and piped execution stop at the
+first failure; terminal errors leave the shell open. Runtime exceptions can leave
+object mutations and other effects already performed. Diagnostic and exit status
+conventions below apply to the shell, including `--diagnostic-format json`.
+
+### Project commands
+
 ```sh
 bin/kalm check src/main/kalm --java-source-root src/main/java
 bin/kalm compile src/main/kalm --output target/classes

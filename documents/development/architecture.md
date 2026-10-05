@@ -27,3 +27,23 @@ Maven and Gradle generate Java before their normal Java compilation. Both analyz
 `ProjectConfiguration` exports resolved workspace roots/classpaths/modulepaths/release to a properties file under the project build directory. The LSP reads that metadata and overlays unsaved documents on closed workspace files. It checks snapshots without replacing user source files, disposes temporary analysis files, and indexes declaration identities for scoped references/rename, including Java callers through javac trees.
 
 VS Code is a language-client adapter with native TextMate highlighting and host build commands. IntelliJ provides native lexical highlighting and source-root registration, then uses LSP4IJ for shared semantics. Both packages bundle the same server artifacts; the server runs on JDK 25 independently of the editor's runtime.
+
+## Shell sessions
+
+`frontend/SnippetParser` reuses the language parsers for mixed top-level snippets
+and structured completeness. `cli/shell` owns arguments, terminal commands and
+rendering. `compiler/shell/ShellSession` owns session metadata and JShell's standard
+child JVM, independently of terminal input. Session values remain in that JVM.
+
+`ShellCompilation` validates each proposed session without execution. Existing
+bindings become typed placeholder fields, while earlier statements and binding
+initializers are excluded. The compiler checks affected definitions before
+`SnippetEmitter` sends only the new snippet to JShell. Expression types use
+javac inference, with Kalm nullability and mutability checks. Emitted source
+markers preserve original diagnostic and runtime locations. Runtime exceptions
+retain completed effects; closing or resetting a session closes its child JVM.
+
+`.kalms` scripts use the same sequential compile-only validation in editors.
+The language server keeps their diagnostics and symbols separate from application
+projects and offers `kalm.runScript`. Project roots and dependencies are never
+added to script analysis or execution.
