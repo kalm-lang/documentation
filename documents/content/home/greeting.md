@@ -3,13 +3,9 @@
 ---
 
 ```kalm App.kalm
-use java.time.LocalDate
-
-pub fun greeting(name: Text?) -> Text:
-    fix display = name?.trim() ?? "Guest"
-    fix today = LocalDate.now()
-    return @"Hello, $display. It is $today."
+pub fun greeting(name: Text) -> Text:
+    return @"Hello, $name!"
 
 pub fun main() -> Unit:
-    sayLine(greeting(null))
+    sayLine(greeting("Mira"))
 ```
