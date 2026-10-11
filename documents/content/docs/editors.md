@@ -10,10 +10,11 @@ completion, navigation, references, rename, and formatting.
 
 ## VS Code
 
-Build the extension from the cloned Kalm checkout:
+Clone the extension repository and configure GitHub Packages authentication:
 
 ```bash
-cd extensions/vscode-kalm
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
 npm ci
 npm run package
 ```
@@ -27,7 +28,9 @@ Its bundled language server needs JDK 25 or newer.
 Build the plugin from the Kalm checkout:
 
 ```bash
-./gradlew -p extensions/intellij-kalm buildPlugin
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
 ```
 
 Use **Settings → Plugins → Install Plugin from Disk** to install the ZIP under

@@ -5,11 +5,17 @@
 }
 ---
 
-Plugin ID: `dev.kalm.language`. The repository pins Gradle 9.6.1 with a checksummed wrapper. Install the Maven reactor first; the development compiler is resolved from Maven Local.
+Plugin ID: `dev.kalm.language`. The repository pins Gradle 9.6.1 with a checksummed wrapper. Configure [package authentication](https://github.com/kalm-lang/tools/blob/main/docs/bootstrap.md). `kalm init --build-tool gradle` includes the published plugin registry settings.
 
 ```kotlin
-plugins { java; id("dev.kalm.language") }
-repositories { mavenLocal(); mavenCentral() }
+plugins { java; id("dev.kalm.language") version "0.1.0-SNAPSHOT" }
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/kalm-lang/*")
+        credentials { username = System.getenv("KALM_PACKAGES_USER"); password = System.getenv("KALM_PACKAGES_READ_TOKEN") }
+    }
+    mavenCentral()
+}
 dependencies { implementation("dev.kalm:kalm-stdlib:0.1.0-SNAPSHOT") }
 java { toolchain.languageVersion.set(JavaLanguageVersion.of(25)) }
 

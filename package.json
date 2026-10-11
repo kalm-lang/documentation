@@ -1,0 +1,26 @@
+{
+  "name": "@kalm-lang/documentation",
+  "version": "0.1.0",
+  "description": "Versioned Kalm documentation, examples, and learning materials",
+  "license": "MIT",
+  "type": "module",
+  "repository": { "type": "git", "url": "https://github.com/kalm-lang/documentation.git" },
+  "bugs": { "url": "https://github.com/kalm-lang/documentation/issues" },
+  "homepage": "https://kalm.tcraft.link/",
+  "engines": { "node": ">=22.12.0" },
+  "main": "./generated/index.cjs",
+  "module": "./generated/index.mjs",
+  "types": "./generated/index.d.ts",
+  "exports": {
+    ".": { "types": "./generated/index.d.ts", "import": "./generated/index.mjs", "require": "./generated/index.cjs" },
+    "./documents/*": "./documents/*",
+    "./content/*": { "types": "./generated/content/*.d.mts", "import": "./generated/content/*.mjs" }
+  },
+  "files": ["documents/", "generated/", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "node scripts/build-package.mjs",
+    "test": "node --test",
+    "prepack": "npm run build"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" }
+}

@@ -7,15 +7,15 @@
 
 ## Set up Kalm
 
-Use a full JDK 25 or newer and Maven. Kalm is currently a development snapshot;
-public package installation is not available yet.
+Use a full JDK 25 or newer and Maven. Kalm currently uses aligned development snapshots from GitHub Packages. Set
+`KALM_PACKAGES_USER` and `KALM_PACKAGES_READ_TOKEN` to read the packages.
 
 Clone Kalm using Git, then build it and add its launcher to your shell's path:
 
 ```bash
-git clone https://github.com/TD99/kalm.git
-cd kalm
-mvn install
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
 export PATH="$PWD/bin:$PATH"
 kalm --version
 ```

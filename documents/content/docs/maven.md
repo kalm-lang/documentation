@@ -5,7 +5,7 @@
 }
 ---
 
-Run Maven on a full JDK 25+. Install the development artifacts with `mvn install` from the repository root.
+Run Maven on a full JDK 25+. Configure [package authentication](https://github.com/kalm-lang/tools/blob/main/docs/bootstrap.md) before resolving the published dependencies. `kalm init --build-tool maven` includes the registry settings.
 
 ```xml
 <properties>

@@ -45,7 +45,7 @@ branch contains the complete implementation.
 
 ## Run and verify
 
-See [examples](../examples/README.md), [website commands](../website/README.md),
+See [examples](https://github.com/kalm-lang/examples/blob/main/README.md), [website commands](../website/README.md),
 and [conformance](conformance.md) for the detailed acceptance record.
 
 ```sh
