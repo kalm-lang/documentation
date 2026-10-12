@@ -5,8 +5,14 @@
 }
 ---
 
+::::::dialect kalm
 Build a text-statistics CLI, from the first line to a tested program.
 Each lesson adds one small piece. Keep your files between lessons.
+::::::
+
+::::::dialect kalms
+Build a text-statistics script in one file. The first seven lessons each supply a complete App.kalms program; replace the file as you progress. The final lesson explains the native tests available in project mode.
+::::::
 
 1. [Your first program](/learn/01-start/)
 2. [Values and text](/learn/02-values/)

@@ -8,11 +8,22 @@
 
 Declare a finite set of enum values without payloads.
 
+::::compare
 ```kalm Status.kalm
 pub choice Status:
     Ready
     Working
     Done
 ```
+```kalms Status.kalms
+choice Status:
+    Ready
+    Working
+    Done
+```
+```java Status.java
+public enum Status { Ready, Working, Done }
+```
+::::
 
 [Learn more](/docs/language/types/).

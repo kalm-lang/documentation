@@ -8,10 +8,25 @@
 
 Import a type, optionally under a shorter name.
 
+::::compare
 ```kalm Example.kalm
 use java.time.LocalDate as Day
 
 pub fun year() -> Int = Day.now().getYear()
 ```
+```kalms Example.kalms
+use java.time.LocalDate as Day
+
+fun year() -> Int = Day.now().getYear()
+```
+```java Example.java
+import java.time.LocalDate;
+
+public final class Example {
+    // Java imports cannot rename a type.
+    public static int year() { return LocalDate.now().getYear(); }
+}
+```
+::::
 
 [Learn more](/docs/java/).

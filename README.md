@@ -25,3 +25,7 @@ Website content uses JSON front matter with a title and numeric order. Developer
 Release with `vX.Y.Z[-status]` or the manual Release documentation workflow. Empty version uses package.json; empty/final status produces a final package. The workflow checks duplicates, tests the package, publishes it, and creates a GitHub release **without assets**. Use npm or browse the Git tree at the tag. No PDFs or historical-package variant are generated.
 
 See [bootstrap and credentials](https://github.com/kalm-lang/tools/blob/main/docs/bootstrap.md) and [the optional local workspace](https://github.com/kalm-lang/tools/blob/main/docs/workspace.md).
+
+## Website language variants
+
+Handbook articles, examples, and lessons author equivalent Kalm, Kalm Script, and Java source in `compare` Markdown containers. Native tests and Java-callable APIs explain their script restrictions. `dialect` containers hold mode-specific instructions. Java test counterparts use JUnit Jupiter. The website README documents the container format and source verification; package exports still preserve the authored Markdown unchanged.

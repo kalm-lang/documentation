@@ -9,14 +9,34 @@
 }
 ---
 
-:::tabs
+:::::tabs
+::::compare
 ```kalm Indentation
 pub fun main() -> Unit:
     sayLine("Room to think.")
 ```
+```kalms Example.kalms
+sayLine("Room to think.")
+```
+```java Example.java
+public final class Example {
+    public static void main(String[] args) { System.out.println("Room to think."); }
+}
+```
+::::
+::::compare
 ```kalm Braces
 pub fun main() -> Unit {
     sayLine("Room to think.");
 }
 ```
-:::
+```kalms Example.kalms
+sayLine("Room to think.");
+```
+```java Example.java
+public final class Example {
+    public static void main(String[] args) { System.out.println("Room to think."); }
+}
+```
+::::
+:::::

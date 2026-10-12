@@ -6,6 +6,7 @@
 }
 ---
 
+::::compare
 ```kalm
 with input = java.util.Scanner(System.in) {
     if (input.hasNextLine()) { sayLine(input.nextLine()); }
@@ -13,6 +14,31 @@ with input = java.util.Scanner(System.in) {
 
 async fun count() -> Int { return await task { return 7; }; }
 ```
+```kalms Example.kalms
+with input = java.util.Scanner(System.in) {
+    if (input.hasNextLine()) { sayLine(input.nextLine()); }
+}
+
+async fun count() -> Int { return await task { return 7; }; }
+```
+```java Example.java
+import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+
+public final class Example {
+    public static void main(String[] args) {
+        try (var input = new Scanner(System.in)) {
+            if (input.hasNextLine()) System.out.println(input.nextLine());
+        }
+    }
+    public static CompletableFuture<Integer> count() {
+        var result = new CompletableFuture<Integer>();
+        Thread.startVirtualThread(() -> result.complete(7));
+        return result;
+    }
+}
+```
+::::
 
 `with` closes resources in reverse order. `defer` runs cleanup on scope exit. `expect`, `require` and `ensure` remain active without JVM assertion flags. `guard lock { ... }` synchronizes on a non-null receiver and prohibits `await` inside the guard.
 

@@ -27,10 +27,20 @@ Keep that shell open for the commands below. On Windows, add the repository's
 
 Create a separate project directory, then create `src/main/kalm/App.kalm`:
 
+::::compare
 ```kalm App.kalm
 pub fun main() -> Unit:
     sayLine("Hello, Kalm!")
 ```
+```kalms App.kalms
+sayLine("Hello, Kalm!")
+```
+```java App.java
+public final class App {
+    public static void main(String[] args) { System.out.println("Hello, Kalm!"); }
+}
+```
+::::
 
 From your project directory:
 

@@ -8,6 +8,7 @@
 
 `fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
 
+::::compare
 ```kalm
 pub fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
 
@@ -17,6 +18,31 @@ pub fun normalizedName(name: Text?) -> Text {
     return "GUEST";
 }
 ```
+```kalms Example.kalms
+fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
+
+fun normalizedName(name: Text?) -> Text {
+    fix candidate = name;
+    if (candidate != null) { return candidate.upper(); }
+    return "GUEST";
+}
+```
+```java Example.java
+import java.util.List;
+import java.util.Locale;
+
+public final class Example {
+    public static String firstName(List<String> names) {
+        final String name = names != null ? names.get(0) : null;
+        return name != null ? name : "Guest";
+    }
+    public static String normalizedName(String name) {
+        final String candidate = name;
+        return candidate != null ? candidate.toUpperCase(Locale.ROOT) : "GUEST";
+    }
+}
+```
+::::
 
 Safe access evaluates the receiver once and skips indexes/arguments on null. Coalescing evaluates the fallback only on null. `??=` yields the existing value or assigned fallback. Mutable bindings keep their declared nullable type after writes; refine a `fix` value or coalesce explicitly. A null receiver is distinct from an empty list: safe indexing retains Java bounds behavior.
 

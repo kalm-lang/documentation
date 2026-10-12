@@ -8,9 +8,32 @@
 }
 ---
 
+::::compare
 ```kalm Tasks.kalm
 pub async fun answer() -> Int:
     fix pending: Task<Int> = task:
         return 6 * 7
     return await pending
 ```
+```kalms Tasks.kalms
+async fun answer() -> Int:
+    fix pending: Task<Int> = task:
+        return 6 * 7
+    return await pending
+```
+```java Tasks.java
+import java.util.concurrent.CompletableFuture;
+
+public final class Tasks {
+    public static CompletableFuture<Integer> answer() {
+        var pending = start();
+        return pending.thenApply(value -> value);
+    }
+    public static CompletableFuture<Integer> start() {
+        var pending = new CompletableFuture<Integer>();
+        Thread.startVirtualThread(() -> pending.complete(6 * 7));
+        return pending;
+    }
+}
+```
+::::

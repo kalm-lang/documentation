@@ -8,11 +8,25 @@
 
 A type alias introduces another name without creating a JVM type.
 
+::::compare
 ```kalm Example.kalm
 alias Name = Text
 alias Names<T> = List<T>
 
 pub fun greeting(name: Name) -> Text = @"Hello, $name!"
 ```
+```kalms Example.kalms
+alias Name = Text
+alias Names<T> = List<T>
+
+fun greeting(name: Name) -> Text = @"Hello, $name!"
+```
+```java Example.java
+public final class Example {
+    // Java has no type aliases; use the underlying type.
+    public static String greeting(String name) { return "Hello, " + name + "!"; }
+}
+```
+::::
 
 [Learn more](/docs/language/types/).
