@@ -9,6 +9,7 @@ test('ESM and CommonJS export every document with unchanged Markdown', async () 
   assert.deepEqual(common.documents, api.documents);
   assert.equal(api.version, JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8')).version);
   assert.ok(api.documents['development/architecture.md']);
+  assert.deepEqual(api.assets['assets/kalm.tmLanguage.json'], createRequire(import.meta.url)('@kalm-lang/syntax-highlighting/grammar'));
   assert.equal(Object.values(api.documents).filter(doc => doc.metadata.lesson).length, 8);
   for (const [file, document] of Object.entries(api.documents)) {
     assert.equal(document.markdown, await readFile(new URL(`../documents/${file}`, import.meta.url), 'utf8'));

@@ -14,10 +14,20 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      KALM_PACKAGES_READ_TOKEN: ${{ secrets.KALM_PACKAGES_READ_TOKEN }}
     steps:
+      - name: Require package-read credentials
+        shell: bash
+        run: |
+          if [[ -z "$KALM_PACKAGES_READ_TOKEN" ]]; then
+            echo '::error::Set KALM_PACKAGES_READ_TOKEN and publish the shared highlighting package first.'
+            exit 1
+          fi
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm install --no-package-lock --ignore-scripts --no-audit --no-fund --fetch-retries=0
       - run: npm test
       - run: npm pack --dry-run

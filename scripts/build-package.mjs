@@ -1,6 +1,8 @@
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+const grammar = createRequire(import.meta.url)('@kalm-lang/syntax-highlighting/grammar');
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'generated');
@@ -23,7 +25,8 @@ async function collect(directory) {
   }))).flat();
 }
 const documents = {};
-const assets = {};
+// Compatibility export; only the shared package maintains this grammar.
+const assets = { 'assets/kalm.tmLanguage.json': grammar };
 for (const file of await collect(resolve(root, 'documents'))) {
   const key = relative(resolve(root, 'documents'), file).replaceAll('\\', '/');
   if (key.endsWith('.md')) {
