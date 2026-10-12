@@ -9,15 +9,29 @@
 Start a block on a virtual thread and keep its result handle.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun start() -> Task<Int>:
     return task:
         return 6 * 7
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun start() -> Task<Int> {
+    return task {
+        return 6 * 7
+    }
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun start() -> Task<Int>:
     return task:
         return 6 * 7
+```
+```kalms Example.kalms {"style":"braces"}
+fun start() -> Task<Int> {
+    return task {
+        return 6 * 7
+    }
+}
 ```
 ```java Example.java
 import java.util.concurrent.CompletableFuture;

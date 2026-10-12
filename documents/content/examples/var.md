@@ -9,24 +9,34 @@
 Use a mutable binding when its value changes.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     var score = 3
     score += 1
     sayLine(score)
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    var score = 3
+    score += 1
+    sayLine(score)
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+var score = 3
+score += 1
+sayLine(score)
+```
+```kalms Example.kalms {"style":"braces"}
 var score = 3
 score += 1
 sayLine(score)
 ```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        int score = 3;
-        score += 1;
-        System.out.println(score);
-    }
+void main() {
+    int score = 3;
+    score += 1;
+    System.out.println(score);
 }
 ```
 ::::

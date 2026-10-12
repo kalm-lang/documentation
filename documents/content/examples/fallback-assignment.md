@@ -9,24 +9,34 @@
 Assign a fallback to a nullable mutable binding only when needed.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     var title: Text? = null
     title ??= "Untitled"
     sayLine(title)
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    var title: Text? = null
+    title ??= "Untitled"
+    sayLine(title)
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+var title: Text? = null
+title ??= "Untitled"
+sayLine(title)
+```
+```kalms Example.kalms {"style":"braces"}
 var title: Text? = null
 title ??= "Untitled"
 sayLine(title)
 ```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        String title = null;
-        if (title == null) title = "Untitled";
-        System.out.println(title);
-    }
+void main() {
+    String title = null;
+    if (title == null) title = "Untitled";
+    System.out.println(title);
 }
 ```
 ::::

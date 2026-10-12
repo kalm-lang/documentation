@@ -10,11 +10,48 @@ Run commands from your project directory. The default main roots are
 
 ## Interactive shell and snippet scripts
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat shell
+kalm.bat shell -e '1 + 2'
+kalm.bat shell -f experiment.kalms
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat shell
+kalm.bat shell -e "1 + 2"
+kalm.bat shell -f experiment.kalms
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 kalm shell
-kalm shell -e 'sayLine("Hello"); 1 + 2'
+kalm shell -e '1 + 2'
 kalm shell -f experiment.kalms
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm shell
+kalm shell -e '1 + 2'
+kalm shell -f experiment.kalms
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm shell
+kalm shell -e '1 + 2'
+kalm shell -f experiment.kalms
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm shell
+kalm shell -e '1 + 2'
+kalm shell -f experiment.kalms
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm shell
+kalm shell -e '1 + 2'
+kalm shell -f experiment.kalms
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm shell
+kalm shell -e '1 + 2'
+kalm shell -f experiment.kalms
+```
+:::
 
 The shell keeps variables, objects, imports, functions, and types across submissions
 without replaying earlier code. Expressions display reusable results such as `res1`.
@@ -47,7 +84,26 @@ The diagnostic options and exit statuses below also apply to the shell.
 
 ## Project commands
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat check
+kalm.bat run
+kalm.bat run -- notes.txt
+kalm.bat test
+kalm.bat format src/main/kalm
+kalm.bat format src/main/kalm --fix
+kalm.bat build --jar target/app.jar
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat check
+kalm.bat run
+kalm.bat run -- notes.txt
+kalm.bat test
+kalm.bat format src/main/kalm
+kalm.bat format src/main/kalm --fix
+kalm.bat build --jar target/app.jar
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 kalm check
 kalm run
 kalm run -- notes.txt
@@ -56,6 +112,52 @@ kalm format src/main/kalm
 kalm format src/main/kalm --fix
 kalm build --jar target/app.jar
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm check
+kalm run
+kalm run -- notes.txt
+kalm test
+kalm format src/main/kalm
+kalm format src/main/kalm --fix
+kalm build --jar target/app.jar
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm check
+kalm run
+kalm run -- notes.txt
+kalm test
+kalm format src/main/kalm
+kalm format src/main/kalm --fix
+kalm build --jar target/app.jar
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm check
+kalm run
+kalm run -- notes.txt
+kalm test
+kalm format src/main/kalm
+kalm format src/main/kalm --fix
+kalm build --jar target/app.jar
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm check
+kalm run
+kalm run -- notes.txt
+kalm test
+kalm format src/main/kalm
+kalm format src/main/kalm --fix
+kalm build --jar target/app.jar
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm check
+kalm run
+kalm run -- notes.txt
+kalm test
+kalm format src/main/kalm
+kalm format src/main/kalm --fix
+kalm build --jar target/app.jar
+```
+:::
 
 `check` performs type analysis without emitting classes. `format` reports changes;
 `--fix` applies them. `build` creates a thin executable JAR, so application and

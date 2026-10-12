@@ -9,21 +9,29 @@
 Write values using the automatically available prelude.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     say("Hello, ")
     sayLine("Kalm!")
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    say("Hello, ")
+    sayLine("Kalm!")
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+say("Hello, ")
+sayLine("Kalm!")
+```
+```kalms Example.kalms {"style":"braces"}
 say("Hello, ")
 sayLine("Kalm!")
 ```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        System.out.print("Hello, ");
-        System.out.println("Kalm!");
-    }
+void main() {
+    System.out.print("Hello, ");
+    System.out.println("Kalm!");
 }
 ```
 ::::

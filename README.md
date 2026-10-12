@@ -29,3 +29,7 @@ See [bootstrap and credentials](https://github.com/kalm-lang/tools/blob/main/doc
 ## Website language variants
 
 Handbook articles, examples, and lessons author equivalent Kalm, Kalm Script, and Java source in `compare` Markdown containers. Native tests and Java-callable APIs explain their script restrictions. `dialect` containers hold mode-specific instructions. Java test counterparts use JUnit Jupiter. The website README documents the container format and source verification; package exports still preserve the authored Markdown unchanged.
+
+Source fences support authored `style`, `os`, `shell`, and fixed `pane` metadata after their filename. Groups declare `presentation: "adaptive" | "showcase"` and independent `locks` for dialect, style, OS, and shell. Intentional syntax demonstrations retain labeled panes while unlocked properties follow reader preferences. Historical specifications retain their original presentation.
+
+Keep four-space indentation and multiline bodies. Format Kalm with its existing formatter and Java with Prettier's Java plugin. Standalone Java 25 examples use compact `void main()` programs; packaged sources and reusable classes keep explicit declarations. Each displayed variant must compile directly; verification never supplies hidden wrapper classes. Package declarations and filenames must match their Kalm counterparts.

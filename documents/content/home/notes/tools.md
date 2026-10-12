@@ -13,8 +13,8 @@
 
 Put tests under `src/test/kalm` and run them with `kalm test`. Checks such as `expect` stay active without JVM assertion flags.
 
-::::compare {"scriptUnavailable":"Native tests and hooks require a Kalm project."}
-```kalm ArithmeticTests.kalm
+::::compare {"scriptUnavailable":"Native tests and lifecycle hooks run in a compiled Kalm project."}
+```kalm ArithmeticTests.kalm {"style":"indentation"}
 before:
     sayLine("starting")
 
@@ -24,14 +24,39 @@ test "arithmetic works":
 after:
     sayLine("finished")
 ```
+```kalm ArithmeticTests.kalm {"style":"braces"}
+before {
+    sayLine("starting")
+}
+
+test "arithmetic works" {
+    expect 2 + 3 == 5
+}
+
+after {
+    sayLine("finished")
+}
+```
 ```java ArithmeticTests.java
-import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.*;
+
 public class ArithmeticTests {
-    @BeforeEach void before() { System.out.println("starting"); }
-    @Test void arithmeticWorks() { assertEquals(5, 2 + 3); }
-    @AfterEach void after() { System.out.println("finished"); }
+    @BeforeEach
+    void before() {
+        System.out.println("starting");
+    }
+
+    @Test
+    void arithmeticWorks() {
+        assertEquals(5, 2 + 3);
+    }
+
+    @AfterEach
+    void after() {
+        System.out.println("finished");
+    }
 }
 ```
 ::::

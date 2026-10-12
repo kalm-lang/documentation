@@ -9,22 +9,41 @@
 Use an expression body for one result, or return from a block.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun square(value: Int) -> Int = value * value
 
 pub fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun square(value: Int) -> Int = value * value
+
+pub fun greeting(name: Text) -> Text {
+    return @"Hello, $name!"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun square(value: Int) -> Int = value * value
 
 fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 ```
+```kalms Example.kalms {"style":"braces"}
+fun square(value: Int) -> Int = value * value
+
+fun greeting(name: Text) -> Text {
+    return @"Hello, $name!"
+}
+```
 ```java Example.java
 public final class Example {
-    public static int square(int value) { return value * value; }
-    public static String greeting(String name) { return "Hello, " + name + "!"; }
+    public static int square(int value) {
+        return value * value;
+    }
+
+    public static String greeting(String name) {
+        return "Hello, " + name + "!";
+    }
 }
 ```
 ::::

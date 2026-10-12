@@ -9,13 +9,23 @@
 A null receiver skips access; an existing receiver still follows normal bounds rules.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun first(names: List<Text>?) -> Text?:
     return names?[0]?.upper()
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun first(names: List<Text>?) -> Text? {
+    return names?[0]?.upper()
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun first(names: List<Text>?) -> Text?:
     return names?[0]?.upper()
+```
+```kalms Example.kalms {"style":"braces"}
+fun first(names: List<Text>?) -> Text? {
+    return names?[0]?.upper()
+}
 ```
 ```java Example.java
 import java.util.List;

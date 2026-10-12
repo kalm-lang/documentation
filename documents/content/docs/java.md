@@ -11,12 +11,22 @@ interfaces, methods, and constructors.
 ## Call Java
 
 ::::compare
-```kalm
+```kalm {"style":"indentation"}
 use java.time.LocalDate
 
 pub fun year() -> Int = LocalDate.now().getYear()
 ```
-```kalms Example.kalms
+```kalm {"style":"braces"}
+use java.time.LocalDate
+
+pub fun year() -> Int = LocalDate.now().getYear()
+```
+```kalms Example.kalms {"style":"indentation"}
+use java.time.LocalDate
+
+fun year() -> Int = LocalDate.now().getYear()
+```
+```kalms Example.kalms {"style":"braces"}
 use java.time.LocalDate
 
 fun year() -> Int = LocalDate.now().getYear()
@@ -25,7 +35,9 @@ fun year() -> Int = LocalDate.now().getYear()
 import java.time.LocalDate;
 
 public final class Example {
-    public static int year() { return LocalDate.now().getYear(); }
+    public static int year() {
+        return LocalDate.now().getYear();
+    }
 }
 ```
 ::::
@@ -38,28 +50,21 @@ invocation rules. Public Kalm types belong in matching `.kalm` files.
 Top-level functions in `Greeting.kalm` become methods of `GreetingKalm`.
 Both source sets can call each other within the same build.
 
-:::::tabs
-::::compare {"scriptUnavailable":"Java callers require a compiled Kalm project API."}
-```kalm Greeting.kalm
+::::compare {"presentation":"showcase","locks":{"dialect":true}}
+```kalm Greeting.kalm {"style":"indentation","pane":"Greeting.kalm"}
 pub fun greeting(name: Text) -> Text = @"Hello, $name!"
 ```
-```java Greeting.java
-public final class Greeting {
-    public static String greeting(String name) { return "Hello, " + name + "!"; }
+```kalm Greeting.kalm {"style":"braces","pane":"Greeting.kalm"}
+pub fun greeting(name: Text) -> Text = @"Hello, $name!"
+```
+```java Caller.java {"pane":"Caller.java"}
+public class Caller {
+    public static void main(String[] args) {
+        System.out.println(GreetingKalm.greeting("Mira"));
+    }
 }
 ```
 ::::
-::::compare {"scriptUnavailable":"Java callers require a compiled Kalm project API.","primary":"java"}
-```java Java caller
-String message = GreetingKalm.greeting("Mira");
-```
-```kalm Caller.kalm
-pub fun main() -> Unit:
-    sayLine(GreetingKalm.greeting("Mira"))
-```
-::::
-:::::
-
 ## Nullability
 
 Unannotated Java references are platform values. Give a potentially absent result
@@ -67,15 +72,27 @@ an explicit nullable type before coalescing it. Assigning an unannotated referen
 to a non-null target produces a warning.
 
 ::::compare
-```kalm
+```kalm {"style":"indentation"}
 pub fun projectName() -> Text:
     fix configured: Text? = System.getProperty("project.name")
     return configured ?? "untitled"
 ```
-```kalms Example.kalms
+```kalm {"style":"braces"}
+pub fun projectName() -> Text {
+    fix configured: Text? = System.getProperty("project.name")
+    return configured ?? "untitled"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun projectName() -> Text:
     fix configured: Text? = System.getProperty("project.name")
     return configured ?? "untitled"
+```
+```kalms Example.kalms {"style":"braces"}
+fun projectName() -> Text {
+    fix configured: Text? = System.getProperty("project.name")
+    return configured ?? "untitled"
+}
 ```
 ```java Example.java
 public final class Example {

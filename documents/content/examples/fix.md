@@ -9,21 +9,29 @@
 Bind a value once.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     fix name = "Mira"
     sayLine(name)
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    fix name = "Mira"
+    sayLine(name)
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+fix name = "Mira"
+sayLine(name)
+```
+```kalms Example.kalms {"style":"braces"}
 fix name = "Mira"
 sayLine(name)
 ```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        final String name = "Mira";
-        System.out.println(name);
-    }
+void main() {
+    final String name = "Mira";
+    System.out.println(name);
 }
 ```
 ::::

@@ -9,13 +9,25 @@
 List literals create mutable Java lists.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     fix names: List<Text> = ["Mira", "Ari"]
     names.add("Tim")
     sayLine(names[0])
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    fix names: List<Text> = ["Mira", "Ari"]
+    names.add("Tim")
+    sayLine(names[0])
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+fix names: List<Text> = ["Mira", "Ari"]
+names.add("Tim")
+sayLine(names[0])
+```
+```kalms Example.kalms {"style":"braces"}
 fix names: List<Text> = ["Mira", "Ari"]
 names.add("Tim")
 sayLine(names[0])
@@ -24,12 +36,10 @@ sayLine(names[0])
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Example {
-    public static void main(String[] args) {
-        final var names = new ArrayList<>(List.of("Mira", "Ari"));
-        names.add("Tim");
-        System.out.println(names.get(0));
-    }
+void main() {
+    final var names = new ArrayList<>(List.of("Mira", "Ari"));
+    names.add("Tim");
+    System.out.println(names.get(0));
 }
 ```
 ::::

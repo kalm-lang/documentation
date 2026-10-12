@@ -9,7 +9,12 @@
 Declare a Java-compatible package.
 
 ::::compare {"scriptUnavailable":"Scripts do not declare packages."}
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
+space notebook
+
+pub fun title() -> Text = "Notes"
+```
+```kalm Example.kalm {"style":"braces"}
 space notebook
 
 pub fun title() -> Text = "Notes"
@@ -18,7 +23,9 @@ pub fun title() -> Text = "Notes"
 package notebook;
 
 public final class Example {
-    public static String title() { return "Notes"; }
+    public static String title() {
+        return "Notes";
+    }
 }
 ```
 ::::

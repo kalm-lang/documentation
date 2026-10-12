@@ -11,23 +11,53 @@
 `with` closes resources in reverse order. `defer` keeps cleanup next to the work that needs it.
 
 ::::compare
-```kalm Resources.kalm
+```kalm Resources.kalm {"style":"indentation"}
 pub fun firstLine() -> Text?:
     defer:
         sayLine("read finished")
+
     with reader = java.util.Scanner("hello\nworld"):
         if reader.hasNextLine():
             return reader.nextLine()
+
     return null
 ```
-```kalms Resources.kalms
+```kalm Resources.kalm {"style":"braces"}
+pub fun firstLine() -> Text? {
+    defer {
+        sayLine("read finished")
+    }
+    with reader = java.util.Scanner("hello\nworld") {
+        if reader.hasNextLine() {
+            return reader.nextLine()
+        }
+    }
+    return null
+}
+```
+```kalms Resources.kalms {"style":"indentation"}
 fun firstLine() -> Text?:
     defer:
         sayLine("read finished")
+
     with reader = java.util.Scanner("hello\nworld"):
         if reader.hasNextLine():
             return reader.nextLine()
+
     return null
+```
+```kalms Resources.kalms {"style":"braces"}
+fun firstLine() -> Text? {
+    defer {
+        sayLine("read finished")
+    }
+    with reader = java.util.Scanner("hello\nworld") {
+        if reader.hasNextLine() {
+            return reader.nextLine()
+        }
+    }
+    return null
+}
 ```
 ```java Resources.java
 import java.util.Scanner;
@@ -37,7 +67,9 @@ public final class Resources {
         try (var reader = new Scanner("hello\nworld")) {
             if (reader.hasNextLine()) return reader.nextLine();
             return null;
-        } finally { System.out.println("read finished"); }
+        } finally {
+            System.out.println("read finished");
+        }
     }
 }
 ```

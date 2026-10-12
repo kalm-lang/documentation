@@ -9,17 +9,29 @@
 Prefix a string with @ to insert values or expressions.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun greeting(name: Text) -> Text:
     return @"Hello, $name! ${2 + 3} notes today."
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun greeting(name: Text) -> Text {
+    return @"Hello, $name! ${2 + 3} notes today."
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun greeting(name: Text) -> Text:
     return @"Hello, $name! ${2 + 3} notes today."
 ```
+```kalms Example.kalms {"style":"braces"}
+fun greeting(name: Text) -> Text {
+    return @"Hello, $name! ${2 + 3} notes today."
+}
+```
 ```java Example.java
 public final class Example {
-    public static String greeting(String name) { return "Hello, " + name + "! " + (2 + 3) + " notes today."; }
+    public static String greeting(String name) {
+        return "Hello, " + name + "! " + (2 + 3) + " notes today.";
+    }
 }
 ```
 ::::

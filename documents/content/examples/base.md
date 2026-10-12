@@ -9,24 +9,49 @@
 Abstract classes declare methods concrete children must implement.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 base class Reporter:
     needs fun title() -> Text
 
 class TextReporter inherits Reporter:
     override fun title() -> Text = "Report"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+base class Reporter {
+    needs fun title() -> Text
+}
+
+class TextReporter inherits Reporter {
+    override fun title() -> Text = "Report"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 base class Reporter:
     needs fun title() -> Text
 
 class TextReporter inherits Reporter:
     override fun title() -> Text = "Report"
+```
+```kalms Example.kalms {"style":"braces"}
+base class Reporter {
+    needs fun title() -> Text
+}
+
+class TextReporter inherits Reporter {
+    override fun title() -> Text = "Report"
+}
 ```
 ```java Example.java
-abstract class Reporter { public abstract String title(); }
+abstract class Reporter {
+
+    public abstract String title();
+}
+
 final class TextReporter extends Reporter {
-    @Override public final String title() { return "Report"; }
+    @Override
+    public final String title() {
+        return "Report";
+    }
 }
 ```
 ::::

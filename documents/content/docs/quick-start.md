@@ -12,41 +12,161 @@ Use a full JDK 25 or newer and Maven. Kalm currently uses aligned development sn
 
 Clone Kalm using Git, then build it and add its launcher to your shell's path:
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+$env:PATH = "$($PWD.Path)\bin;$env:PATH"
+kalm.bat --version
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+set "PATH=%CD%\bin;%PATH%"
+kalm.bat --version
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 git clone https://github.com/kalm-lang/tools.git
 cd tools
 mvn -f cli/pom.xml package
 export PATH="$PWD/bin:$PATH"
 kalm --version
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+export PATH="$PWD/bin:$PATH"
+kalm --version
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+$env:PATH = "$($PWD.Path)/bin:$env:PATH"
+kalm --version
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+export PATH="$PWD/bin:$PATH"
+kalm --version
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+export PATH="$PWD/bin:$PATH"
+kalm --version
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+git clone https://github.com/kalm-lang/tools.git
+cd tools
+mvn -f cli/pom.xml package
+$env:PATH = "$($PWD.Path)/bin:$env:PATH"
+kalm --version
+```
+:::
 
-Keep that shell open for the commands below. On Windows, add the repository's
-`bin` directory to PATH and use `kalm.bat`.
+Keep this shell open for the commands below. Code preferences selects the commands for your operating system and shell.
 
 ## Write your first program
 
-Create a separate project directory, then create `src/main/kalm/App.kalm`:
+::::dialect kalm
+Create a separate project directory, then save `src/main/kalm/App.kalm`:
+::::
+
+::::dialect kalms
+Create a folder for your experiments, then save `App.kalms` directly inside it:
+::::
 
 ::::compare
-```kalm App.kalm
+```kalm App.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     sayLine("Hello, Kalm!")
 ```
-```kalms App.kalms
+```kalm App.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    sayLine("Hello, Kalm!")
+}
+```
+```kalms App.kalms {"style":"indentation"}
+sayLine("Hello, Kalm!")
+```
+```kalms App.kalms {"style":"braces"}
 sayLine("Hello, Kalm!")
 ```
 ```java App.java
-public final class App {
-    public static void main(String[] args) { System.out.println("Hello, Kalm!"); }
+void main() {
+    System.out.println("Hello, Kalm!");
 }
 ```
 ::::
 
+::::dialect kalm
 From your project directory:
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat run
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat run
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 kalm run
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm run
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm run
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm run
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm run
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm run
+```
+:::
+::::
+
+::::dialect kalms
+From the folder containing your script:
+
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat shell -f App.kalms
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat shell -f App.kalms
+```
+```bash Terminal {"os":"macos","shell":"bash"}
+kalm shell -f App.kalms
+```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm shell -f App.kalms
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm shell -f App.kalms
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm shell -f App.kalms
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm shell -f App.kalms
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm shell -f App.kalms
+```
+:::
+::::
 
 ```text
 Hello, Kalm!

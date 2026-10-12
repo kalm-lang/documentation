@@ -9,21 +9,45 @@
 `fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
 
 ::::compare
-```kalm
+```kalm {"style":"indentation"}
+pub fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
+
+pub fun normalizedName(name: Text?) -> Text:
+    fix candidate = name;
+    if (candidate != null):
+        return candidate.upper();
+
+    return "GUEST";
+```
+```kalm {"style":"braces"}
 pub fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
 
 pub fun normalizedName(name: Text?) -> Text {
     fix candidate = name;
-    if (candidate != null) { return candidate.upper(); }
+    if (candidate != null) {
+        return candidate.upper();
+    }
     return "GUEST";
 }
 ```
-```kalms Example.kalms
+```kalms Example.kalms {"style":"indentation"}
+fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
+
+fun normalizedName(name: Text?) -> Text:
+    fix candidate = name;
+    if (candidate != null):
+        return candidate.upper();
+
+    return "GUEST";
+```
+```kalms Example.kalms {"style":"braces"}
 fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
 
 fun normalizedName(name: Text?) -> Text {
     fix candidate = name;
-    if (candidate != null) { return candidate.upper(); }
+    if (candidate != null) {
+        return candidate.upper();
+    }
     return "GUEST";
 }
 ```
@@ -36,9 +60,12 @@ public final class Example {
         final String name = names != null ? names.get(0) : null;
         return name != null ? name : "Guest";
     }
+
     public static String normalizedName(String name) {
         final String candidate = name;
-        return candidate != null ? candidate.toUpperCase(Locale.ROOT) : "GUEST";
+        return candidate != null
+            ? candidate.toUpperCase(Locale.ROOT)
+            : "GUEST";
     }
 }
 ```

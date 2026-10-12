@@ -9,15 +9,27 @@
 Evaluate the fallback only when the left value is null.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun greeting(name: Text?) -> Text:
     fix display = name ?? "Guest"
     return @"Hello, $display!"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun greeting(name: Text?) -> Text {
+    fix display = name ?? "Guest"
+    return @"Hello, $display!"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun greeting(name: Text?) -> Text:
     fix display = name ?? "Guest"
     return @"Hello, $display!"
+```
+```kalms Example.kalms {"style":"braces"}
+fun greeting(name: Text?) -> Text {
+    fix display = name ?? "Guest"
+    return @"Hello, $display!"
+}
 ```
 ```java Example.java
 public final class Example {

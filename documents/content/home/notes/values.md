@@ -11,7 +11,7 @@
 Wrap an implementation without writing the same forwarding methods by hand.
 
 ::::compare
-```kalm Delegation.kalm
+```kalm Delegation.kalm {"style":"indentation"}
 contract Greeter:
     fun greet(name: Text) -> Text
 
@@ -19,9 +19,23 @@ class Delegated impl Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
+
     forward Greeter to delegate
 ```
-```kalms Delegation.kalms
+```kalm Delegation.kalm {"style":"braces"}
+contract Greeter {
+    fun greet(name: Text) -> Text
+}
+
+class Delegated impl Greeter {
+    fix delegate: Greeter
+    init(delegate: Greeter) {
+        self.delegate = delegate
+    }
+    forward Greeter to delegate
+}
+```
+```kalms Delegation.kalms {"style":"indentation"}
 contract Greeter:
     fun greet(name: Text) -> Text
 
@@ -29,14 +43,38 @@ class Delegated impl Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
+
     forward Greeter to delegate
+```
+```kalms Delegation.kalms {"style":"braces"}
+contract Greeter {
+    fun greet(name: Text) -> Text
+}
+
+class Delegated impl Greeter {
+    fix delegate: Greeter
+    init(delegate: Greeter) {
+        self.delegate = delegate
+    }
+    forward Greeter to delegate
+}
 ```
 ```java Delegation.java
-interface Greeter { String greet(String name); }
+interface Greeter {
+    String greet(String name);
+}
+
 final class Delegated implements Greeter {
     public final Greeter delegate;
-    public Delegated(Greeter delegate) { this.delegate = delegate; }
-    @Override public final String greet(String name) { return delegate.greet(name); }
+
+    public Delegated(Greeter delegate) {
+        this.delegate = delegate;
+    }
+
+    @Override
+    public final String greet(String name) {
+        return delegate.greet(name);
+    }
 }
 ```
 ::::

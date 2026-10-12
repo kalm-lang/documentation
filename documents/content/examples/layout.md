@@ -9,49 +9,28 @@
 
 Use indentation or braces for blocks; # starts a comment.
 
-:::::tabs
-::::compare
-```kalm Indentation
+::::compare {"presentation":"showcase","locks":{"style":true}}
+```kalm Indentation {"style":"indentation","pane":"Indentation"}
 pub fun greeting() -> Unit:
-    # A quiet hello.
+# A quiet hello.
     sayLine("Hello")
 ```
-```kalms Example.kalms
+```kalms Indentation {"style":"indentation","pane":"Indentation"}
 fun greeting() -> Unit:
-    # A quiet hello.
+# A quiet hello.
     sayLine("Hello")
 ```
-```java Example.java
-public final class Example {
-    public static void greeting() {
-        // A quiet hello.
-        System.out.println("Hello");
-    }
-}
-```
-::::
-::::compare
-```kalm Braces
+```kalm Braces {"style":"braces","pane":"Braces"}
 pub fun greeting() -> Unit {
     # The same hello.
     sayLine("Hello");
 }
 ```
-```kalms Example.kalms
+```kalms Braces {"style":"braces","pane":"Braces"}
 fun greeting() -> Unit {
     # The same hello.
     sayLine("Hello");
 }
 ```
-```java Example.java
-public final class Example {
-    public static void greeting() {
-        // A quiet hello.
-        System.out.println("Hello");
-    }
-}
-```
 ::::
-:::::
-
 [Learn more](/docs/language/layout/).

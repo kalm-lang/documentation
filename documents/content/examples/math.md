@@ -9,7 +9,7 @@
 Use numeric prelude overloads for everyday calculations.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     sayLine(abs(-4))
     sayLine(min(2, 5))
@@ -18,7 +18,25 @@ pub fun main() -> Unit:
     sayLine(pow(2.0, 3.0))
     sayLine(round(2.7))
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    sayLine(abs(-4))
+    sayLine(min(2, 5))
+    sayLine(max(2, 5))
+    sayLine(sqrt(9.0))
+    sayLine(pow(2.0, 3.0))
+    sayLine(round(2.7))
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+sayLine(abs(-4))
+sayLine(min(2, 5))
+sayLine(max(2, 5))
+sayLine(sqrt(9.0))
+sayLine(pow(2.0, 3.0))
+sayLine(round(2.7))
+```
+```kalms Example.kalms {"style":"braces"}
 sayLine(abs(-4))
 sayLine(min(2, 5))
 sayLine(max(2, 5))
@@ -27,15 +45,13 @@ sayLine(pow(2.0, 3.0))
 sayLine(round(2.7))
 ```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        System.out.println(Math.abs(-4));
-        System.out.println(Math.min(2, 5));
-        System.out.println(Math.max(2, 5));
-        System.out.println(Math.sqrt(9.0));
-        System.out.println(Math.pow(2.0, 3.0));
-        System.out.println(Math.round(2.7));
-    }
+void main() {
+    System.out.println(Math.abs(-4));
+    System.out.println(Math.min(2, 5));
+    System.out.println(Math.max(2, 5));
+    System.out.println(Math.sqrt(9.0));
+    System.out.println(Math.pow(2.0, 3.0));
+    System.out.println(Math.round(2.7));
 }
 ```
 ::::

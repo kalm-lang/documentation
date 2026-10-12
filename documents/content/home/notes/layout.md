@@ -9,34 +9,20 @@
 }
 ---
 
-:::::tabs
-::::compare
-```kalm Indentation
+::::compare {"presentation":"showcase","locks":{"style":true}}
+```kalm Indentation {"style":"indentation","pane":"Indentation"}
 pub fun main() -> Unit:
     sayLine("Room to think.")
 ```
-```kalms Example.kalms
+```kalms Indentation {"style":"indentation","pane":"Indentation"}
 sayLine("Room to think.")
 ```
-```java Example.java
-public final class Example {
-    public static void main(String[] args) { System.out.println("Room to think."); }
-}
-```
-::::
-::::compare
-```kalm Braces
+```kalm Braces {"style":"braces","pane":"Braces"}
 pub fun main() -> Unit {
     sayLine("Room to think.");
 }
 ```
-```kalms Example.kalms
+```kalms Braces {"style":"braces","pane":"Braces"}
 sayLine("Room to think.");
 ```
-```java Example.java
-public final class Example {
-    public static void main(String[] args) { System.out.println("Room to think."); }
-}
-```
 ::::
-:::::

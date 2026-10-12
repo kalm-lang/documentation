@@ -9,13 +9,25 @@
 Declare a public static final compile-time value.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 constant DEFAULT_LIMIT: Int = 100
 constant TITLE: Text = "Kalm"
 
 pub fun limit() -> Int = DEFAULT_LIMIT
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+constant DEFAULT_LIMIT: Int = 100
+constant TITLE: Text = "Kalm"
+
+pub fun limit() -> Int = DEFAULT_LIMIT
+```
+```kalms Example.kalms {"style":"indentation"}
+constant DEFAULT_LIMIT: Int = 100
+constant TITLE: Text = "Kalm"
+
+fun limit() -> Int = DEFAULT_LIMIT
+```
+```kalms Example.kalms {"style":"braces"}
 constant DEFAULT_LIMIT: Int = 100
 constant TITLE: Text = "Kalm"
 
@@ -25,7 +37,10 @@ fun limit() -> Int = DEFAULT_LIMIT
 public final class Example {
     public static final int DEFAULT_LIMIT = 100;
     public static final String TITLE = "Kalm";
-    public static int limit() { return DEFAULT_LIMIT; }
+
+    public static int limit() {
+        return DEFAULT_LIMIT;
+    }
 }
 ```
 ::::

@@ -9,7 +9,7 @@
 Kalm has two ways to write a block. Braces make boundaries explicit; a colon introduces an indented suite that keeps the body uncluttered. Both styles support function and type bodies, control-flow branches, and other compound statements. Colon suites can be multiline or, for a simple statement, inline. Empty bodies are written `{}`.
 
 ::::compare
-```kalm
+```kalm {"style":"indentation"}
 pub fun greet(name: Text?) -> Unit:
     fix display = name ?? "Guest"
     if display == "Guest":
@@ -17,13 +17,35 @@ pub fun greet(name: Text?) -> Unit:
     else:
         sayLine(display)
 ```
-```kalms Example.kalms
+```kalm {"style":"braces"}
+pub fun greet(name: Text?) -> Unit {
+    fix display = name ?? "Guest"
+    if display == "Guest" {
+        sayLine("Welcome!")
+    }
+    else {
+        sayLine(display)
+    }
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun greet(name: Text?) -> Unit:
     fix display = name ?? "Guest"
     if display == "Guest":
         sayLine("Welcome!")
     else:
         sayLine(display)
+```
+```kalms Example.kalms {"style":"braces"}
+fun greet(name: Text?) -> Unit {
+    fix display = name ?? "Guest"
+    if display == "Guest" {
+        sayLine("Welcome!")
+    }
+    else {
+        sayLine(display)
+    }
+}
 ```
 ```java Example.java
 public final class Example {
@@ -39,8 +61,8 @@ Keep related blocks at the same level in one style. In particular, use matching 
 
 Style is chosen independently at each nesting level. A function written with a colon suite may contain an `if`/`else` written with braces, as long as both branches use braces:
 
-::::compare
-```kalm
+::::compare {"presentation":"showcase","locks":{"style":true}}
+```kalm {"pane":"Mixed blocks"}
 pub fun greet(name: Text?) -> Unit:
     if name == null {
         sayLine("Welcome!")
@@ -48,18 +70,13 @@ pub fun greet(name: Text?) -> Unit:
         sayLine(name)
     }
 ```
-```kalms Example.kalms
+```kalms Example.kalms {"pane":"Mixed blocks"}
 fun greet(name: Text?) -> Unit:
     if name == null {
         sayLine("Welcome!")
     } else {
         sayLine(name)
     }
-```
-```java Example.java
-public final class Example {
-    public static void greet(String name) { System.out.println(name == null ? "Welcome!" : name); }
-}
 ```
 ::::
 

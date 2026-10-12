@@ -9,14 +9,28 @@
 Normalize text with locale-independent upper and lower helpers.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     fix label = "Kalm"
     sayLine(label.upper())
     sayLine(label.lower())
     sayLine(len(label))
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    fix label = "Kalm"
+    sayLine(label.upper())
+    sayLine(label.lower())
+    sayLine(len(label))
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+fix label = "Kalm"
+sayLine(label.upper())
+sayLine(label.lower())
+sayLine(len(label))
+```
+```kalms Example.kalms {"style":"braces"}
 fix label = "Kalm"
 sayLine(label.upper())
 sayLine(label.lower())
@@ -25,13 +39,11 @@ sayLine(len(label))
 ```java Example.java
 import java.util.Locale;
 
-public final class Example {
-    public static void main(String[] args) {
-        final String label = "Kalm";
-        System.out.println(label.toUpperCase(Locale.ROOT));
-        System.out.println(label.toLowerCase(Locale.ROOT));
-        System.out.println(label.length());
-    }
+void main() {
+    final String label = "Kalm";
+    System.out.println(label.toUpperCase(Locale.ROOT));
+    System.out.println(label.toLowerCase(Locale.ROOT));
+    System.out.println(label.length());
 }
 ```
 ::::

@@ -12,12 +12,56 @@ completion, navigation, references, rename, and formatting.
 
 Clone the extension repository and configure GitHub Packages authentication:
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
 git clone https://github.com/kalm-lang/extension-vscode.git
 cd extension-vscode
 npm ci
 npm run package
 ```
+```batch Terminal {"os":"windows","shell":"cmd"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```bash Terminal {"os":"macos","shell":"bash"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+git clone https://github.com/kalm-lang/extension-vscode.git
+cd extension-vscode
+npm ci
+npm run package
+```
+:::
 
 Use **Extensions → Install from VSIX** to install the resulting package.
 The extension recognizes `.kalm` files and integrates Maven and Gradle commands.
@@ -27,11 +71,48 @@ Its bundled language server needs JDK 25 or newer.
 
 Build the plugin from the Kalm checkout:
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+.\gradlew.bat buildPlugin
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+gradlew.bat buildPlugin
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 git clone https://github.com/kalm-lang/extension-intellij.git
 cd extension-intellij
 ./gradlew buildPlugin
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+git clone https://github.com/kalm-lang/extension-intellij.git
+cd extension-intellij
+./gradlew buildPlugin
+```
+:::
 
 Use **Settings → Plugins → Install Plugin from Disk** to install the ZIP under
 `build/distributions`. Install LSP4IJ as the plugin dependency. The IDE host JVM

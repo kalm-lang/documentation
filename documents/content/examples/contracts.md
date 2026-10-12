@@ -9,24 +9,48 @@
 Implement a contract using explicitly marked override methods.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 contract Greeter:
     fun greet(name: Text) -> Text
 
 class Friendly impl Greeter:
     override fun greet(name: Text) -> Text = @"Hello, $name!"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+contract Greeter {
+    fun greet(name: Text) -> Text
+}
+
+class Friendly impl Greeter {
+    override fun greet(name: Text) -> Text = @"Hello, $name!"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 contract Greeter:
     fun greet(name: Text) -> Text
 
 class Friendly impl Greeter:
     override fun greet(name: Text) -> Text = @"Hello, $name!"
+```
+```kalms Example.kalms {"style":"braces"}
+contract Greeter {
+    fun greet(name: Text) -> Text
+}
+
+class Friendly impl Greeter {
+    override fun greet(name: Text) -> Text = @"Hello, $name!"
+}
 ```
 ```java Example.java
-interface Greeter { String greet(String name); }
+interface Greeter {
+    String greet(String name);
+}
+
 final class Friendly implements Greeter {
-    @Override public final String greet(String name) { return "Hello, " + name + "!"; }
+    @Override
+    public final String greet(String name) {
+        return "Hello, " + name + "!";
+    }
 }
 ```
 ::::

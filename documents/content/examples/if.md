@@ -9,23 +9,51 @@
 Choose a branch using Boolean conditions.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun label(value: Int) -> Text:
     if value > 0:
         return "positive"
+
     elif value == 0:
         return "zero"
     else:
         return "negative"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun label(value: Int) -> Text {
+    if value > 0 {
+        return "positive"
+    }
+    elif value == 0 {
+        return "zero"
+    }
+    else {
+        return "negative"
+    }
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun label(value: Int) -> Text:
     if value > 0:
         return "positive"
+
     elif value == 0:
         return "zero"
     else:
         return "negative"
+```
+```kalms Example.kalms {"style":"braces"}
+fun label(value: Int) -> Text {
+    if value > 0 {
+        return "positive"
+    }
+    elif value == 0 {
+        return "zero"
+    }
+    else {
+        return "negative"
+    }
+}
 ```
 ```java Example.java
 public final class Example {

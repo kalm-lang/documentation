@@ -9,21 +9,39 @@
 Use # for a line, ## for a block, and ### for documentation.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 ### Return a friendly greeting.
 pub fun greeting() -> Text:
     ## This comment
        spans two lines. ##
-    # A line comment.
+# A line comment.
     return "Hello"
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
 ### Return a friendly greeting.
-fun greeting() -> Text:
+pub fun greeting() -> Text {
     ## This comment
        spans two lines. ##
     # A line comment.
     return "Hello"
+}
+```
+```kalms Example.kalms {"style":"indentation"}
+### Return a friendly greeting.
+fun greeting() -> Text:
+    ## This comment
+       spans two lines. ##
+# A line comment.
+    return "Hello"
+```
+```kalms Example.kalms {"style":"braces"}
+### Return a friendly greeting.
+fun greeting() -> Text {
+    ## This comment
+       spans two lines. ##
+    # A line comment.
+    return "Hello"
+}
 ```
 ```java Example.java
 public final class Example {

@@ -9,22 +9,37 @@
 Convert explicitly; narrowing rejects out-of-range values.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun small(value: Int) -> Byte = value.toByte()
 pub fun roundedDown(value: Double) -> Int = value.toInt()
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun small(value: Int) -> Byte = value.toByte()
+pub fun roundedDown(value: Double) -> Int = value.toInt()
+```
+```kalms Example.kalms {"style":"indentation"}
+fun small(value: Int) -> Byte = value.toByte()
+fun roundedDown(value: Double) -> Int = value.toInt()
+```
+```kalms Example.kalms {"style":"braces"}
 fun small(value: Int) -> Byte = value.toByte()
 fun roundedDown(value: Double) -> Int = value.toInt()
 ```
 ```java Example.java
 public final class Example {
     public static byte small(int value) {
-        if (value < Byte.MIN_VALUE || value > Byte.MAX_VALUE) throw new ArithmeticException("Byte overflow");
+        if (
+            value < Byte.MIN_VALUE || value > Byte.MAX_VALUE
+        ) throw new ArithmeticException("Byte overflow");
         return (byte) value;
     }
+
     public static int roundedDown(double value) {
-        if (!Double.isFinite(value) || value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) throw new ArithmeticException("Int overflow");
+        if (
+            !Double.isFinite(value) ||
+            value < Integer.MIN_VALUE ||
+            value > Integer.MAX_VALUE
+        ) throw new ArithmeticException("Int overflow");
         return (int) value;
     }
 }

@@ -9,10 +9,16 @@
 Records provide immutable components and value equality.
 
 ::::compare
-```kalm Note.kalm
+```kalm Note.kalm {"style":"indentation"}
 pub data Note(title: Text, words: Int) generate Display
 ```
-```kalms Note.kalms
+```kalm Note.kalm {"style":"braces"}
+pub data Note(title: Text, words: Int) generate Display
+```
+```kalms Note.kalms {"style":"indentation"}
+data Note(title: Text, words: Int) generate Display
+```
+```kalms Note.kalms {"style":"braces"}
 data Note(title: Text, words: Int) generate Display
 ```
 ```java Note.java

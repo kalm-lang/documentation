@@ -9,19 +9,41 @@
 Close resources automatically when the block exits.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun firstLine() -> Text?:
     with reader = java.util.Scanner("hello\nworld"):
         if reader.hasNextLine():
             return reader.nextLine()
+
     return null
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun firstLine() -> Text? {
+    with reader = java.util.Scanner("hello\nworld") {
+        if reader.hasNextLine() {
+            return reader.nextLine()
+        }
+    }
+    return null
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 fun firstLine() -> Text?:
     with reader = java.util.Scanner("hello\nworld"):
         if reader.hasNextLine():
             return reader.nextLine()
+
     return null
+```
+```kalms Example.kalms {"style":"braces"}
+fun firstLine() -> Text? {
+    with reader = java.util.Scanner("hello\nworld") {
+        if reader.hasNextLine() {
+            return reader.nextLine()
+        }
+    }
+    return null
+}
 ```
 ```java Example.java
 import java.util.Scanner;

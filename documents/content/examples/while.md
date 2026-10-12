@@ -9,24 +9,41 @@
 Repeat while a condition holds.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     var count = 0
     while count < 3:
         sayLine(count)
         count += 1
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    var count = 0
+    while count < 3 {
+        sayLine(count)
+        count += 1
+    }
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 var count = 0
 while count < 3:
     sayLine(count)
     count += 1
 ```
+```kalms Example.kalms {"style":"braces"}
+var count = 0
+while count < 3 {
+    sayLine(count)
+    count += 1
+}
+```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        int count = 0;
-        while (count < 3) { System.out.println(count); count += 1; }
+void main() {
+    int count = 0;
+    while (count < 3) {
+        System.out.println(count);
+        count += 1;
     }
 }
 ```

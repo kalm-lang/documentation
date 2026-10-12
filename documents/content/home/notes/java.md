@@ -13,23 +13,39 @@
 Java sees ordinary methods, constructors, records and interfaces. Top-level functions become static methods on a file facade.
 
 ::::compare
-```kalm Calendar.kalm
+```kalm Calendar.kalm {"style":"indentation"}
 use java.time.LocalDate
 
 pub fun tomorrow() -> Text:
     return LocalDate.now().plusDays(1L).toString()
 ```
-```kalms Calendar.kalms
+```kalm Calendar.kalm {"style":"braces"}
+use java.time.LocalDate
+
+pub fun tomorrow() -> Text {
+    return LocalDate.now().plusDays(1L).toString()
+}
+```
+```kalms Calendar.kalms {"style":"indentation"}
 use java.time.LocalDate
 
 fun tomorrow() -> Text:
     return LocalDate.now().plusDays(1L).toString()
 ```
+```kalms Calendar.kalms {"style":"braces"}
+use java.time.LocalDate
+
+fun tomorrow() -> Text {
+    return LocalDate.now().plusDays(1L).toString()
+}
+```
 ```java Calendar.java
 import java.time.LocalDate;
 
 public final class Calendar {
-    public static String tomorrow() { return LocalDate.now().plusDays(1L).toString(); }
+    public static String tomorrow() {
+        return LocalDate.now().plusDays(1L).toString();
+    }
 }
 ```
 ::::

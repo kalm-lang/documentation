@@ -3,23 +3,42 @@
 ---
 
 ::::compare
-```kalm App.kalm
+```kalm App.kalm {"style":"indentation"}
 pub fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 
 pub fun main() -> Unit:
     sayLine(greeting("Mira"))
 ```
-```kalms App.kalms
+```kalm App.kalm {"style":"braces"}
+pub fun greeting(name: Text) -> Text {
+    return @"Hello, $name!"
+}
+
+pub fun main() -> Unit {
+    sayLine(greeting("Mira"))
+}
+```
+```kalms App.kalms {"style":"indentation"}
 fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 
 sayLine(greeting("Mira"))
 ```
+```kalms App.kalms {"style":"braces"}
+fun greeting(name: Text) -> Text {
+    return @"Hello, $name!"
+}
+
+sayLine(greeting("Mira"))
+```
 ```java App.java
-public final class App {
-    public static String greeting(String name) { return "Hello, " + name + "!"; }
-    public static void main(String[] args) { System.out.println(greeting("Mira")); }
+String greeting(String name) {
+    return "Hello, " + name + "!";
+}
+
+void main() {
+    System.out.println(greeting("Mira"));
 }
 ```
 ::::

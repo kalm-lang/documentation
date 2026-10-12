@@ -12,8 +12,9 @@ Keep Counting.kalm, Statistics.kalm, and Summary.kalm. Add
 `src/main/kalm/stats/Input.kalm`:
 
 ::::compare {"scriptUnavailable":"This source file belongs to the project path; the script path uses one self-contained file."}
-```kalm Input.kalm
+```kalm Input.kalm {"style":"indentation"}
 space stats
+
 use java.nio.file.Files
 use java.nio.file.Path
 
@@ -30,7 +31,36 @@ pub fun readLines(path: Path) -> List<Text>:
     handle (error: java.io.IOException):
         sayLine("Could not read file")
         exit(1)
+
     return lines
+```
+```kalm Input.kalm {"style":"braces"}
+space stats
+
+use java.nio.file.Files
+use java.nio.file.Path
+
+pub fun readLines(path: Path) -> List<Text> {
+    fix lines: List<Text> = []
+    try {
+        with reader = Files.newBufferedReader(path) {
+            while true {
+                fix line: Text? = reader.readLine()
+                if line != null {
+                    lines.add(line)
+                }
+                else {
+                    stop
+                }
+            }
+        }
+    }
+    handle (error: java.io.IOException) {
+        sayLine("Could not read file")
+        exit(1)
+    }
+    return lines
+}
 ```
 ```java Input.java
 package stats;
@@ -63,8 +93,9 @@ handled. A null line means the end of the file; a blank line is still a line.
 Replace App.kalm:
 
 ::::compare {"scriptUnavailable":"This source file belongs to the project path; the script path uses one self-contained file."}
-```kalm App.kalm
+```kalm App.kalm {"style":"indentation"}
 space stats
+
 use java.nio.file.Path
 
 pub fun main(args: Array<Text>) -> Unit:
@@ -72,8 +103,24 @@ pub fun main(args: Array<Text>) -> Unit:
         sayLine("Usage: kalm run -- <file>")
         exit(2)
         return
+
     fix result = summarize(readLines(Path.of(args[0])))
     sayLine(@"${result.lines()} lines / ${result.words()} words")
+```
+```kalm App.kalm {"style":"braces"}
+space stats
+
+use java.nio.file.Path
+
+pub fun main(args: Array<Text>) -> Unit {
+    if len(args) != 1 {
+        sayLine("Usage: kalm run -- <file>")
+        exit(2)
+        return
+    }
+    fix result = summarize(readLines(Path.of(args[0])))
+    sayLine(@"${result.lines()} lines / ${result.words()} words")
+}
 ```
 ```java App.java
 package stats;
@@ -82,9 +129,17 @@ import java.nio.file.Path;
 
 public final class App {
     public static void main(String[] args) {
-        if (args.length != 1) { System.out.println("Usage: kalm run -- <file>"); System.exit(2); return; }
-        final Statistics result = Summary.summarize(Input.readLines(Path.of(args[0])));
-        System.out.println(result.lines() + " lines / " + result.words() + " words");
+        if (args.length != 1) {
+            System.out.println("Usage: kalm run -- <file>");
+            System.exit(2);
+            return;
+        }
+        final Statistics result = Summary.summarize(
+            Input.readLines(Path.of(args[0]))
+        );
+        System.out.println(
+            result.lines() + " lines / " + result.words() + " words"
+        );
     }
 }
 ```
@@ -97,9 +152,32 @@ a quiet
 morning
 ```
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat run -- notes.txt
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat run -- notes.txt
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 kalm run -- notes.txt
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm run -- notes.txt
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm run -- notes.txt
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm run -- notes.txt
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm run -- notes.txt
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm run -- notes.txt
+```
+:::
 
 ```text
 2 lines / 3 words
@@ -115,26 +193,27 @@ The input file is read without changing it.
 Save the complete program below as App.kalms in a folder of your choice. Each lesson replaces this file; the shell does not load neighboring project files. The script host does not forward command-line arguments. Edit the args array to try a different path or an empty input. Create notes.txt in the directory where you launch the command, containing a quiet on the first line and morning on the second.
 
 ::::compare
-```kalm App.kalm
+```kalm App.kalm {"style":"indentation"}
+use java.nio.file.Files
+use java.nio.file.Path
+use java.nio.file.Path
+
 fun countWords(text: Text) -> Int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
             words += 1
+
     return words
 
-
 data Statistics(lines: Int, words: Int)
-
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
     for line in lines:
         words += countWords(line)
-    return Statistics(len(lines), words)
 
-use java.nio.file.Files
-use java.nio.file.Path
+    return Statistics(len(lines), words)
 
 fun readLines(path: Path) -> List<Text>:
     fix lines: List<Text> = []
@@ -149,34 +228,91 @@ fun readLines(path: Path) -> List<Text>:
     handle (error: java.io.IOException):
         sayLine("Could not read file")
         exit(1)
-    return lines
 
-use java.nio.file.Path
+    return lines
 
 pub fun main(args: Array<Text>) -> Unit:
     if len(args) != 1:
         sayLine("Usage: kalm run -- <file>")
         exit(2)
         return
+
     fix result = summarize(readLines(Path.of(args[0])))
     sayLine(@"${result.lines()} lines / ${result.words()} words")
 ```
-```kalms App.kalms
+```kalm App.kalm {"style":"braces"}
+use java.nio.file.Files
+use java.nio.file.Path
+use java.nio.file.Path
+
+fun countWords(text: Text) -> Int {
+    var words = 0
+    for word in text.split("\\s+") {
+        if not word.isBlank() {
+            words += 1
+        }
+    }
+    return words
+}
+
+data Statistics(lines: Int, words: Int)
+
+fun summarize(lines: List<Text>) -> Statistics {
+    var words = 0
+    for line in lines {
+        words += countWords(line)
+    }
+    return Statistics(len(lines), words)
+}
+
+fun readLines(path: Path) -> List<Text> {
+    fix lines: List<Text> = []
+    try {
+        with reader = Files.newBufferedReader(path) {
+            while true {
+                fix line: Text? = reader.readLine()
+                if line != null {
+                    lines.add(line)
+                }
+                else {
+                    stop
+                }
+            }
+        }
+    }
+    handle (error: java.io.IOException) {
+        sayLine("Could not read file")
+        exit(1)
+    }
+    return lines
+}
+
+pub fun main(args: Array<Text>) -> Unit {
+    if len(args) != 1 {
+        sayLine("Usage: kalm run -- <file>")
+        exit(2)
+        return
+    }
+    fix result = summarize(readLines(Path.of(args[0])))
+    sayLine(@"${result.lines()} lines / ${result.words()} words")
+}
+```
+```kalms App.kalms {"style":"indentation"}
 fun countWords(text: Text) -> Int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
             words += 1
+
     return words
 
-
 data Statistics(lines: Int, words: Int)
-
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
     for line in lines:
         words += countWords(line)
+
     return Statistics(len(lines), words)
 
 use java.nio.file.Files
@@ -195,6 +331,7 @@ fun readLines(path: Path) -> List<Text>:
     handle (error: java.io.IOException):
         sayLine("Could not read file")
         exit(1)
+
     return lines
 
 use java.nio.file.Path
@@ -203,6 +340,62 @@ fix args: Array<Text> = arrayOf("notes.txt")
 if len(args) != 1:
     sayLine("Usage: kalm run -- <file>")
     exit(2)
+fix result = summarize(readLines(Path.of(args[0])))
+sayLine(@"${result.lines()} lines / ${result.words()} words")
+```
+```kalms App.kalms {"style":"braces"}
+fun countWords(text: Text) -> Int {
+    var words = 0
+    for word in text.split("\\s+") {
+        if not word.isBlank() {
+            words += 1
+        }
+    }
+    return words
+}
+
+data Statistics(lines: Int, words: Int)
+
+fun summarize(lines: List<Text>) -> Statistics {
+    var words = 0
+    for line in lines {
+        words += countWords(line)
+    }
+    return Statistics(len(lines), words)
+}
+
+use java.nio.file.Files
+use java.nio.file.Path
+
+fun readLines(path: Path) -> List<Text> {
+    fix lines: List<Text> = []
+    try {
+        with reader = Files.newBufferedReader(path) {
+            while true {
+                fix line: Text? = reader.readLine()
+                if line != null {
+                    lines.add(line)
+                }
+                else {
+                    stop
+                }
+            }
+        }
+    }
+    handle (error: java.io.IOException) {
+        sayLine("Could not read file")
+        exit(1)
+    }
+    return lines
+}
+
+use java.nio.file.Path
+
+fix args: Array<Text> = arrayOf("notes.txt")
+if len(args) != 1 {
+    sayLine("Usage: kalm run -- <file>")
+    exit(2)
+}
 fix result = summarize(readLines(Path.of(args[0])))
 sayLine(@"${result.lines()} lines / ${result.words()} words")
 ```
@@ -216,7 +409,8 @@ import java.util.List;
 final class Counting {
     public static int countWords(String text) {
         int words = 0;
-        for (final String word : text.split("\\s+")) if (!word.isBlank()) words += 1;
+        for (final String word : text.split("\\s+"))
+            if (!word.isBlank()) words += 1;
         return words;
     }
 }
@@ -247,17 +441,48 @@ final class Input {
 
 public final class App {
     public static void main(String[] args) {
-        if (args.length != 1) { System.out.println("Usage: kalm run -- <file>"); System.exit(2); return; }
-        final Statistics result = Summary.summarize(Input.readLines(Path.of(args[0])));
-        System.out.println(result.lines() + " lines / " + result.words() + " words");
+        if (args.length != 1) {
+            System.out.println("Usage: kalm run -- <file>");
+            System.exit(2);
+            return;
+        }
+        final Statistics result = Summary.summarize(
+            Input.readLines(Path.of(args[0]))
+        );
+        System.out.println(
+            result.lines() + " lines / " + result.words() + " words"
+        );
     }
 }
 ```
 ::::
 
-```bash
+:::compare
+```powershell Terminal {"os":"windows","shell":"powershell"}
+kalm.bat shell -f App.kalms
+```
+```batch Terminal {"os":"windows","shell":"cmd"}
+kalm.bat shell -f App.kalms
+```
+```bash Terminal {"os":"macos","shell":"bash"}
 kalm shell -f App.kalms
 ```
+```zsh Terminal {"os":"macos","shell":"zsh"}
+kalm shell -f App.kalms
+```
+```powershell Terminal {"os":"macos","shell":"powershell"}
+kalm shell -f App.kalms
+```
+```bash Terminal {"os":"linux","shell":"bash"}
+kalm shell -f App.kalms
+```
+```zsh Terminal {"os":"linux","shell":"zsh"}
+kalm shell -f App.kalms
+```
+```powershell Terminal {"os":"linux","shell":"powershell"}
+kalm shell -f App.kalms
+```
+:::
 
 ```text
 2 lines / 3 words

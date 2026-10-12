@@ -9,20 +9,30 @@
 Ranges include the start and exclude the end.
 
 ::::compare
-```kalm Example.kalm
+```kalm Example.kalm {"style":"indentation"}
 pub fun main() -> Unit:
     for value in range(1, 4):
         sayLine(value)
 ```
-```kalms Example.kalms
+```kalm Example.kalm {"style":"braces"}
+pub fun main() -> Unit {
+    for value in range(1, 4) {
+        sayLine(value)
+    }
+}
+```
+```kalms Example.kalms {"style":"indentation"}
 for value in range(1, 4):
     sayLine(value)
 ```
+```kalms Example.kalms {"style":"braces"}
+for value in range(1, 4) {
+    sayLine(value)
+}
+```
 ```java Example.java
-public final class Example {
-    public static void main(String[] args) {
-        for (int value = 1; value < 4; value++) System.out.println(value);
-    }
+void main() {
+    for (int value = 1; value < 4; value++) System.out.println(value);
 }
 ```
 ::::
