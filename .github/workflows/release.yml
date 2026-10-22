@@ -33,7 +33,7 @@ jobs:
             echo '::error::Set KALM_PACKAGES_READ_TOKEN and publish the shared highlighting package first.'
             exit 1
           fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
