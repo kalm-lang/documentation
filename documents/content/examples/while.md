@@ -10,14 +10,14 @@ Repeat while a condition holds.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     var count = 0
     while count < 3:
         sayLine(count)
         count += 1
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     var count = 0
     while count < 3 {
         sayLine(count)

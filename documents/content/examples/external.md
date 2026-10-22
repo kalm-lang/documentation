@@ -10,24 +10,24 @@ Wrap a Java static method with a Kalm name.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-external fun parseCount(value: Text) -> Int = java.lang.Integer.parseInt
+external fun parseCount(value: Text) -> int = java.lang.Integer.parseInt
 
-pub fun count() -> Int = parseCount("12")
+pub fun count() -> int = parseCount("12")
 ```
 ```kalm Example.kalm {"style":"braces"}
-external fun parseCount(value: Text) -> Int = java.lang.Integer.parseInt
+external fun parseCount(value: Text) -> int = java.lang.Integer.parseInt
 
-pub fun count() -> Int = parseCount("12")
+pub fun count() -> int = parseCount("12")
 ```
 ```kalms Example.kalms {"style":"indentation"}
-external fun parseCount(value: Text) -> Int = java.lang.Integer.parseInt
+external fun parseCount(value: Text) -> int = java.lang.Integer.parseInt
 
-fun count() -> Int = parseCount("12")
+fun count() -> int = parseCount("12")
 ```
 ```kalms Example.kalms {"style":"braces"}
-external fun parseCount(value: Text) -> Int = java.lang.Integer.parseInt
+external fun parseCount(value: Text) -> int = java.lang.Integer.parseInt
 
-fun count() -> Int = parseCount("12")
+fun count() -> int = parseCount("12")
 ```
 ```java Example.java
 public final class Example {

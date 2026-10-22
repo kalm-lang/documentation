@@ -10,13 +10,13 @@ Read or assign list, map, and array elements by index or key.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     var values: List<Int> = [2, 4]
     values[0] += 3
     sayLine(values[0])
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     var values: List<Int> = [2, 4]
     values[0] += 3
     sayLine(values[0])

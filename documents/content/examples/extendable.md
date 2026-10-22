@@ -6,7 +6,7 @@
 }
 ---
 
-Classes and methods are final by default; open them explicitly for extension.
+Classes and eligible methods are open by default. `fix` makes them final; `extendable` explicitly marks an open sealed child.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}

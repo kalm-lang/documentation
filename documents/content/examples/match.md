@@ -1,6 +1,6 @@
 ---
 {
-  "title": "choose / when",
+  "title": "match / case",
   "order": 29,
   "group": "Flow"
 }
@@ -10,32 +10,32 @@ Return a result from a matching branch; _ catches remaining values.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun label(value: Int) -> Text = choose value:
-    when 0 => "zero";
-    when 1 => "one";
-    when _ => "many";
+pub fun label(value: int) -> Text = match value:
+    case 0 => "zero";
+    case 1 => "one";
+    case _ => "many";
 ;
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun label(value: Int) -> Text = choose value {
-    when 0 => "zero";
-    when 1 => "one";
-    when _ => "many";
+pub fun label(value: int) -> Text = match value {
+    case 0 => "zero";
+    case 1 => "one";
+    case _ => "many";
 }
 ;
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun label(value: Int) -> Text = choose value:
-    when 0 => "zero";
-    when 1 => "one";
-    when _ => "many";
+fun label(value: int) -> Text = match value:
+    case 0 => "zero";
+    case 1 => "one";
+    case _ => "many";
 ;
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun label(value: Int) -> Text = choose value {
-    when 0 => "zero";
-    when 1 => "one";
-    when _ => "many";
+fun label(value: int) -> Text = match value {
+    case 0 => "zero";
+    case 1 => "one";
+    case _ => "many";
 }
 ;
 ```

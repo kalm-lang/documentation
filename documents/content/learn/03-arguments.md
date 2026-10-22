@@ -23,7 +23,7 @@ fun requestedPath(args: Array<Text>) -> Text?:
 
     return null
 
-pub fun main(args: Array<Text>) -> Unit:
+pub fun main(args: Array<Text>) -> void:
     fix requested = requestedPath(args)
     if requested != null:
         sayLine(@"Will read $requested")
@@ -40,7 +40,7 @@ fun requestedPath(args: Array<Text>) -> Text? {
     return null
 }
 
-pub fun main(args: Array<Text>) -> Unit {
+pub fun main(args: Array<Text>) -> void {
     fix requested = requestedPath(args)
     if requested != null {
         sayLine(@"Will read $requested")
@@ -121,7 +121,7 @@ fun requestedPath(args: Array<Text>) -> Text?:
 
     return null
 
-pub fun main(args: Array<Text>) -> Unit:
+pub fun main(args: Array<Text>) -> void:
     fix requested = requestedPath(args)
     if requested != null:
         sayLine(@"Will read $requested")
@@ -136,7 +136,7 @@ fun requestedPath(args: Array<Text>) -> Text? {
     return null
 }
 
-pub fun main(args: Array<Text>) -> Unit {
+pub fun main(args: Array<Text>) -> void {
     fix requested = requestedPath(args)
     if requested != null {
         sayLine(@"Will read $requested")

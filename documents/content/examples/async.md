@@ -10,14 +10,14 @@ Await inside an async function or task body.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub async fun answer() -> Int:
+pub async fun answer() -> int:
     fix pending: Task<Int> = task:
         return 6 * 7
 
     return await pending
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub async fun answer() -> Int {
+pub async fun answer() -> int {
     fix pending: Task<Int> = task {
         return 6 * 7
     }
@@ -25,14 +25,14 @@ pub async fun answer() -> Int {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-async fun answer() -> Int:
+async fun answer() -> int:
     fix pending: Task<Int> = task:
         return 6 * 7
 
     return await pending
 ```
 ```kalms Example.kalms {"style":"braces"}
-async fun answer() -> Int {
+async fun answer() -> int {
     fix pending: Task<Int> = task {
         return 6 * 7
     }

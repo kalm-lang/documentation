@@ -15,12 +15,12 @@ Keep Counting.kalm from the previous lesson. Add a result record in
 ```kalm Statistics.kalm {"style":"indentation"}
 space stats
 
-pub data Statistics(lines: Int, words: Int)
+pub data Statistics(lines: int, words: int)
 ```
 ```kalm Statistics.kalm {"style":"braces"}
 space stats
 
-pub data Statistics(lines: Int, words: Int)
+pub data Statistics(lines: int, words: int)
 ```
 ```java Statistics.java
 package stats;
@@ -74,7 +74,7 @@ Replace App.kalm:
 ```kalm App.kalm {"style":"indentation"}
 space stats
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix lines: List<Text> = ["a quiet", "morning"]
     fix result = summarize(lines)
     sayLine(@"${result.lines()} lines / ${result.words()} words")
@@ -82,7 +82,7 @@ pub fun main() -> Unit:
 ```kalm App.kalm {"style":"braces"}
 space stats
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix lines: List<Text> = ["a quiet", "morning"]
     fix result = summarize(lines)
     sayLine(@"${result.lines()} lines / ${result.words()} words")
@@ -149,7 +149,7 @@ Save the complete program below as App.kalms in a folder of your choice. Each le
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -157,7 +157,7 @@ fun countWords(text: Text) -> Int:
 
     return words
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
@@ -166,13 +166,13 @@ fun summarize(lines: List<Text>) -> Statistics:
 
     return Statistics(len(lines), words)
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix lines: List<Text> = ["a quiet", "morning"]
     fix result = summarize(lines)
     sayLine(@"${result.lines()} lines / ${result.words()} words")
 ```
 ```kalm App.kalm {"style":"braces"}
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -182,7 +182,7 @@ fun countWords(text: Text) -> Int {
     return words
 }
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics {
     var words = 0
@@ -192,14 +192,14 @@ fun summarize(lines: List<Text>) -> Statistics {
     return Statistics(len(lines), words)
 }
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix lines: List<Text> = ["a quiet", "morning"]
     fix result = summarize(lines)
     sayLine(@"${result.lines()} lines / ${result.words()} words")
 }
 ```
 ```kalms App.kalms {"style":"indentation"}
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -207,7 +207,7 @@ fun countWords(text: Text) -> Int:
 
     return words
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
@@ -221,7 +221,7 @@ fix result = summarize(lines)
 sayLine(@"${result.lines()} lines / ${result.words()} words")
 ```
 ```kalms App.kalms {"style":"braces"}
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -231,7 +231,7 @@ fun countWords(text: Text) -> Int {
     return words
 }
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics {
     var words = 0

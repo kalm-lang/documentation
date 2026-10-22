@@ -11,47 +11,47 @@ Use pub for API declarations, internal for module access, and private for local 
 ::::compare
 ```kalm Counter.kalm {"style":"indentation"}
 pub class Counter:
-    private var value: Int = 0
-    protected fun current() -> Int = value
-    pub fun increment() -> Int:
+    private var value: int = 0
+    protected fun current() -> int = value
+    pub fun increment() -> int:
         value += 1
         return value
 
-internal fun defaultValue() -> Int = 0
+internal fun defaultValue() -> int = 0
 ```
 ```kalm Counter.kalm {"style":"braces"}
 pub class Counter {
-    private var value: Int = 0
-    protected fun current() -> Int = value
-    pub fun increment() -> Int {
+    private var value: int = 0
+    protected fun current() -> int = value
+    pub fun increment() -> int {
         value += 1
         return value
     }
 }
 
-internal fun defaultValue() -> Int = 0
+internal fun defaultValue() -> int = 0
 ```
 ```kalms Counter.kalms {"style":"indentation"}
 class Counter:
-    private var value: Int = 0
-    protected fun current() -> Int = value
-    pub fun increment() -> Int:
+    private var value: int = 0
+    protected fun current() -> int = value
+    pub fun increment() -> int:
         value += 1
         return value
 
-internal fun defaultValue() -> Int = 0
+internal fun defaultValue() -> int = 0
 ```
 ```kalms Counter.kalms {"style":"braces"}
 class Counter {
-    private var value: Int = 0
-    protected fun current() -> Int = value
-    pub fun increment() -> Int {
+    private var value: int = 0
+    protected fun current() -> int = value
+    pub fun increment() -> int {
         value += 1
         return value
     }
 }
 
-internal fun defaultValue() -> Int = 0
+internal fun defaultValue() -> int = 0
 ```
 ```java Counter.java
 public final class Counter {

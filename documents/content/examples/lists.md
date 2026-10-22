@@ -10,13 +10,13 @@ List literals create mutable Java lists.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix names: List<Text> = ["Mira", "Ari"]
     names.add("Tim")
     sayLine(names[0])
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix names: List<Text> = ["Mira", "Ari"]
     names.add("Tim")
     sayLine(names[0])

@@ -1,3 +1,17 @@
+# Migrating to Kalm 1.2.0
+
+The [final changes companion](https://github.com/kalm-lang/specification/blob/v1.2.0/changes/v1.2.0.md)
+is the complete comparison against final 1.1.0. Recompile dependent Java and Kalm code after changing exposed signatures.
+
+- Use lowercase primitive annotations to preserve primitive JVM descriptors. Capitalized wrappers keep reference storage; nullable and generic wrappers remain capitalized.
+- Replace `impl`, `choose`, and `when` constructs with `implements`, `match`, and `case`. The old words remain ordinary identifiers.
+- Add `fix` where class or method finality must remain guaranteed. Mark direct sealed children explicitly.
+- Use `Any?` wherever null is allowed, and handle absent map keys.
+- Replace call-shaped word negation/await with `!(condition)` or `await pending`. Calls such as `not(value)` resolve a named callable.
+- Use `yield` for value-match block arms. Nullable value functions still need explicit returns on every completing path.
+
+## Earlier implementation migrations
+
 # Migration notes for the v1 draft implementation
 
 The previous development compiler accepted nullable Kalm references in non-null return types and inferred locals without checking later dereferences. These programs now produce `KALM-2001` diagnostics. Use a nullable result, safe access, `??`, or a stable `fix` value refined by a null check. Mutable `var` values retain their declared nullable type after an assignment, including `??=`. The value of `??=` itself has the fallback's nullability.

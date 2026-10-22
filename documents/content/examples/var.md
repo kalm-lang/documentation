@@ -10,13 +10,13 @@ Use a mutable binding when its value changes.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     var score = 3
     score += 1
     sayLine(score)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     var score = 3
     score += 1
     sayLine(score)

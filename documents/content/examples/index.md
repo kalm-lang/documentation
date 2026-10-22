@@ -26,11 +26,11 @@ Small pieces of Kalm, one topic at a time. Most pages contain a single snippet.
 
 ### Flow
 
-[if / elif / else](/examples/if/) · [while](/examples/while/) · [for / in](/examples/for/) · [stop / next](/examples/stop-next/) · [choose / when](/examples/choose/) · [try / handle / finally](/examples/try/) · [raise](/examples/raise/) · [Type patterns](/examples/type-patterns/)
+[if / elif / else](/examples/if/) · [while](/examples/while/) · [for / in](/examples/for/) · [stop / next](/examples/stop-next/) · [match / case](/examples/match/) · [try / handle / finally](/examples/try/) · [raise](/examples/raise/) · [Type patterns](/examples/type-patterns/)
 
 ### Types
 
-[class / init / self](/examples/classes/) · [data / generate Display](/examples/data/) · [choice](/examples/choice/) · [contract / impl / override](/examples/contracts/) · [base / needs / inherits](/examples/base/) · [extendable / fix](/examples/extendable/) · [closed](/examples/closed/) · [singleton](/examples/singleton/) · [alias](/examples/alias/) · [forward](/examples/forward/) · [Visibility](/examples/visibility/)
+[class / init / self](/examples/classes/) · [data / generate Display](/examples/data/) · [choice](/examples/choice/) · [contract / implements / override](/examples/contracts/) · [base / needs / inherits](/examples/base/) · [extendable / fix](/examples/extendable/) · [closed](/examples/closed/) · [singleton](/examples/singleton/) · [alias](/examples/alias/) · [forward](/examples/forward/) · [Visibility](/examples/visibility/)
 
 ### Properties
 

@@ -8,7 +8,7 @@
 Plugin ID: `dev.kalm.language`. The repository pins Gradle 9.6.1 with a checksummed wrapper. Configure [package authentication](https://github.com/kalm-lang/tools/blob/main/docs/bootstrap.md). `kalm init --build-tool gradle` includes the published plugin registry settings.
 
 ```kotlin
-plugins { java; id("dev.kalm.language") version "0.1.0-SNAPSHOT" }
+plugins { java; id("dev.kalm.language") version "1.2.0" }
 repositories {
     maven {
         url = uri("https://maven.pkg.github.com/kalm-lang/*")
@@ -16,7 +16,7 @@ repositories {
     }
     mavenCentral()
 }
-dependencies { implementation("dev.kalm:kalm-stdlib:0.1.0-SNAPSHOT") }
+dependencies { implementation("dev.kalm:kalm-stdlib:1.2.0") }
 java { toolchain.languageVersion.set(JavaLanguageVersion.of(25)) }
 
 kalm {

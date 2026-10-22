@@ -10,34 +10,34 @@ Write Boolean, numeric, character, and text values directly.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
-    fix enabled: Bool = true
-    fix letter: Char = 'K'
-    fix count: Long = 12L
-    fix ratio: Double = 0.5
+pub fun main() -> void:
+    fix enabled: boolean = true
+    fix letter: char = 'K'
+    fix count: long = 12L
+    fix ratio: double = 0.5
     sayLine(@"$letter: $count / $ratio / $enabled")
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
-    fix enabled: Bool = true
-    fix letter: Char = 'K'
-    fix count: Long = 12L
-    fix ratio: Double = 0.5
+pub fun main() -> void {
+    fix enabled: boolean = true
+    fix letter: char = 'K'
+    fix count: long = 12L
+    fix ratio: double = 0.5
     sayLine(@"$letter: $count / $ratio / $enabled")
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fix enabled: Bool = true
-fix letter: Char = 'K'
-fix count: Long = 12L
-fix ratio: Double = 0.5
+fix enabled: boolean = true
+fix letter: char = 'K'
+fix count: long = 12L
+fix ratio: double = 0.5
 sayLine(@"$letter: $count / $ratio / $enabled")
 ```
 ```kalms Example.kalms {"style":"braces"}
-fix enabled: Bool = true
-fix letter: Char = 'K'
-fix count: Long = 12L
-fix ratio: Double = 0.5
+fix enabled: boolean = true
+fix letter: char = 'K'
+fix count: long = 12L
+fix ratio: double = 0.5
 sayLine(@"$letter: $count / $ratio / $enabled")
 ```
 ```java Example.java

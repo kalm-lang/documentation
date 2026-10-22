@@ -10,14 +10,14 @@ Normalize text with locale-independent upper and lower helpers.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix label = "Kalm"
     sayLine(label.upper())
     sayLine(label.lower())
     sayLine(len(label))
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix label = "Kalm"
     sayLine(label.upper())
     sayLine(label.lower())

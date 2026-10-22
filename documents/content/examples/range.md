@@ -10,12 +10,12 @@ Ranges include the start and exclude the end.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     for value in range(1, 4):
         sayLine(value)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     for value in range(1, 4) {
         sayLine(value)
     }

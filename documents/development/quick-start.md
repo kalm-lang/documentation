@@ -19,7 +19,7 @@ no Git repository is created. Generated READMEs list the required setup and comm
 
 ## Requirements
 
-Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-stdlib:0.1.0-SNAPSHOT`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
+Compilation and the language server require a full JDK 25+; releases below 25 are rejected. The runtime is an ordinary Java dependency, `dev.kalm:kalm-stdlib:1.2.0`. Run Maven on JDK 25+; Gradle uses a selected Java toolchain for Kalm compilation independently of the daemon JVM.
 
 Build from the repository root:
 
@@ -28,7 +28,7 @@ mvn clean install
 bin/kalm --version
 ```
 
-Until public artifacts are published, local Maven installation is required by the examples. Compiler, runtime, build plugins, server and IntelliJ use `0.1.0-SNAPSHOT`; the VSIX uses Marketplace-compatible version `0.1.0` and bundles the matching snapshot server.
+Until public artifacts are published, local Maven installation is required by the examples. Compiler, runtime, build plugins, server and IntelliJ use `1.2.0`; the VSIX uses Marketplace-compatible version `0.1.0` and bundles the matching snapshot server.
 
 ## CLI
 

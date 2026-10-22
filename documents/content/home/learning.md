@@ -5,7 +5,7 @@
 :::::tabs
 ::::compare {"presentation":"showcase","locks":{"dialect":true}}
 ```kalm Counting.kalm {"style":"indentation"}
-pub fun countWords(text: Text) -> Int:
+pub fun countWords(text: Text) -> int:
     var total = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -14,7 +14,7 @@ pub fun countWords(text: Text) -> Int:
     return total
 ```
 ```kalm Counting.kalm {"style":"braces"}
-pub fun countWords(text: Text) -> Int {
+pub fun countWords(text: Text) -> int {
     var total = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {

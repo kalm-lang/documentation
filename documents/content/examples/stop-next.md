@@ -10,7 +10,7 @@ Skip an iteration with next, or leave the loop with stop.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     for value in range(5):
         if value == 1:
             next
@@ -21,7 +21,7 @@ pub fun main() -> Unit:
         sayLine(value)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     for value in range(5) {
         if value == 1 {
             next

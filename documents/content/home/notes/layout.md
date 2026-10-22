@@ -11,14 +11,14 @@
 
 ::::compare {"presentation":"showcase","locks":{"style":true}}
 ```kalm Indentation {"style":"indentation","pane":"Indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine("Room to think.")
 ```
 ```kalms Indentation {"style":"indentation","pane":"Indentation"}
 sayLine("Room to think.")
 ```
 ```kalm Braces {"style":"braces","pane":"Braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine("Room to think.");
 }
 ```

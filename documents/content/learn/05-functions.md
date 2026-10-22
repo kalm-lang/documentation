@@ -14,7 +14,7 @@ Move the counting logic into `src/main/kalm/stats/Counting.kalm`:
 ```kalm Counting.kalm {"style":"indentation"}
 space stats
 
-pub fun countWords(text: Text) -> Int:
+pub fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -25,7 +25,7 @@ pub fun countWords(text: Text) -> Int:
 ```kalm Counting.kalm {"style":"braces"}
 space stats
 
-pub fun countWords(text: Text) -> Int {
+pub fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -55,13 +55,13 @@ Replace App.kalm with its caller:
 ```kalm App.kalm {"style":"indentation"}
 space stats
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine(@"${countWords("a quiet morning")} words")
 ```
 ```kalm App.kalm {"style":"braces"}
 space stats
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine(@"${countWords("a quiet morning")} words")
 }
 ```
@@ -123,7 +123,7 @@ Save the complete program below as App.kalms in a folder of your choice. Each le
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -131,11 +131,11 @@ fun countWords(text: Text) -> Int:
 
     return words
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine(@"${countWords("a quiet morning")} words")
 ```
 ```kalm App.kalm {"style":"braces"}
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -145,12 +145,12 @@ fun countWords(text: Text) -> Int {
     return words
 }
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine(@"${countWords("a quiet morning")} words")
 }
 ```
 ```kalms App.kalms {"style":"indentation"}
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -161,7 +161,7 @@ fun countWords(text: Text) -> Int:
 sayLine(@"${countWords("a quiet morning")} words")
 ```
 ```kalms App.kalms {"style":"braces"}
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {

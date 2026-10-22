@@ -10,13 +10,13 @@ Assign a fallback to a nullable mutable binding only when needed.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     var title: Text? = null
     title ??= "Untitled"
     sayLine(title)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     var title: Text? = null
     title ??= "Untitled"
     sayLine(title)

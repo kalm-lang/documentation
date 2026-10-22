@@ -10,12 +10,12 @@ Bind a value once.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix name = "Mira"
     sayLine(name)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix name = "Mira"
     sayLine(name)
 }

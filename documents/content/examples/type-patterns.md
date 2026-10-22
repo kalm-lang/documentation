@@ -14,9 +14,9 @@ pub closed class Result:
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 
-pub fun label(result: Result) -> Text = choose result:
-    when Result.Ready => "ready";
-    when Result.Missing => "missing";
+pub fun label(result: Result) -> Text = match result:
+    case Result.Ready => "ready";
+    case Result.Missing => "missing";
 ;
 ```
 ```kalm Result.kalm {"style":"braces"}
@@ -25,9 +25,9 @@ pub closed class Result {
     pub fix class Missing inherits Result {}
 }
 
-pub fun label(result: Result) -> Text = choose result {
-    when Result.Ready => "ready";
-    when Result.Missing => "missing";
+pub fun label(result: Result) -> Text = match result {
+    case Result.Ready => "ready";
+    case Result.Missing => "missing";
 }
 ;
 ```
@@ -36,9 +36,9 @@ closed class Result:
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 
-fun label(result: Result) -> Text = choose result:
-    when Result.Ready => "ready";
-    when Result.Missing => "missing";
+fun label(result: Result) -> Text = match result:
+    case Result.Ready => "ready";
+    case Result.Missing => "missing";
 ;
 ```
 ```kalms Result.kalms {"style":"braces"}
@@ -47,9 +47,9 @@ closed class Result {
     pub fix class Missing inherits Result {}
 }
 
-fun label(result: Result) -> Text = choose result {
-    when Result.Ready => "ready";
-    when Result.Missing => "missing";
+fun label(result: Result) -> Text = match result {
+    case Result.Ready => "ready";
+    case Result.Missing => "missing";
 }
 ;
 ```

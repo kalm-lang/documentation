@@ -1,7 +1,7 @@
 # Usability audit
 
-The current target is the 1.1 draft, shipped as `0.1.0-SNAPSHOT`. This audit
-compares the draft, implementation, tests, and runnable projects. It is not a
+The target is the final Kalm 1.2.0 specification. This audit
+connects the implementation, tests, and runnable projects. It is not a
 claim that every valid program has been verified.
 
 | Area | Evidence and current behavior | Action in this round |

@@ -10,7 +10,7 @@ Checks stay active without JVM assertion flags.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun square(value: Int) -> Int:
+pub fun square(value: int) -> int:
     require value >= 0, "nonnegative input"
     fix result = value * value
     ensure result >= 0, "nonnegative result"
@@ -18,7 +18,7 @@ pub fun square(value: Int) -> Int:
     return result
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun square(value: Int) -> Int {
+pub fun square(value: int) -> int {
     require value >= 0, "nonnegative input"
     fix result = value * value
     ensure result >= 0, "nonnegative result"
@@ -27,7 +27,7 @@ pub fun square(value: Int) -> Int {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun square(value: Int) -> Int:
+fun square(value: int) -> int:
     require value >= 0, "nonnegative input"
     fix result = value * value
     ensure result >= 0, "nonnegative result"
@@ -35,7 +35,7 @@ fun square(value: Int) -> Int:
     return result
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun square(value: Int) -> Int {
+fun square(value: int) -> int {
     require value >= 0, "nonnegative input"
     fix result = value * value
     ensure result >= 0, "nonnegative result"

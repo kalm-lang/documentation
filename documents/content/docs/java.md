@@ -14,22 +14,22 @@ interfaces, methods, and constructors.
 ```kalm {"style":"indentation"}
 use java.time.LocalDate
 
-pub fun year() -> Int = LocalDate.now().getYear()
+pub fun year() -> int = LocalDate.now().getYear()
 ```
 ```kalm {"style":"braces"}
 use java.time.LocalDate
 
-pub fun year() -> Int = LocalDate.now().getYear()
+pub fun year() -> int = LocalDate.now().getYear()
 ```
 ```kalms Example.kalms {"style":"indentation"}
 use java.time.LocalDate
 
-fun year() -> Int = LocalDate.now().getYear()
+fun year() -> int = LocalDate.now().getYear()
 ```
 ```kalms Example.kalms {"style":"braces"}
 use java.time.LocalDate
 
-fun year() -> Int = LocalDate.now().getYear()
+fun year() -> int = LocalDate.now().getYear()
 ```
 ```java Example.java
 import java.time.LocalDate;

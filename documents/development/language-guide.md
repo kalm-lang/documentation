@@ -1,13 +1,13 @@
 # Language usage
 
-The [draft specification](../specifications/Kalm-Language-Specification-v1.1-draft.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
+The [Kalm 1.2.0 specification](https://github.com/kalm-lang/specification/blob/v1.2.0/documents/v1.2.0.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
 
 ## Layout and block styles
 
 Kalm has two ways to write a block. Braces make boundaries explicit; a colon introduces an indented suite that keeps the body uncluttered. Both styles support function and type bodies, control-flow branches, and other compound statements. Colon suites can be multiline or, for a simple statement, inline. Empty bodies are written `{}`.
 
 ```kalm
-pub fun greet(name: Text?) -> Unit:
+pub fun greet(name: Text?) -> void:
     fix display = name ?? "Guest"
     if display == "Guest":
         sayLine("Welcome!")
@@ -20,7 +20,7 @@ Keep related blocks at the same level in one style. In particular, use matching 
 Style is chosen independently at each nesting level. A function written with a colon suite may contain an `if`/`else` written with braces, as long as both branches use braces:
 
 ```kalm
-pub fun greet(name: Text?) -> Unit:
+pub fun greet(name: Text?) -> void:
     if name == null {
         sayLine("Welcome!")
     } else {
@@ -34,7 +34,7 @@ Use `fix` instead of the former `fixed` keyword. `Unit` still means Java `void`;
 
 ## Values and nullable flow
 
-`fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
+`fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `int` to the primitive `int`, `Int` to non-null `Integer`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`. Lowercase primitive types cannot be nullable or generic arguments; use wrappers such as `Int?` and `List<Int>`. `Any` excludes null; `Any?` permits it.
 
 ```kalm
 pub fun firstName(names: List<Text>?) -> Text = names?[0] ?? "Guest";
@@ -57,7 +57,7 @@ pub data Box<T>(value: T) generate Display;
 
 pub contract Greeter { fun greet(name: Text) -> Text; }
 
-pub class DelegatedGreeting impl Greeter {
+pub class DelegatedGreeting implements Greeter {
     private fix delegate: Greeter;
     init(delegate: Greeter) { self.delegate = delegate; }
     forward Greeter to delegate;
@@ -66,7 +66,7 @@ pub class DelegatedGreeting impl Greeter {
 
 Public types live in a matching `.kalm` file; facade functions live in `<FileName>Kalm`. Java sees ordinary public methods, constructors, records and interfaces. `override fun` is required for interface implementations and inherited overrides. Forwarding preserves substituted Java generic signatures and checked exceptions.
 
-Other type forms include `base class` with `needs fun`, `closed class` with nested permitted subclasses, `choice` enums, `singleton`, and generic `alias`. Classes and methods are final by default; use `extendable` where extension is intended.
+Other type forms include `base class` with `needs fun`, `closed class` with nested permitted subclasses, `choice` enums, `singleton`, and generic `alias`. Ordinary classes and eligible instance methods are open by default. Use `fix class` or `fix fun` to guarantee finality; `extendable` explicitly opens a direct sealed child. Direct children of `closed` classes need `fix`, `closed`, `extendable`, or `base`.
 
 ## Java interoperability
 
@@ -75,7 +75,7 @@ use java.time.LocalDate;
 use java.nio.file.Path;
 
 external fun loadText(path: Path) -> Text = java.nio.file.Files.readString;
-pub fun year() -> Int = LocalDate.now().getYear();
+pub fun year() -> int = LocalDate.now().getYear();
 ```
 
 Both source sets are analyzed together before emission, so Java and Kalm can call each other without compiling either side first. Ordinary dependencies, Java overloads, varargs and SAM lambdas retain Java invocation rules. Handle checked exceptions with `try`/`handle`, or forward them through supported declarations.
@@ -89,7 +89,7 @@ with input = java.util.Scanner(System.in) {
     if (input.hasNextLine()) { sayLine(input.nextLine()); }
 }
 
-async fun count() -> Int { return await task { return 7; }; }
+async fun count() -> int { return await task { return 7; }; }
 ```
 
 `with` closes resources in reverse order. `defer` runs cleanup on scope exit. `expect`, `require` and `ensure` remain active without JVM assertion flags. `guard lock { ... }` synchronizes on a non-null receiver and prohibits `await` inside the guard.

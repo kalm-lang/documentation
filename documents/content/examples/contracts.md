@@ -1,6 +1,6 @@
 ---
 {
-  "title": "contract / impl / override",
+  "title": "contract / implements / override",
   "order": 35,
   "group": "Types"
 }
@@ -13,7 +13,7 @@ Implement a contract using explicitly marked override methods.
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Friendly impl Greeter:
+class Friendly implements Greeter:
     override fun greet(name: Text) -> Text = @"Hello, $name!"
 ```
 ```kalm Example.kalm {"style":"braces"}
@@ -21,7 +21,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Friendly impl Greeter {
+class Friendly implements Greeter {
     override fun greet(name: Text) -> Text = @"Hello, $name!"
 }
 ```
@@ -29,7 +29,7 @@ class Friendly impl Greeter {
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Friendly impl Greeter:
+class Friendly implements Greeter:
     override fun greet(name: Text) -> Text = @"Hello, $name!"
 ```
 ```kalms Example.kalms {"style":"braces"}
@@ -37,7 +37,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Friendly impl Greeter {
+class Friendly implements Greeter {
     override fun greet(name: Text) -> Text = @"Hello, $name!"
 }
 ```

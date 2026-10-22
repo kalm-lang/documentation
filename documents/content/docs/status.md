@@ -5,21 +5,16 @@
 }
 ---
 
-Kalm targets the **1.1 draft specification**. The compiler and runtime are
-currently **0.1.0-SNAPSHOT** development artifacts.
+Kalm 1.2.0 targets the [final 1.2.0 specification](/docs/specifications/1.2/).
+Compiler, runtime, standard library, build integrations, and editor packages use aligned versions.
 
-## Available now
+The language includes explicit primitive/reference types, nullability, records, contracts, matching,
+conditional values, parameter defaults, Kalm Script, and virtual-thread tasks. Maven and Gradle
+integrations and both editor extensions share the compiler core.
 
-- Compiler, CLI, and ordinary Java/JVM interoperability.
-- Explicit nullability, records, contracts, matching, and virtual-thread tasks.
-- Maven and Gradle integration with native Kalm tests.
-- Shared language-server support for VS Code and IntelliJ IDEA.
+Use the [standard-library guide](/docs/library/), [KalmDoc reference](/docs/language/documentation/),
+and [implementation limitations](/docs/limitations/) alongside the specification. Historical
+[1.1](/docs/specifications/1.1/) and [1.0](/docs/specifications/1.0/) editions remain available.
 
-## Before adopting
-
-Public package registries and editor marketplaces are not published yet.
-Build artifacts locally using [Getting started](/docs/quick-start/).
-
-Review [implementation limitations](/docs/limitations/) and the
-[1.1 specification](/docs/specifications/1.1/) for the precise contract.
-The [1.0 specification](/docs/specifications/1.0/) remains available as history.
+Local workspace builds produce distributions and editor packages. Package publication, marketplace
+publication, and website deployment are separate operations; consult release records for availability.

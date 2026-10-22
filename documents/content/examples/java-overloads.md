@@ -10,14 +10,14 @@ Java resolves overloads and varargs using the argument types.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix text = java.lang.String.valueOf(42)
     fix words: List<Text> = java.util.Arrays.asList("quiet", "morning")
     sayLine(text)
     sayLine(len(words))
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix text = java.lang.String.valueOf(42)
     fix words: List<Text> = java.util.Arrays.asList("quiet", "morning")
     sayLine(text)

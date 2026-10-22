@@ -6,7 +6,7 @@
 }
 ---
 
-`fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `Int` to `int`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`.
+`fix` makes a binding immutable; `var` allows writes. Public results, parameters and fields have explicit types. `Text` maps to Java `String`, `int` to the primitive `int`, `Int` to non-null `Integer`, `Array<Int>` to `Integer[]`, and `IntArray` to `int[]`. Lowercase primitive types cannot be nullable or generic arguments; use wrappers such as `Int?` and `List<Int>`. `Any` excludes null; `Any?` permits it.
 
 ::::compare
 ```kalm {"style":"indentation"}
@@ -78,3 +78,14 @@ Arithmetic operands must have matching numeric types, with Java promotion of `By
 ## Casts and generic nullability
 
 `value as Text` checks the JVM type and rejects null with `ClassCastException`. Cast to `Text?` when null is an accepted result. The operand is evaluated once. Generic constructor arguments are checked against their instantiated types; `Box<Text>(nullableName)` is rejected, while `Box<Text?>(nullableName)` is allowed. Inferred Kalm constructor type arguments and inherited Java members preserve nullable element types.
+
+Multiple local declarations initialize in source order: `var a = 1, b: int = a + 1`.
+A flat bracket binding such as `fix [count, label] = [3, "three"]` infers each literal
+slot independently. List and array sources must have exactly the required length; extraction
+and conversions finish before any new destination is initialized.
+
+`value as? Text` returns the same compatible reference or null. Its target must be a reifiable
+non-null reference type. `value!!` asserts a nullable reference and throws `NullPointerException`
+on null; it preserves the wrapper/reference type and evaluates its operand once. Map lookups
+are nullable because keys can be absent. Indexed `=` yields the assigned value, and `??=`
+supplies a fallback only when a writable nullable location is empty.

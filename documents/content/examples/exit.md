@@ -10,12 +10,12 @@ Choose a process exit code explicitly.
 
 ::::compare {"scriptUnavailable":"The current shell reports session termination when exit is called. Use project mode to choose the application exit code."}
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine("Nothing to do")
     exit(0)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine("Nothing to do")
     exit(0)
 }

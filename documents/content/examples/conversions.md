@@ -10,20 +10,20 @@ Convert explicitly; narrowing rejects out-of-range values.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun small(value: Int) -> Byte = value.toByte()
-pub fun roundedDown(value: Double) -> Int = value.toInt()
+pub fun small(value: int) -> byte = value.toByte()
+pub fun roundedDown(value: double) -> int = value.toInt()
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun small(value: Int) -> Byte = value.toByte()
-pub fun roundedDown(value: Double) -> Int = value.toInt()
+pub fun small(value: int) -> byte = value.toByte()
+pub fun roundedDown(value: double) -> int = value.toInt()
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun small(value: Int) -> Byte = value.toByte()
-fun roundedDown(value: Double) -> Int = value.toInt()
+fun small(value: int) -> byte = value.toByte()
+fun roundedDown(value: double) -> int = value.toInt()
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun small(value: Int) -> Byte = value.toByte()
-fun roundedDown(value: Double) -> Int = value.toInt()
+fun small(value: int) -> byte = value.toByte()
+fun roundedDown(value: double) -> int = value.toInt()
 ```
 ```java Example.java
 public final class Example {

@@ -10,13 +10,13 @@ Arithmetic operands have matching numeric types.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix total = 7 + 3 * 2
     fix remainder = total % 5
     sayLine(remainder)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix total = 7 + 3 * 2
     fix remainder = total % 5
     sayLine(remainder)

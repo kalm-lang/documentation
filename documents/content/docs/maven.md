@@ -10,7 +10,7 @@ Run Maven on a full JDK 25+. Configure [package authentication](https://github.c
 ```xml
 <properties>
   <maven.compiler.release>25</maven.compiler.release>
-  <kalm.version>0.1.0-SNAPSHOT</kalm.version>
+  <kalm.version>1.2.0</kalm.version>
 </properties>
 <dependencies>
   <dependency>

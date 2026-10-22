@@ -14,7 +14,7 @@ Replace App.kalm to practice counting words before adding file I/O:
 ```kalm App.kalm {"style":"indentation"}
 space stats
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix text = "a   quiet morning"
     var words = 0
     for word in text.split("\\s+"):
@@ -26,7 +26,7 @@ pub fun main() -> Unit:
 ```kalm App.kalm {"style":"braces"}
 space stats
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix text = "a   quiet morning"
     var words = 0
     for word in text.split("\\s+") {
@@ -98,7 +98,7 @@ Save the complete program below as App.kalms in a folder of your choice. Each le
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix text = "a   quiet morning"
     var words = 0
     for word in text.split("\\s+"):
@@ -108,7 +108,7 @@ pub fun main() -> Unit:
     sayLine(@"$words words")
 ```
 ```kalm App.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix text = "a   quiet morning"
     var words = 0
     for word in text.split("\\s+") {

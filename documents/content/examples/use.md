@@ -12,22 +12,22 @@ Import a type, optionally under a shorter name.
 ```kalm Example.kalm {"style":"indentation"}
 use java.time.LocalDate as Day
 
-pub fun year() -> Int = Day.now().getYear()
+pub fun year() -> int = Day.now().getYear()
 ```
 ```kalm Example.kalm {"style":"braces"}
 use java.time.LocalDate as Day
 
-pub fun year() -> Int = Day.now().getYear()
+pub fun year() -> int = Day.now().getYear()
 ```
 ```kalms Example.kalms {"style":"indentation"}
 use java.time.LocalDate as Day
 
-fun year() -> Int = Day.now().getYear()
+fun year() -> int = Day.now().getYear()
 ```
 ```kalms Example.kalms {"style":"braces"}
 use java.time.LocalDate as Day
 
-fun year() -> Int = Day.now().getYear()
+fun year() -> int = Day.now().getYear()
 ```
 ```java Example.java
 import java.time.LocalDate;

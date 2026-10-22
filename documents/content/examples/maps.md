@@ -10,13 +10,13 @@ Map literals preserve insertion order.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     var scores: Map<Text, Int> = {"Mira": 3, "Ari": 5}
     scores["Mira"] = 4
     sayLine(scores["Mira"])
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     var scores: Map<Text, Int> = {"Mira": 3, "Ari": 5}
     scores["Mira"] = 4
     sayLine(scores["Mira"])

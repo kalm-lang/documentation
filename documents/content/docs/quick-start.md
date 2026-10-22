@@ -85,11 +85,11 @@ Create a folder for your experiments, then save `App.kalms` directly inside it:
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine("Hello, Kalm!")
 ```
 ```kalm App.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine("Hello, Kalm!")
 }
 ```

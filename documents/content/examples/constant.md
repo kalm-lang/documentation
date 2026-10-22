@@ -10,28 +10,28 @@ Declare a public static final compile-time value.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-constant DEFAULT_LIMIT: Int = 100
+constant DEFAULT_LIMIT: int = 100
 constant TITLE: Text = "Kalm"
 
-pub fun limit() -> Int = DEFAULT_LIMIT
+pub fun limit() -> int = DEFAULT_LIMIT
 ```
 ```kalm Example.kalm {"style":"braces"}
-constant DEFAULT_LIMIT: Int = 100
+constant DEFAULT_LIMIT: int = 100
 constant TITLE: Text = "Kalm"
 
-pub fun limit() -> Int = DEFAULT_LIMIT
+pub fun limit() -> int = DEFAULT_LIMIT
 ```
 ```kalms Example.kalms {"style":"indentation"}
-constant DEFAULT_LIMIT: Int = 100
+constant DEFAULT_LIMIT: int = 100
 constant TITLE: Text = "Kalm"
 
-fun limit() -> Int = DEFAULT_LIMIT
+fun limit() -> int = DEFAULT_LIMIT
 ```
 ```kalms Example.kalms {"style":"braces"}
-constant DEFAULT_LIMIT: Int = 100
+constant DEFAULT_LIMIT: int = 100
 constant TITLE: Text = "Kalm"
 
-fun limit() -> Int = DEFAULT_LIMIT
+fun limit() -> int = DEFAULT_LIMIT
 ```
 ```java Example.java
 public final class Example {

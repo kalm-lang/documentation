@@ -10,7 +10,7 @@ Use numeric prelude overloads for everyday calculations.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine(abs(-4))
     sayLine(min(2, 5))
     sayLine(max(2, 5))
@@ -19,7 +19,7 @@ pub fun main() -> Unit:
     sayLine(round(2.7))
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine(abs(-4))
     sayLine(min(2, 5))
     sayLine(max(2, 5))

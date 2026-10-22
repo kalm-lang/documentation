@@ -10,7 +10,7 @@ Choose a branch using Boolean conditions.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun label(value: Int) -> Text:
+pub fun label(value: int) -> Text:
     if value > 0:
         return "positive"
 
@@ -20,7 +20,7 @@ pub fun label(value: Int) -> Text:
         return "negative"
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun label(value: Int) -> Text {
+pub fun label(value: int) -> Text {
     if value > 0 {
         return "positive"
     }
@@ -33,7 +33,7 @@ pub fun label(value: Int) -> Text {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun label(value: Int) -> Text:
+fun label(value: int) -> Text:
     if value > 0:
         return "positive"
 
@@ -43,7 +43,7 @@ fun label(value: Int) -> Text:
         return "negative"
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun label(value: Int) -> Text {
+fun label(value: int) -> Text {
     if value > 0 {
         return "positive"
     }

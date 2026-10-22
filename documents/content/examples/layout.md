@@ -11,23 +11,23 @@ Use indentation or braces for blocks; # starts a comment.
 
 ::::compare {"presentation":"showcase","locks":{"style":true}}
 ```kalm Indentation {"style":"indentation","pane":"Indentation"}
-pub fun greeting() -> Unit:
+pub fun greeting() -> void:
 # A quiet hello.
     sayLine("Hello")
 ```
 ```kalms Indentation {"style":"indentation","pane":"Indentation"}
-fun greeting() -> Unit:
+fun greeting() -> void:
 # A quiet hello.
     sayLine("Hello")
 ```
 ```kalm Braces {"style":"braces","pane":"Braces"}
-pub fun greeting() -> Unit {
+pub fun greeting() -> void {
     # The same hello.
     sayLine("Hello");
 }
 ```
 ```kalms Braces {"style":"braces","pane":"Braces"}
-fun greeting() -> Unit {
+fun greeting() -> void {
     # The same hello.
     sayLine("Hello");
 }

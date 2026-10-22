@@ -98,7 +98,7 @@ space stats
 
 use java.nio.file.Path
 
-pub fun main(args: Array<Text>) -> Unit:
+pub fun main(args: Array<Text>) -> void:
     if len(args) != 1:
         sayLine("Usage: kalm run -- <file>")
         exit(2)
@@ -112,7 +112,7 @@ space stats
 
 use java.nio.file.Path
 
-pub fun main(args: Array<Text>) -> Unit {
+pub fun main(args: Array<Text>) -> void {
     if len(args) != 1 {
         sayLine("Usage: kalm run -- <file>")
         exit(2)
@@ -198,7 +198,7 @@ use java.nio.file.Files
 use java.nio.file.Path
 use java.nio.file.Path
 
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -206,7 +206,7 @@ fun countWords(text: Text) -> Int:
 
     return words
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
@@ -231,7 +231,7 @@ fun readLines(path: Path) -> List<Text>:
 
     return lines
 
-pub fun main(args: Array<Text>) -> Unit:
+pub fun main(args: Array<Text>) -> void:
     if len(args) != 1:
         sayLine("Usage: kalm run -- <file>")
         exit(2)
@@ -245,7 +245,7 @@ use java.nio.file.Files
 use java.nio.file.Path
 use java.nio.file.Path
 
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -255,7 +255,7 @@ fun countWords(text: Text) -> Int {
     return words
 }
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics {
     var words = 0
@@ -287,7 +287,7 @@ fun readLines(path: Path) -> List<Text> {
     return lines
 }
 
-pub fun main(args: Array<Text>) -> Unit {
+pub fun main(args: Array<Text>) -> void {
     if len(args) != 1 {
         sayLine("Usage: kalm run -- <file>")
         exit(2)
@@ -298,7 +298,7 @@ pub fun main(args: Array<Text>) -> Unit {
 }
 ```
 ```kalms App.kalms {"style":"indentation"}
-fun countWords(text: Text) -> Int:
+fun countWords(text: Text) -> int:
     var words = 0
     for word in text.split("\\s+"):
         if not word.isBlank():
@@ -306,7 +306,7 @@ fun countWords(text: Text) -> Int:
 
     return words
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics:
     var words = 0
@@ -344,7 +344,7 @@ fix result = summarize(readLines(Path.of(args[0])))
 sayLine(@"${result.lines()} lines / ${result.words()} words")
 ```
 ```kalms App.kalms {"style":"braces"}
-fun countWords(text: Text) -> Int {
+fun countWords(text: Text) -> int {
     var words = 0
     for word in text.split("\\s+") {
         if not word.isBlank() {
@@ -354,7 +354,7 @@ fun countWords(text: Text) -> Int {
     return words
 }
 
-data Statistics(lines: Int, words: Int)
+data Statistics(lines: int, words: int)
 
 fun summarize(lines: List<Text>) -> Statistics {
     var words = 0

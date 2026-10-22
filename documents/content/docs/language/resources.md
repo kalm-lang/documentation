@@ -8,19 +8,19 @@
 
 ::::compare
 ```kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     with input = java.util.Scanner(System.in):
         if (input.hasNextLine()):
             sayLine(input.nextLine());
 
-async fun count() -> Int:
+async fun count() -> int:
     return await task:
         return 7;
 
     ;
 ```
 ```kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     with input = java.util.Scanner(System.in) {
         if (input.hasNextLine()) {
             sayLine(input.nextLine());
@@ -28,7 +28,7 @@ pub fun main() -> Unit {
     }
 }
 
-async fun count() -> Int {
+async fun count() -> int {
     return await task {
         return 7;
     }
@@ -40,7 +40,7 @@ with input = java.util.Scanner(System.in):
     if (input.hasNextLine()):
         sayLine(input.nextLine());
 
-async fun count() -> Int:
+async fun count() -> int:
     return await task:
         return 7;
 
@@ -53,7 +53,7 @@ with input = java.util.Scanner(System.in) {
     }
 }
 
-async fun count() -> Int {
+async fun count() -> int {
     return await task {
         return 7;
     }

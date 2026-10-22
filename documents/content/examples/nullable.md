@@ -10,14 +10,14 @@ Add ? when a value can be absent.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun nickname(known: Bool) -> Text?:
+pub fun nickname(known: boolean) -> Text?:
     if known:
         return "Mira"
 
     return null
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun nickname(known: Bool) -> Text? {
+pub fun nickname(known: boolean) -> Text? {
     if known {
         return "Mira"
     }
@@ -25,14 +25,14 @@ pub fun nickname(known: Bool) -> Text? {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun nickname(known: Bool) -> Text?:
+fun nickname(known: boolean) -> Text?:
     if known:
         return "Mira"
 
     return null
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun nickname(known: Bool) -> Text? {
+fun nickname(known: boolean) -> Text? {
     if known {
         return "Mira"
     }

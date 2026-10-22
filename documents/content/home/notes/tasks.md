@@ -10,14 +10,14 @@
 
 ::::compare
 ```kalm Tasks.kalm {"style":"indentation"}
-pub async fun answer() -> Int:
+pub async fun answer() -> int:
     fix pending: Task<Int> = task:
         return 6 * 7
 
     return await pending
 ```
 ```kalm Tasks.kalm {"style":"braces"}
-pub async fun answer() -> Int {
+pub async fun answer() -> int {
     fix pending: Task<Int> = task {
         return 6 * 7
     }
@@ -25,14 +25,14 @@ pub async fun answer() -> Int {
 }
 ```
 ```kalms Tasks.kalms {"style":"indentation"}
-async fun answer() -> Int:
+async fun answer() -> int:
     fix pending: Task<Int> = task:
         return 6 * 7
 
     return await pending
 ```
 ```kalms Tasks.kalms {"style":"braces"}
-async fun answer() -> Int {
+async fun answer() -> int {
     fix pending: Task<Int> = task {
         return 6 * 7
     }

@@ -10,12 +10,12 @@ Write values using the automatically available prelude.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     say("Hello, ")
     sayLine("Kalm!")
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     say("Hello, ")
     sayLine("Kalm!")
 }

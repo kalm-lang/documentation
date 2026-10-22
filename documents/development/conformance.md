@@ -1,86 +1,19 @@
-# Draft conformance and release gates
+# Kalm 1.2.0 conformance
 
-The repository targets [Kalm 1.1 draft](../specifications/Kalm-Language-Specification-v1.1-draft.md). The historical 1.0 definition is preserved. Its component version remains **0.1.0-SNAPSHOT**. The checks below are executable acceptance gates; a passing test suite is evidence for its fixtures, rather than a claim about every possible program.
+The [final specification](https://github.com/kalm-lang/specification/blob/v1.2.0/documents/v1.2.0.md)
+defines the contract. The [shared acceptance checklist](https://github.com/kalm-lang/tools/blob/feat/kalm-1.2.0/docs/conformance-1.2.0.md)
+tracks its scenarios. Component versions are aligned to `1.2.0`; version metadata alone does not establish conformance.
 
-## Language and Java interoperability
+| Requirement group | Executable evidence |
+|---|---|
+| Primitive/wrapper signatures, contextual names, defaults, bindings, inheritance, completion | Compiler `Version120Test` and existing type/interop suites |
+| Conditional values/execution, cleanup, evaluation order, null boundaries | Compiler `Version120FlowTest` |
+| KalmDoc conversion, warnings, escaping, standard JDK doclet | Compiler `Documentation120Test` |
+| Parsing, snapshots, UTF-8, bounded concurrency, timeouts | Standard library `LibraryContractsTest` |
+| Script state, replacement, lifecycle, diagnostics | Compiler shell suites |
+| Shared highlighting and historical editions | Syntax-highlighting Node, type, and browser checks |
+| Build integrations, editor bundles, runnable documentation, distribution | Tools workspace and distribution checks |
 
-| Draft requirement | Acceptance coverage |
-| --- | --- |
-| Lexing, grammar, malformed statements, source ranges | `ParserTest`, accepted/rejected parser fixtures |
-| Mixed brace/colon bodies, optional terminators, conditions and formatting | `LayoutParserTest`, `LayoutCompilerTest` |
-| Annotation targets, retention, repetition, parameter/type uses and defaults | `AnnotationCompilerTest` |
-| Standard library inference, shadowing and dependency-owned export metadata | `LibraryCompilerTest` |
-| Nullable flow, invariant generic arguments, safe access/indexing, `??`/`??=` | `NullableFlowTest`, `SemanticChecksTest`, `LanguageTypesTest`, `LanguageRuntimeTest` |
-| Local inference, immutable writes, definite constructor assignment, return paths | `SemanticChecksTest`, `LanguageExpressionsTest`; documented javac analysis of final generated bodies |
-| Contracts, overrides, inheritance, sealed hierarchies, choices, records, singletons | `LanguageTypesTest`, `PatternCompilerTest`, `JointSignaturesTest` |
-| Properties, lazy/late guards, augment/bridge, forwarding, externals, annotations, legacy | `LanguageRuntimeTest`, `LanguageTypesTest`, `InteropCompilerTest`, `CompilerIntegrationTest` |
-| Resources, defer, checks, tasks, await, completion stages, guards, tests/hooks | `LanguageRuntimeTest`, `NullableFlowTest`, runtime tests |
-| Arrays, primitive Java signatures, varargs, overloads, Java SAMs and streams | `CompilerTest`, `LanguageExpressionsTest`, `LanguageRuntimeTest` |
-| Same-source Java↔Kalm calls and inherited generic Java interfaces | `JointSignaturesTest`; Maven Invoker fixtures and Gradle TestKit |
-| Third-party dependencies | `InteropCompilerTest` and the mixed sample's Commons Lang dependency |
-| Named JPMS application and ordinary classpath applications | `ModuleCompilerTest`, mixed sample |
-| Separate compilations preserve nullability and module visibility | `CompilerIntegrationTest` |
-| Expression diagnostic maps and UTF-16 unsaved snapshots | `SourceMapTest`, LSP fixtures and packaged editor verification |
-| Retained source maps for runtime exceptions | `CompilerIntegrationTest`; CLI and test-runner remapping |
-
-Some type/name errors are discovered by the final javac analysis rather than a separate Kalm-only checker. `check` still performs this analysis without emitting class files. The signature pass uses only documented compiler APIs; stubs remain in memory and never become application class files.
-
-## Builds and editors
-
-| Delivery requirement | Gate |
-| --- | --- |
-| Maven main/test source sets, both call directions, positive/negative diagnostics | Root `mvn clean install`, including Maven Invoker fixtures |
-| Gradle source sets, cacheable generation, deletion, test XML/HTML | `./gradlew -p kalm-gradle-plugin test validatePlugins` |
-| Independently built mixed-language sample | Maven `clean verify`; Gradle `test --configuration-cache`, repeated for cache reuse |
-| Shared LSP diagnostics, formatting, navigation, rename, Java source references | `KalmLanguageServerTest`, `LspWorkspaceTest` |
-| Scoped/Java completion, annotation keys, recovery, imports, folding and indentation | `CompletionTest`, `LayoutFeaturesTest`, shared editor completion fixtures |
-| Actual VS Code TextMate grammar and packaged extension | `npm run check`, `npm test`, `npm run package` |
-| Native IntelliJ lexer and Community-compatible package | IntelliJ `test buildPlugin verifyPluginStructure` |
-| Both editor archives ship the current compiler/server | `python3 scripts/verify_editor_packages.py` checks JAR hashes and exercises stdio initialization, formatting, diagnostics and unsaved UTF-16 spans |
-| Deterministic archives, launcher permissions, binary compile/run | `python3 scripts/verify_distribution.py` |
-| Identical artifacts from clean builds in different directories | `python3 scripts/verify_clean_builds.py --offline` |
-| Installed distribution builds, packages and runs its own example | `python3 scripts/verify_distribution.py --build-example` |
-| Windows build/launcher compatibility | Windows CI job; requires a Windows runner |
-
-CI uploads the staged distribution and test reports. Gradle `publish` stages a local repository; it does not upload to the Plugin Portal. Maven, VS Code and IntelliJ registry publication requires the owner's configured accounts and release credentials.
-
-## Local acceptance record
-
-Kalm usability update verified on Linux ARM64 with JDK 25 on 2026-10-04:
-
-- 7 runtime, 169 compiler, and 28 language-server tests passed in the Maven reactor.
-- New constructor-flow regressions and configurable project initializer tests passed. CLI main/test output ownership is isolated, so testing after running preserves main classes.
-- All three standalone examples passed Maven and Gradle tests (6 mixed, 2 greeting, 8 advanced). Immediate Gradle configuration-cache reuse passed for every project.
-- Freshly initialized Maven and Gradle projects built, tested, and printed the expected greeting.
-- Nine VS Code checks and six IntelliJ native lexer tests passed. IntelliJ package structure verification used a temporary core SDK without bundled IDE plugins/browser to fit available disk space; interactive IDE acceptance remains separate.
-- Both refreshed editor archives passed bundled JAR hash, completion, formatting, diagnostic, and unsaved UTF-16 mapping checks.
-- Two clean source copies produced identical runtime, standard-library, compiler, Maven-plugin, and language-server JARs.
-- Distribution ZIP/TAR contents, repeat checksums, launchers, and packaged compile/run passed. All three extracted examples built and ran with Maven and Gradle, including configuration-cache reuse; the greeting and task-report projects also passed CLI run/test.
-- The Lit website builds 22 static pages. All internal links/assets/anchors resolve, and six Chromium tests cover every route, theme persistence, clipboard copying, mobile/keyboard navigation, source tabs, the tutorial, reading without JavaScript, reduced motion, and 200% text enlargement.
-
-Kalm 1.1 verified on Linux ARM64 with JDK 25 on 2026-10-03:
-
-- 7 runtime tests, 152 compiler tests, 27 language-server tests and all three Maven integration fixtures passed.
-- Gradle TestKit passed mixed compilation, Kalm tests, configuration-cache reuse, changed-test regeneration and deleted-source cleanup. Plugin validation and local publication passed.
-- All nine VS Code checks and six IntelliJ lexer tests passed; both extensions were packaged and IntelliJ plugin structure validation passed.
-- Both final editor archives passed shared completion, formatting, diagnostics and unsaved UTF-16 source mapping checks. Bundled JAR hashes matched the current build.
-- Two clean source copies produced identical runtime, standard-library, compiler, Maven-plugin and language-server JARs.
-- Distribution ZIP/TAR contents, repeated checksums, launchers and packaged compile/run passed. The extracted sample built, tested, packaged and ran with Maven and Gradle; Gradle reused its configuration cache. The sample's Java bridge now uses the conventional Java source root.
-
-Verified on Linux with JDK 25 on 2026-10-01:
-
-- 7 runtime tests, 139 compiler tests, 15 language-server tests and three Maven plugin integration projects passed. The final nested-nullability change also passed the complete nullable-flow suite.
-- Gradle TestKit passed initial mixed-source compilation, immediate configuration-cache reuse, changed test regeneration and deleted-source cleanup; plugin validation and local publication passed.
-- VS Code checks/tests/packaging and IntelliJ native fixtures/package structure passed. Both final editor archives passed shared stdio initialization, formatting, diagnostics and unsaved UTF-16 range checks, with their bundled JARs matching the built compiler/server.
-- Two clean source copies in different directories produced identical Maven artifact hashes. Binary ZIP/TAR contents and repeated packaging checksums matched.
-- The extracted distribution installed its Maven artifacts and built, tested, packaged and ran its own sample with both Maven and Gradle. Both builds passed all six Kalm tests; Gradle reused its configuration cache. Application output and both JARs' Java/Kalm class entries were checked.
-
-Windows CI and interactive IDE installation were not executed in this Linux session.
-
-## Remaining draft decisions and release checks
-
-- **Semantic decisions:** choices are non-generic enums; late fields use runtime guards in Kalm and Java. The current draft now states these rules consistently. Constructor and function overload declarations remain deferred.
-- **Interactive editor acceptance:** automated lexer/server/package checks pass independently of a running IDE. A release owner should still exercise installation, project import, editing, refactoring and formatting in supported VS Code and IntelliJ versions.
-- **Publication:** staged archives are available; no public registry upload or marketplace publication is claimed.
-
-See [implementation boundaries](known-limitations.md) for operational details and [development workflow](development-brief.md) for the commands to reproduce these gates.
+Run producers before consumers through the optional sibling workspace. Registry authentication is unnecessary for
+local Kalm dependencies; third-party downloads still require network access. Shell checks require loopback sockets
+for JShell's separate JVM. Platform/editor checks unavailable on a host must be reported separately from passing checks.

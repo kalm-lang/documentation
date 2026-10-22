@@ -10,7 +10,7 @@ Kalm has two ways to write a block. Braces make boundaries explicit; a colon int
 
 ::::compare
 ```kalm {"style":"indentation"}
-pub fun greet(name: Text?) -> Unit:
+pub fun greet(name: Text?) -> void:
     fix display = name ?? "Guest"
     if display == "Guest":
         sayLine("Welcome!")
@@ -18,7 +18,7 @@ pub fun greet(name: Text?) -> Unit:
         sayLine(display)
 ```
 ```kalm {"style":"braces"}
-pub fun greet(name: Text?) -> Unit {
+pub fun greet(name: Text?) -> void {
     fix display = name ?? "Guest"
     if display == "Guest" {
         sayLine("Welcome!")
@@ -29,7 +29,7 @@ pub fun greet(name: Text?) -> Unit {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun greet(name: Text?) -> Unit:
+fun greet(name: Text?) -> void:
     fix display = name ?? "Guest"
     if display == "Guest":
         sayLine("Welcome!")
@@ -37,7 +37,7 @@ fun greet(name: Text?) -> Unit:
         sayLine(display)
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun greet(name: Text?) -> Unit {
+fun greet(name: Text?) -> void {
     fix display = name ?? "Guest"
     if display == "Guest" {
         sayLine("Welcome!")
@@ -63,7 +63,7 @@ Style is chosen independently at each nesting level. A function written with a c
 
 ::::compare {"presentation":"showcase","locks":{"style":true}}
 ```kalm {"pane":"Mixed blocks"}
-pub fun greet(name: Text?) -> Unit:
+pub fun greet(name: Text?) -> void:
     if name == null {
         sayLine("Welcome!")
     } else {
@@ -71,7 +71,7 @@ pub fun greet(name: Text?) -> Unit:
     }
 ```
 ```kalms Example.kalms {"pane":"Mixed blocks"}
-fun greet(name: Text?) -> Unit:
+fun greet(name: Text?) -> void:
     if name == null {
         sayLine("Welcome!")
     } else {

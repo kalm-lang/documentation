@@ -10,20 +10,20 @@ Combine Boolean expressions with short-circuit operators.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun allowed(age: Int, paused: Bool) -> Bool:
+pub fun allowed(age: int, paused: boolean) -> boolean:
     return age >= 18 and not paused
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun allowed(age: Int, paused: Bool) -> Bool {
+pub fun allowed(age: int, paused: boolean) -> boolean {
     return age >= 18 and not paused
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun allowed(age: Int, paused: Bool) -> Bool:
+fun allowed(age: int, paused: boolean) -> boolean:
     return age >= 18 and not paused
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun allowed(age: Int, paused: Bool) -> Bool {
+fun allowed(age: int, paused: boolean) -> boolean {
     return age >= 18 and not paused
 }
 ```

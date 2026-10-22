@@ -10,14 +10,14 @@ Run deferred cleanup when the scope exits.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun work() -> Unit:
+pub fun work() -> void:
     defer:
         sayLine("finished")
 
     sayLine("working")
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun work() -> Unit {
+pub fun work() -> void {
     defer {
         sayLine("finished")
     }
@@ -25,14 +25,14 @@ pub fun work() -> Unit {
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun work() -> Unit:
+fun work() -> void:
     defer:
         sayLine("finished")
 
     sayLine("working")
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun work() -> Unit {
+fun work() -> void {
     defer {
         sayLine("finished")
     }

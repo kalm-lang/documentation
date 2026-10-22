@@ -10,26 +10,26 @@ Use an expression body for one result, or return from a block.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun square(value: Int) -> Int = value * value
+pub fun square(value: int) -> int = value * value
 
 pub fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun square(value: Int) -> Int = value * value
+pub fun square(value: int) -> int = value * value
 
 pub fun greeting(name: Text) -> Text {
     return @"Hello, $name!"
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun square(value: Int) -> Int = value * value
+fun square(value: int) -> int = value * value
 
 fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun square(value: Int) -> Int = value * value
+fun square(value: int) -> int = value * value
 
 fun greeting(name: Text) -> Text {
     return @"Hello, $name!"

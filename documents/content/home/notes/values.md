@@ -15,7 +15,7 @@ Wrap an implementation without writing the same forwarding methods by hand.
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Delegated impl Greeter:
+class Delegated implements Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
@@ -27,7 +27,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Delegated impl Greeter {
+class Delegated implements Greeter {
     fix delegate: Greeter
     init(delegate: Greeter) {
         self.delegate = delegate
@@ -39,7 +39,7 @@ class Delegated impl Greeter {
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Delegated impl Greeter:
+class Delegated implements Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
@@ -51,7 +51,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Delegated impl Greeter {
+class Delegated implements Greeter {
     fix delegate: Greeter
     init(delegate: Greeter) {
         self.delegate = delegate

@@ -7,7 +7,7 @@
 pub fun greeting(name: Text) -> Text:
     return @"Hello, $name!"
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine(greeting("Mira"))
 ```
 ```kalm App.kalm {"style":"braces"}
@@ -15,7 +15,7 @@ pub fun greeting(name: Text) -> Text {
     return @"Hello, $name!"
 }
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine(greeting("Mira"))
 }
 ```

@@ -13,7 +13,7 @@ data Box<T>(value: T) generate Display;
 contract Greeter:
     fun greet(name: Text) -> Text;
 
-class DelegatedGreeting impl Greeter:
+class DelegatedGreeting implements Greeter:
     private fix delegate: Greeter;
     init(delegate: Greeter):
         self.delegate = delegate;
@@ -27,7 +27,7 @@ contract Greeter {
     fun greet(name: Text) -> Text;
 }
 
-class DelegatedGreeting impl Greeter {
+class DelegatedGreeting implements Greeter {
     private fix delegate: Greeter;
     init(delegate: Greeter) {
         self.delegate = delegate;
@@ -41,7 +41,7 @@ data Box<T>(value: T) generate Display;
 contract Greeter:
     fun greet(name: Text) -> Text;
 
-class DelegatedGreeting impl Greeter:
+class DelegatedGreeting implements Greeter:
     private fix delegate: Greeter;
     init(delegate: Greeter):
         self.delegate = delegate;
@@ -55,7 +55,7 @@ contract Greeter {
     fun greet(name: Text) -> Text;
 }
 
-class DelegatedGreeting impl Greeter {
+class DelegatedGreeting implements Greeter {
     private fix delegate: Greeter;
     init(delegate: Greeter) {
         self.delegate = delegate;
@@ -87,4 +87,4 @@ final class DelegatedGreeting implements Greeter {
 
 These types share `Types.kalm`. Public types live in a matching `.kalm` file; facade functions live in `<FileName>Kalm`. Java sees ordinary public methods, constructors, records and interfaces. `override fun` is required for interface implementations and inherited overrides. Forwarding preserves substituted Java generic signatures and checked exceptions.
 
-Other type forms include `base class` with `needs fun`, `closed class` with nested permitted subclasses, `choice` enums, `singleton`, and generic `alias`. Classes and methods are final by default; use `extendable` where extension is intended.
+Other type forms include `base class` with `needs fun`, `closed class` with nested permitted subclasses, `choice` enums, `singleton`, and generic `alias`. Ordinary classes and eligible instance methods are open by default. Use `fix class` or `fix fun` to guarantee finality; `extendable` explicitly opens a direct sealed child. Direct children of `closed` classes need `fix`, `closed`, `extendable`, or `base`.

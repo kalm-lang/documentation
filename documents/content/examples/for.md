@@ -10,13 +10,13 @@ Iterate over an array or Iterable; the loop binding is immutable.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix names: List<Text> = ["Mira", "Ari"]
     for name in names:
         sayLine(name)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix names: List<Text> = ["Mira", "Ari"]
     for name in names {
         sayLine(name)

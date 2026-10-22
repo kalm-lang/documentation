@@ -14,7 +14,7 @@ Replace App.kalm with this small experiment:
 ```kalm App.kalm {"style":"indentation"}
 space stats
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix text = "a quiet morning"
     var words = 0
     words += 3
@@ -23,7 +23,7 @@ pub fun main() -> Unit:
 ```kalm App.kalm {"style":"braces"}
 space stats
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix text = "a quiet morning"
     var words = 0
     words += 3
@@ -91,14 +91,14 @@ Save the complete program below as App.kalms in a folder of your choice. Each le
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix text = "a quiet morning"
     var words = 0
     words += 3
     sayLine(@"$words words: $text")
 ```
 ```kalm App.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix text = "a quiet morning"
     var words = 0
     words += 3

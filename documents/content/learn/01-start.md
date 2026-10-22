@@ -23,13 +23,13 @@ Save this as `src/main/kalm/stats/App.kalm`:
 ```kalm App.kalm {"style":"indentation"}
 space stats
 
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine("Text stats")
 ```
 ```kalm App.kalm {"style":"braces"}
 space stats
 
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine("Text stats")
 }
 ```
@@ -90,11 +90,11 @@ Save the complete program below as App.kalms in a folder of your choice. Each le
 
 ::::compare
 ```kalm App.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     sayLine("Text stats")
 ```
 ```kalm App.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     sayLine("Text stats")
 }
 ```

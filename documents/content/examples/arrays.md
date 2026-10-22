@@ -10,14 +10,14 @@ Reference arrays box primitive elements; primitive array helpers retain JVM prim
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun main() -> Unit:
+pub fun main() -> void:
     fix names: Array<Text> = arrayOf("Mira", "Ari")
     fix scores: IntArray = intArrayOf(3, 5)
     sayLine(names[0])
     sayLine(scores[1])
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun main() -> Unit {
+pub fun main() -> void {
     fix names: Array<Text> = arrayOf("Mira", "Ari")
     fix scores: IntArray = intArrayOf(3, 5)
     sayLine(names[0])

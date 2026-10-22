@@ -13,7 +13,7 @@ Delegate contract methods to an existing implementation.
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Delegated impl Greeter:
+class Delegated implements Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
@@ -25,7 +25,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Delegated impl Greeter {
+class Delegated implements Greeter {
     fix delegate: Greeter
     init(delegate: Greeter) {
         self.delegate = delegate
@@ -37,7 +37,7 @@ class Delegated impl Greeter {
 contract Greeter:
     fun greet(name: Text) -> Text
 
-class Delegated impl Greeter:
+class Delegated implements Greeter:
     fix delegate: Greeter
     init(delegate: Greeter):
         self.delegate = delegate
@@ -49,7 +49,7 @@ contract Greeter {
     fun greet(name: Text) -> Text
 }
 
-class Delegated impl Greeter {
+class Delegated implements Greeter {
     fix delegate: Greeter
     init(delegate: Greeter) {
         self.delegate = delegate

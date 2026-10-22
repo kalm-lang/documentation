@@ -10,23 +10,23 @@ Give parameters and public results explicit types.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub fun doubled(value: Int) -> Int = value * 2
-pub fun ready() -> Bool = true
+pub fun doubled(value: int) -> int = value * 2
+pub fun ready() -> boolean = true
 pub fun title() -> Text = "Kalm"
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub fun doubled(value: Int) -> Int = value * 2
-pub fun ready() -> Bool = true
+pub fun doubled(value: int) -> int = value * 2
+pub fun ready() -> boolean = true
 pub fun title() -> Text = "Kalm"
 ```
 ```kalms Example.kalms {"style":"indentation"}
-fun doubled(value: Int) -> Int = value * 2
-fun ready() -> Bool = true
+fun doubled(value: int) -> int = value * 2
+fun ready() -> boolean = true
 fun title() -> Text = "Kalm"
 ```
 ```kalms Example.kalms {"style":"braces"}
-fun doubled(value: Int) -> Int = value * 2
-fun ready() -> Bool = true
+fun doubled(value: int) -> int = value * 2
+fun ready() -> boolean = true
 fun title() -> Text = "Kalm"
 ```
 ```java Example.java

@@ -10,20 +10,20 @@ Await also accepts a Java CompletionStage.
 
 ::::compare
 ```kalm Example.kalm {"style":"indentation"}
-pub async fun answer() -> Int:
+pub async fun answer() -> int:
     return await java.util.concurrent.CompletableFuture.completedFuture(42)
 ```
 ```kalm Example.kalm {"style":"braces"}
-pub async fun answer() -> Int {
+pub async fun answer() -> int {
     return await java.util.concurrent.CompletableFuture.completedFuture(42)
 }
 ```
 ```kalms Example.kalms {"style":"indentation"}
-async fun answer() -> Int:
+async fun answer() -> int:
     return await java.util.concurrent.CompletableFuture.completedFuture(42)
 ```
 ```kalms Example.kalms {"style":"braces"}
-async fun answer() -> Int {
+async fun answer() -> int {
     return await java.util.concurrent.CompletableFuture.completedFuture(42)
 }
 ```

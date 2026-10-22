@@ -12,7 +12,7 @@ Reading before assignment raises IllegalStateException.
 ```kalm Session.kalm {"style":"indentation"}
 pub class Session:
     late var name: Text
-    fun initialize(value: Text) -> Unit:
+    fun initialize(value: Text) -> void:
         self.name = value
 
     fun label() -> Text = self.name
@@ -20,7 +20,7 @@ pub class Session:
 ```kalm Session.kalm {"style":"braces"}
 pub class Session {
     late var name: Text
-    fun initialize(value: Text) -> Unit {
+    fun initialize(value: Text) -> void {
         self.name = value
     }
     fun label() -> Text = self.name
@@ -29,7 +29,7 @@ pub class Session {
 ```kalms Session.kalms {"style":"indentation"}
 class Session:
     late var name: Text
-    fun initialize(value: Text) -> Unit:
+    fun initialize(value: Text) -> void:
         self.name = value
 
     fun label() -> Text = self.name
@@ -37,7 +37,7 @@ class Session:
 ```kalms Session.kalms {"style":"braces"}
 class Session {
     late var name: Text
-    fun initialize(value: Text) -> Unit {
+    fun initialize(value: Text) -> void {
         self.name = value
     }
     fun label() -> Text = self.name
