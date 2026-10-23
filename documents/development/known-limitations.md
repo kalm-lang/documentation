@@ -1,6 +1,6 @@
 # Implementation boundaries
 
-The language, compiler API, build plugins and editor packages are usable development artifacts. [Conformance status](conformance.md) identifies tested requirements and the remaining release decisions.
+The language, compiler API, build plugins and editor packages target final Kalm 1.2.0. [Conformance status](conformance.md) identifies executable evidence and platform checks.
 
 ## Defined semantics
 
@@ -20,4 +20,4 @@ The language, compiler API, build plugins and editor packages are usable develop
 - Build toolchains select the project's JDK for generation and tests. The Gradle plugin preserves the configured Java language version, vendor and implementation constraints.
 - Distribution scripts stage Maven/Gradle/plugin/editor artifacts. External publisher accounts and credentials are supplied by the release owner. Windows commands are included and have a CI gate; Linux checks do not substitute for a Windows run.
 
-Tasks use virtual threads and blocking `await`, as specified. Named/default arguments, payload variants, operator overloading, inner classes that capture an enclosing instance, a standalone debugger and a Kalm package manager remain outside the draft's 1.x scope.
+Tasks use virtual threads and blocking `await`, as specified. Default parameters generate Java omission overloads. Named arguments, payload variants, operator overloading, inner classes that capture an enclosing instance, a standalone debugger and a Kalm package manager remain outside the 1.2.0 specification.

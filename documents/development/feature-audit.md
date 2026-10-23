@@ -1,53 +1,31 @@
-# Usability audit
+# Kalm 1.2.0 implementation coverage
 
-The target is the final Kalm 1.2.0 specification. This audit
-connects the implementation, tests, and runnable projects. It is not a
-claim that every valid program has been verified.
+The target is the final specification. The [acceptance checklist](https://github.com/kalm-lang/tools/blob/feat/kalm-1.2.0/docs/conformance-1.2.0.md)
+connects its requirements to verification work; [conformance](conformance.md) identifies executable suites.
 
-| Area | Evidence and current behavior | Action in this round |
-| --- | --- | --- |
-| Layout | Parser/formatter tests cover braces, colon suites, and sibling normalization | Align the formatter contract with shipped behavior |
-| Choices | Java enum backend rejects generic choices; grammar allowed them | Define non-generic, payload-free choices consistently |
-| Late fields | Runtime tests cover guarded Kalm/Java reads and null-rejecting setters | State runtime guarantees explicitly |
-| Ordinary fields | Initialization analysis tracks names without local scopes and only some statements | Track shadowing and normally completing control-flow paths |
-| New projects | CLI compiles/runs/tests existing roots but has no initializer | Add configurable, offline scaffolding |
-| Diagnostics | Shared compiler diagnostics carry codes and UTF-16 spans | Add actionable guidance without changing the wire format |
-| Examples | One mixed Maven/Gradle application is packaged | Add a README starter and a coherent advanced CLI |
-| Learning | Markdown guides exist, but no sequential tutorial or website | Reuse canonical docs and checked sources in a Lit site |
+| Area | Implementation and evidence |
+|---|---|
+| Types and Java API | Lowercase primitives, capitalized wrappers, non-null boundaries, escaped names and separately compiled metadata |
+| Declarations | Contextual names, open defaults, explicit finality, sealed children, ordered defaults and Java omission overloads |
+| Values and effects | Conditional/match values, yield, safe casts/assertions, bracket bindings and indexed assignment staging |
+| Completion and capture | Value-return checks, functional targets, local functions, refinements and parent calls |
+| Libraries | Ordered collection helpers, strict parsing, UTF-8 files/console, UTC and monotonic time, bounded tasks |
+| Documentation | Final specification, separate migration companion, KalmDoc and directly compiled handbook examples |
+| Tooling | Shared language server, Maven/Gradle integration, native/TextMate highlighting and matching editor bundles |
+| Distribution | Deterministic archives, bundled artifact installation and runnable Maven/Gradle/CLI examples |
 
-## Existing strengths
+Constructor initialization, cleanup, source ownership and diagnostic ranges retain their regression suites.
+Historical specification editions use the legacy grammar; current documentation uses the 1.2 grammar.
 
-Java interoperability, explicit nullability, stable-value refinement, records,
-contracts, forwarding, patterns, resources, virtual-thread tasks, native tests,
-source mapping, both build adapters, and shared editor services already have
-automated coverage. Keep these capabilities and the common compiler core.
+## Boundaries
 
-## Deliberate boundaries
+Named arguments, payload variants, operator overloading, capturing inner classes, a standalone debugger and
+a package manager are outside this edition. Default parameters and their Java overloads are supported.
+Some generated-body diagnostics retain Java names because javac resolves the final body types.
 
-Constructor/function overload declarations, named/default arguments, payload
-variants, operator overloading, capturing inner classes, a standalone debugger,
-and a package manager remain deferred. Java overloads and libraries are usable
-through interop. Named factories are the current alternative to constructors
-with several signatures.
+Direct `Singleton.INSTANCE.property` inference can require a typed local; Java getters/setters remain callable.
+Open unrelated modules with conflicting fully qualified declarations as separate editor workspaces.
+See [implementation boundaries](known-limitations.md) for operational details.
 
-## Follow-up opportunities
-
-Direct `Singleton.INSTANCE.property` inference currently needs a typed local;
-the advanced project demonstrates that supported form. Java getters/setters
-remain available directly.
-
-The standard library is deliberately small: richer text and collection helpers
-could reduce Java boilerplate in a later round. Some final type errors still use
-Java names because javac resolves generated bodies. Large unrelated workspaces
-need separate editor roots when fully qualified declarations conflict.
-
-Interactive IDE acceptance, Windows execution, and publisher credentials remain
-release-owner checks. See [conformance](conformance.md) and
-[implementation boundaries](known-limitations.md).
-
-## Completed language changes
-
-Constructor initialization now tracks lexical shadowing and normal/return exits,
-including resources, guards, exhaustive choices, and cleanup. Ten regression
-cases cover these paths. Unsupported declaration and initialization diagnostics
-include remedies while keeping their existing codes and JSON locations.
+Interactive IDE acceptance and Windows execution require their respective environments.
+Public publication requires the release owner's configured publisher accounts.

@@ -1,43 +1,47 @@
 # Development and release workflow
 
-## Automated verification
+Components are separate repositories. Use the optional sibling workspace to build them in dependency order:
 
 ```sh
-mvn clean install
-mvn -f examples/demo-mixed-project/pom.xml clean verify
-./gradlew -p kalm-gradle-plugin test validatePlugins
-./gradlew -p examples/demo-mixed-project clean test
-./gradlew -p examples/demo-mixed-project test --configuration-cache
-gradle -p extensions/intellij-kalm test buildPlugin verifyPluginStructure
-cd extensions/vscode-kalm
-npm ci
-npm run check
-npm test
-npm run package
+python3 tools/scripts/workspace.py --maven /path/to/mvn
+python3 tools/scripts/workspace.py --maven /path/to/mvn --full
 ```
 
-The Maven reactor includes positive mixed-source and negative type-error plugin integration fixtures. Compiler tests cover language semantics, same-source and compiled Java signatures, module paths, nullable flow, exact diagnostic ranges, source ownership, warnings and formatting. Gradle TestKit checks both call directions, Kalm test reports, unchanged-task skipping and deletion. LSP tests exercise framed stdio JSON-RPC, unsaved snapshots, closed files, scope-aware rename, Java member completion and Java caller edits. Editor highlighting uses shared fixtures and the actual native/TextMate lexers.
+The core gate builds the runtime, standard library, compiler, Maven plugin, server and shared fixtures.
+The full gate adds Gradle integration, examples, editor packages, npm consumers and the distribution.
+Each component also documents its standalone build. Run Maven on JDK 25+; use the pinned Gradle wrappers.
+The website requires Node 22.12+.
 
-Keep generated artifacts under `target`, `build`, or ignored extension resource directories. Never commit dependency caches, built JARs/VSIX files, SDKs or generated application Java.
+Keep generated artifacts under ignored `target`, `build`, `generated`, `dist` or extension resource directories.
+Never commit dependency caches, SDKs, built JARs/VSIX files or generated application Java.
 
-## Package a distribution
+## Package and verify
 
-After building and verifying all components:
+After the producer and consumer builds pass, run from the sibling workspace root:
 
 ```sh
-./gradlew -p kalm-gradle-plugin publish
-python3 scripts/verify_clean_builds.py --offline
-python3 scripts/verify_editor_packages.py
-python3 scripts/package_distribution.py
-python3 scripts/verify_distribution.py --build-example
+python3 tools/scripts/verify_clean_builds.py --maven /path/to/mvn --offline
+python3 tools/scripts/verify_editor_packages.py
+python3 tools/scripts/package_distribution.py
+python3 tools/scripts/verify_distribution.py --build-example --maven /path/to/mvn
 ```
 
-`publish` above writes the Gradle plugin and marker to the local `kalm-gradle-plugin/build/repository`, without uploading externally. The distribution script requires current compiler/runtime/plugin/server/editor artifacts, writes deterministic ZIP and TAR.GZ archives under `dist`, and records SHA-256 checksums. Snapshot plugin repository entries use fixed version names and packaged editor ZIP metadata is normalized. It includes an installer for the local Maven artifacts and a sample that resolves the packaged Gradle plugin. [Distribution installation](distribution.md) describes the binary archive.
+The Gradle plugin's `publishAllPublicationsToDistributionRepository` task stages its plugin and marker under
+`plugin-gradle/build/repository`. It does not upload externally. Distribution packaging requires current
+compiler/runtime/plugin/server/editor artifacts and writes ZIP, TAR.GZ and SHA-256 checksums under `tools/dist`.
+It includes the Maven artifact installer and examples that resolve the packaged Gradle plugin.
+See [distribution installation](distribution.md).
 
-JAR archives have deterministic timestamps; Gradle archives use stable file order. Packaging the same built inputs twice produces identical distribution checksums. The Gradle wrapper pins an official SHA-256 distribution checksum.
+JAR archives use deterministic timestamps; Gradle archives use stable file order. The clean-build gate compares
+JVM artifact hashes across two source copies. Distribution verification checks identical ZIP/TAR contents,
+checksums, executable launchers and packaged behavior. Wrappers pin official distribution checksums.
 
 ## Release
 
-Coordinates use `dev.kalm`, with Gradle plugin ID `dev.kalm.language`, VS Code language ID `kalm`, and IntelliJ plugin ID `dev.kalm.idea`. Update all component versions together and record breaking development changes in [migration notes](migration.md).
+All Kalm components use `1.2.0`, Maven coordinates use `dev.kalm`, the Gradle plugin ID is `dev.kalm.language`,
+the VS Code language ID is `kalm`, and the IntelliJ plugin ID is `dev.kalm.idea`.
+Record incompatible source and Java API changes in the [migration guide](migration.md).
 
-A public release needs passing automated gates, an interactive editor smoke check, and the owner's configured Maven/plugin/editor publisher accounts. Distribution staging and CI artifact upload are available locally; public registry credentials are intentionally supplied by the release environment. Do not label the draft implementation a 1.0 release while a required conformance gate remains open.
+Public publication requires passing automated gates, interactive IDE checks and the owner's publisher accounts.
+Stable artifact publication is explicit in producer workflows. Branch pushes do not publish stable artifacts.
+Windows execution remains a separate platform gate; Linux results do not substitute for it.

@@ -1,75 +1,24 @@
-# Usability delivery
+# Kalm 1.2.0 implementation
 
-Implemented on 2026-10-04. The cumulative checkout is
-`feat/website-tutorial`; `main` remains at `13bbe49`. Branches are stacked
-locally so each feature has its own reviewable changes. Nothing was merged,
-pushed, deployed, or published to a registry.
+The implementation targets the [final specification](https://github.com/kalm-lang/specification/blob/feat/kalm-1.2.0/documents/v1.2.0.md).
+All active component repositories use `feat/kalm-1.2.0` and conventional commits.
+The [migration guide](migration.md) describes source and Java API changes.
 
-## Delivered behavior
+The compiler implements primitive/wrapper separation, contextual words, defaults, parent calls, conditional
+and match values, bracket bindings, indexed writes, local functions, completion checks and KalmDoc.
+The runtime and standard library supply the corresponding metadata, null boundaries and library APIs.
+Build plugins, the language server, both editors, highlighting, examples and website consume matching 1.2.0 artifacts.
 
-- Aligned the draft's choices, layout, and late-field guarantees with the
-  implementation; recorded missing features and explicit boundaries.
-- Corrected constructor initialization across lexical scopes and normally
-  completing paths; added actionable diagnostic remedies.
-- Added offline `kalm init` with CLI/Maven/Gradle builds, hello/empty templates,
-  configurable names/packages, and rollback of files created during failure.
-  Running native tests preserves compiled main classes.
-- Moved the mixed project into `examples/`, added the exact README greeting,
-  and added a task-report application with eight native tests and Java interop.
-  All three projects ship in the standalone distribution.
-- Added a Lit website with 22 static pages, canonical reference documents,
-  example source browsers, and a six-lesson source-backed tutorial. It supports
-  light/dark/system themes, mobile and keyboard navigation, copy buttons,
-  reduced motion, enlarged text, and reading without JavaScript.
+The specification is a standalone final contract. Migration guidance is a separate companion, and executable
+acceptance scenarios live with the tools and component tests. Historical editions remain available with their
+matching highlighting grammar.
 
-## Feature branches
+## Verification
 
-| Branch | Main change |
-| --- | --- |
-| `feat/language-audit` | Draft alignment and usability audit |
-| `fix/field-initialization` | Constructor-flow analysis |
-| `feat/actionable-diagnostics` | Diagnostic remedies |
-| `feat/cli-init` | Configurable offline scaffolding |
-| `refactor/examples-layout` | Mixed project relocation |
-| `feat/example-hello` | README greeting project |
-| `feat/example-task-report` | Advanced project and source-only packaging |
-| `feat/website-foundation` | Lit components and responsive visual design |
-| `fix/scaffold-builds` | Modern standalone Maven lifecycle plugins |
-| `feat/website-docs` | Canonical docs and source browsers |
-| `fix/init-rollback` | Partial-file ownership during scaffolding |
-| `feat/website-tutorial` | Tutorial and browser acceptance gates |
+Use the [development workflow](development-brief.md) to build producers before consumers.
+[Conformance](conformance.md) lists semantic suites, and the [release evidence](https://github.com/kalm-lang/tools/blob/feat/kalm-1.2.0/docs/release-1.2.0.md)
+records completed gates, source revisions, generated archives and platform limits.
 
-Conventional commits separate the feature work and follow-up corrections.
-Review each branch against its preceding branch in this table; the final
-branch contains the complete implementation.
-
-## Run and verify
-
-See [examples](https://github.com/kalm-lang/examples/blob/main/README.md), [website commands](../website/README.md),
-and [conformance](conformance.md) for the detailed acceptance record.
-
-```sh
-mvn -B -ntp clean install
-python3 scripts/verify_clean_builds.py --offline
-python3 scripts/verify_editor_packages.py
-python3 scripts/package_distribution.py
-python3 scripts/verify_distribution.py --build-example
-cd website
-npm ci
-npm run check
-npm run build
-npx playwright install chromium
-npm test
-npm run dev
-```
-
-The compiler and examples require JDK 25+. The website requires Node 22.12+.
-Website dependencies are pinned to registry-verified latest stable versions at
-implementation time. Generated artifacts and caches are ignored.
-
-## Remaining boundaries
-
-The [audit](feature-audit.md) and [implementation limits](known-limitations.md)
-record deferred language expansion and the typed-local workaround for direct
-singleton property inference. Automated editor packaging passed; interactive
-IDE installation and Windows execution remain separate acceptance checks.
+JDK 25+ is required for compilation and the shared server; Node 22.12+ builds the documentation and website.
+Generated Java, caches, SDKs, PDFs and binary release archives stay in ignored build directories.
+Public registry publication, marketplace publication, tags and live deployment are separate release actions.

@@ -28,7 +28,7 @@ mvn clean install
 bin/kalm --version
 ```
 
-Until public artifacts are published, local Maven installation is required by the examples. Compiler, runtime, build plugins, server and IntelliJ use `1.2.0`; the VSIX uses Marketplace-compatible version `0.1.0` and bundles the matching snapshot server.
+Until public artifacts are published, install the bundled Maven artifacts locally before building the examples. Compiler, runtime, standard library, build plugins, server and both editor packages use `1.2.0`. Both editors bundle the matching compiler and server.
 
 ## CLI
 

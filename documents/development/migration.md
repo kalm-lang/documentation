@@ -1,62 +1,28 @@
 # Migrating to Kalm 1.2.0
 
-The [final changes companion](https://github.com/kalm-lang/specification/blob/v1.2.0/changes/v1.2.0.md)
+The [final changes companion](https://github.com/kalm-lang/specification/blob/feat/kalm-1.2.0/changes/v1.2.0.md)
 is the complete comparison against final 1.1.0. Recompile dependent Java and Kalm code after changing exposed signatures.
 
-- Use lowercase primitive annotations to preserve primitive JVM descriptors. Capitalized wrappers keep reference storage; nullable and generic wrappers remain capitalized.
+- Use lowercase primitive annotations to preserve primitive JVM descriptors. Capitalized wrappers keep reference storage; nullable and generic wrappers remain capitalized. Numeric expressions use the specified promotion rules.
 - Replace `impl`, `choose`, and `when` constructs with `implements`, `match`, and `case`. The old words remain ordinary identifiers.
 - Add `fix` where class or method finality must remain guaranteed. Mark direct sealed children explicitly.
 - Use `Any?` wherever null is allowed, and handle absent map keys.
 - Replace call-shaped word negation/await with `!(condition)` or `await pending`. Calls such as `not(value)` resolve a named callable.
-- Use `yield` for value-match block arms. Nullable value functions still need explicit returns on every completing path.
+- Use `yield` for value-match block arms. Nullable value functions still need explicit returns on every completing path. A concrete closed base remains an inhabitant; mark it `base` when only permitted children should inhabit the hierarchy.
+- Declare defaults only on eligible non-overriding concrete functions or constructors. Omitted arguments evaluate defaults in order; explicit null remains a supplied argument.
+- Use `void` or compatible `Unit` for no-result declarations. Neither denotes an ordinary stored value; no-result tasks expose `Task<Unit>`.
+- Replace backslash-dollar escapes with `$$` in interpolated text. Keep only the specified character and Unicode escapes.
 
-## Earlier implementation migrations
+## Build and editor migration
 
-# Migration notes for the v1 draft implementation
+All Kalm JVM components and both editor packages use `1.2.0`. The standard library brings the runtime transitively.
+Install the distribution's Maven artifacts locally until the corresponding registry release is available.
+The Gradle plugin ID remains `dev.kalm.language`.
 
-The previous development compiler accepted nullable Kalm references in non-null return types and inferred locals without checking later dereferences. These programs now produce `KALM-2001` diagnostics. Use a nullable result, safe access, `??`, or a stable `fix` value refined by a null check. Mutable `var` values retain their declared nullable type after an assignment, including `??=`. The value of `??=` itself has the fallback's nullability.
+Both editors bundle the shared compiler and server and require a JDK 25+ executable for those processes.
+Rebuild host projects after changing dependencies so `kalm-project.properties` records the current roots,
+classpath and release. The CLI and server read that metadata.
 
-`Array<Int>` and other primitive type arguments now denote boxed reference arrays (`Integer[]`). Use `IntArray` for `int[]`. This corrects the mapping required by the specification and changes affected generated Java signatures.
-
-Methods implementing a Java interface now require `override fun`. Generated overrides and forwarded methods preserve compatible checked exceptions from the Java signature, including interfaces defined in the same source set.
-
-The CLI discovers `src/main/java` or `src/test/java` alongside its default Kalm roots. When supplying custom Kalm roots, add handwritten Java roots explicitly with repeatable `--java-source-root` options. Signature analysis uses in-memory Java files and never emits or packages stub classes.
-
-## Joint compiler and shared editor implementation
-
-- Maven `testCompile` now binds to `process-test-sources`, allowing it to see compiled main classes.
-- VS Code uses the bundled shared Java language server by default. Remove settings that depended on the earlier JavaScript analyzer; set `kalm.java.command` to JDK 25 when needed.
-- IntelliJ packages the server and adds native highlighting/source roots. `KALM_JAVA_COMMAND` selects its server JDK; `KALM_LSP_COMMAND` still supports an external server.
-- Java reference signatures now retain nullability and Kalm module visibility metadata. Nullable values no longer pass silently to non-null Kalm declarations across compiled boundaries.
-- Arithmetic rejects mixed numeric types. Nullable mutable bindings retain their declared type after `??=`; use a fix refined value or coalesce explicitly.
-- Unannotated Java references and legacy function/method uses produce warnings. Existing code remains valid when only warnings are present.
-- Generated Java has expression mapping sidecars. The CLI cleans stale owned class files after a successful rebuild; host builds retain their normal Java incremental compilation.
-- Gradle compilation runs in the selected JDK, emits HTML reports, and has explicit source filters/analysis arguments.
-
-## Diagnostic and null-assignment corrections
-
-Mapped javac type/name errors now use the Kalm type/name family: `KALM-2010` unresolved symbol, `KALM-2011` incompatible type/arguments, `KALM-2012` missing return, `KALM-2013` ambiguous reference and `KALM-2014` definite assignment. Interop/build errors remain `KALM-3000`. Update tools that matched all javac failures as `KALM-3000`.
-
-`??=` follows the draft's mutable-local-or-field rule; use ordinary assignment for a `write` property. Nullable and primitive `guard` locks are diagnosed. Task blocks infer nullable result types, and `await` resolves inherited Java completion-stage type arguments.
-
-Unknown record generators are diagnosed; the supported spelling is `generate Display`. Precompiled test execution uses the explicitly supplied runtime classpath so Maven and Gradle outputs cannot shadow one another.
-
-## Generic calls and casts
-
-Constructor arguments, generic function parameters and Java members now preserve instantiated nullable type arguments. Code that placed `Text?` into `Box<Text>` must use `Box<Text?>` or supply a non-null value. Nullable elements remain nullable when accessed through inherited Java generic methods.
-
-Casting null to a non-null target raises `ClassCastException`; use a nullable cast target when null is allowed. Cast operands are evaluated once. CLI application and test execution now use their application class loader as the thread context loader, restoring the previous loader afterward.
-
-## Kalm 1.1
-
-Replace the 1.0 keyword `fixed` with `fix` in bindings and class/member modifiers. The old spelling produces a migration diagnostic. `Unit` continues to map to Java `void`.
-
-Semicolons are recommended and optional at logical newlines, closing blocks, and EOF. Put a continuation operator at the end of a line or use parentheses for a multiline expression. A bare `return` ends at its newline.
-
-Use braces or Python-style colon suites for block bodies, and mix them freely. Colon bodies may contain inline simple statements separated by semicolons, or an indented multiline body. Parentheses around conditions and loop bindings are optional. Formatting preserves the chosen syntax.
-
-Applications depend on `dev.kalm:kalm-stdlib`, which brings `kalm-runtime` transitively. The default prelude remains available without imports. Java consumers of old runtime convenience APIs migrate to `kalm.stdlib.Prelude` and the focused standard-library helper classes.
-
-## Clarified draft semantics
-
-Choices cannot declare type parameters and remain ordinary Java enums. Late fields retain their existing runtime-guarded behavior; the draft no longer promises an unimplemented static initialization protocol. Formatting follows the first block style in each sibling group and checks without writing by default. These clarifications do not change existing valid programs.
+Mapped diagnostics retain the stable Kalm families and UTF-16 locations. Java reference nullability and escaped
+Kalm declaration names survive separate compilation through class-retained metadata. Keep generated Java
+and source maps when runtime stack-frame remapping is required.
