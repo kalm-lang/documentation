@@ -1,6 +1,6 @@
 # Language usage
 
-The [Kalm 1.2.0 specification](https://github.com/kalm-lang/specification/blob/v1.2.0/documents/v1.2.0.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
+The [Kalm 1.2.0 specification](https://github.com/kalm-lang/specification/blob/feat/kalm-1.2.0/documents/v1.2.0.md) defines the complete syntax. The runnable examples below are covered by compiler tests or the mixed project.
 
 ## Layout and block styles
 
