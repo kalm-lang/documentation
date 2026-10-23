@@ -38,7 +38,7 @@ The example's Gradle settings resolve the supplied plugin from `integrations/gra
 
 Install the VSIX under `editors` in VS Code, or the IntelliJ ZIP using **Install Plugin from Disk**. IntelliJ also needs LSP4IJ, as declared in the plugin manifest. Both packages bundle the shared server. Set the editor's Java command to JDK 25 if its normal Java executable is older.
 
-See [language usage](language-guide.md), [CLI documentation](quick-start.md), and [conformance status](conformance.md). This is a development snapshot; public registry publication is a separate release step.
+See [language usage](language-guide.md), [CLI documentation](quick-start.md), and [conformance status](conformance.md). The final specification and migration companion are included under `specification/documents` and `specification/changes`. Public registry publication is a separate release step.
 
 ## More examples
 

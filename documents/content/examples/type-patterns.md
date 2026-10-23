@@ -6,11 +6,11 @@
 }
 ---
 
-Match every permitted child of a closed hierarchy.
+Match every permitted child of an abstract closed hierarchy.
 
 ::::compare
 ```kalm Result.kalm {"style":"indentation"}
-pub closed class Result:
+pub base closed class Result:
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 
@@ -20,7 +20,7 @@ pub fun label(result: Result) -> Text = match result:
 ;
 ```
 ```kalm Result.kalm {"style":"braces"}
-pub closed class Result {
+pub base closed class Result {
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 }
@@ -32,7 +32,7 @@ pub fun label(result: Result) -> Text = match result {
 ;
 ```
 ```kalms Result.kalms {"style":"indentation"}
-closed class Result:
+base closed class Result:
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 
@@ -42,7 +42,7 @@ fun label(result: Result) -> Text = match result:
 ;
 ```
 ```kalms Result.kalms {"style":"braces"}
-closed class Result {
+base closed class Result {
     pub fix class Ready inherits Result {}
     pub fix class Missing inherits Result {}
 }
@@ -54,7 +54,7 @@ fun label(result: Result) -> Text = match result {
 ;
 ```
 ```java Result.java
-public sealed class Result permits Result.Ready, Result.Missing {
+public abstract sealed class Result permits Result.Ready, Result.Missing {
 
     public static final class Ready extends Result {}
 
@@ -64,9 +64,6 @@ public sealed class Result permits Result.Ready, Result.Missing {
         return switch (result) {
             case Ready ready -> "ready";
             case Missing missing -> "missing";
-            default -> throw new IllegalStateException(
-                "Unrecognized result"
-            );
         };
     }
 }
